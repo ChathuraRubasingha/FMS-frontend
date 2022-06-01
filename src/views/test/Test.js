@@ -25,7 +25,7 @@ const Test = () => {
   const [search, setSearch] = useState('')
   const getProductData = async () => {
     try {
-      const data = await axios.get('https://nba-players.herokuapp.com/players-stats')
+      const data = await axios.get('http://localhost:5000/driver')
       console.log(data.data)
       setProduct(data.data)
     } catch (e) {
@@ -88,12 +88,12 @@ const Test = () => {
                     })
                     .map((item) => {
                       return (
-                        <CTableRow key={item.id}>
-                          <CTableHeaderCell scope="row">{item.name}</CTableHeaderCell>
-                          <CTableDataCell>{item.games_played}</CTableDataCell>
-                          <CTableDataCell>{item.games_played}</CTableDataCell>
-                          <CTableDataCell>{item.games_played}</CTableDataCell>
-                          <CTableDataCell>{item.games_played}</CTableDataCell>
+                        <CTableRow key={item.Driver_ID}>
+                          <CTableHeaderCell scope="row">{item.Driver_ID}</CTableHeaderCell>
+                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
+                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
+                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
+                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
                         </CTableRow>
                       )
                     })}

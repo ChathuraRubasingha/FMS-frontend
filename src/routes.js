@@ -50,6 +50,12 @@ const Alerts = React.lazy(() => import('./views/notifications/alerts/Alerts'))
 const Badges = React.lazy(() => import('./views/notifications/badges/Badges'))
 const Modals = React.lazy(() => import('./views/notifications/modals/Modals'))
 const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
+//Pages
+const Driver = React.lazy(() => import('./views/pages/Driver'))
+const Fuel = React.lazy(() => import('./views/pages/Fuel'))
+const Odometer = React.lazy(() => import('./views/pages/Odometer'))
+const Registory = React.lazy(() => import('./views/pages/Registory'))
+const Accident = React.lazy(() => import('./views/pages/Accident'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
@@ -107,6 +113,11 @@ const routes = [
   { path: '/tabs/idle', name: 'Idle', component: Idle },
   { path: '/test', name: 'Test', component: Test, exact: true },
   { path: '/test/Test', name: 'Test', component: Test },
+  { path: '/driver', name: 'Driver', component: Driver },
+  { path: '/registory', name: 'Registory', component: Registory },
+  { path: '/fuel', name: 'Fuel', component: Fuel },
+  { path: '/odometer', name: 'Odometer', component: Odometer },
+  { path: '/accident', name: 'Accident', component: Accident },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   {
     path: '/Vehicle_details/Vehicle_details',
