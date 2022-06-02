@@ -56,6 +56,11 @@ const Fuel = React.lazy(() => import('./views/pages/Fuel'))
 const Odometer = React.lazy(() => import('./views/pages/Odometer'))
 const Registory = React.lazy(() => import('./views/pages/Registory'))
 const Accident = React.lazy(() => import('./views/pages/Accident'))
+const Access = React.lazy(() => import('./views/pages/Access'))
+const Manage_Role = React.lazy(() => import('./views/pages/Manage_Role'))
+const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
+const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
+const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
@@ -118,6 +123,11 @@ const routes = [
   { path: '/registory', name: 'Registory', component: Registory },
   { path: '/fuel', name: 'Fuel', component: Fuel },
   { path: '/odometer', name: 'Odometer', component: Odometer },
+  { path: '/access', name: 'Access', component: Access },
+  { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
+  { path: '/manage_user', name: 'Manage_User', component: Manage_User },
+  { path: '/access_permission', name: 'Access_Permission', component: Access_Permission },
+  { path: '/dashboard_permission', name: 'Dashboard_Permission', component: Dashboard_Permission },
   { path: '/accident', name: 'Accident', component: Accident },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
