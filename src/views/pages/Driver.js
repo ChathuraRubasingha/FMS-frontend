@@ -19,7 +19,11 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
+import { NavLink } from 'react-bootstrap'
+import { Link } from '@mui/material'
+import axios from 'axios'
 const Driver = () => {
+  const [DriverList, setDriverList] = useState([])
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -28,11 +32,20 @@ const Driver = () => {
 
   const [search, setSearch] = useState('')
 
+  const deleteDriver = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+      setDriverList(
+        DriverList.filter((items) => {
+          return items.Driver_ID != id
+        }),
+      )
+    })
+  }
+
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/driver`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -61,6 +74,10 @@ const Driver = () => {
     const commentsFormServer = await fetchComments(currentPage)
 
     setItems(commentsFormServer)
+
+    const routeChang = () => {
+      console.log('button worked')
+    }
   }
   return (
     <div>
@@ -84,7 +101,9 @@ const Driver = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>Add new Driver</CButton>
+              <a href="http://localhost:3001/adddriver">
+                <CButton> Add new Driver</CButton>
+              </a>
             </CCol>
           </CRow>
         </CCardBody>
@@ -111,21 +130,29 @@ const Driver = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="m-1" color="success">
-                                Edit
+                              <CButton className="buttons m-1" color="success">
+                                Update
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteDriver(item.Driver_ID)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

@@ -56,6 +56,7 @@ const Fuel = React.lazy(() => import('./views/pages/Fuel'))
 const Odometer = React.lazy(() => import('./views/pages/Odometer'))
 const Registory = React.lazy(() => import('./views/pages/Registory'))
 const Accident = React.lazy(() => import('./views/pages/Accident'))
+const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
@@ -118,6 +119,7 @@ const routes = [
   { path: '/fuel', name: 'Fuel', component: Fuel },
   { path: '/odometer', name: 'Odometer', component: Odometer },
   { path: '/accident', name: 'Accident', component: Accident },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   {
     path: '/Vehicle_details/Vehicle_details',
