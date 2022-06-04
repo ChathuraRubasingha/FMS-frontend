@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { BsCartPlus } from 'react-icons/bs'
+import { BsCartPlusFill } from 'react-icons/bs'
 import {
   CCol,
   CRow,
@@ -19,33 +21,21 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
-import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
-import axios from 'axios'
-const Driver = () => {
-  const [DriverList, setDriverList] = useState([])
+
+const FuelTable = () => {
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
 
-  let limit = 15
+  let limit = 10
 
   const [search, setSearch] = useState('')
 
-  const deleteDriver = (id) => {
-    alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
-      setDriverList(
-        DriverList.filter((items) => {
-          return items.Driver_ID != id
-        }),
-      )
-    })
-  }
-
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(
+        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
+      )
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -74,10 +64,6 @@ const Driver = () => {
     const commentsFormServer = await fetchComments(currentPage)
 
     setItems(commentsFormServer)
-
-    const routeChang = () => {
-      console.log('button worked')
-    }
   }
   return (
     <div>
@@ -85,25 +71,23 @@ const Driver = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Driver Details</h5>
+              <h3>
+                Filling Requests &nbsp;
+                <BsCartPlusFill />
+              </h3>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
-              <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
+              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search"
+                  placeholder="Search Requests"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
                 />
               </CInputGroup>
-            </CCol>
-            <CCol xs={2}>
-              <a href="/adddriver">
-                <CButton> Add new Driver</CButton>
-              </a>
             </CCol>
           </CRow>
         </CCardBody>
@@ -117,12 +101,13 @@ const Driver = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col" className="Catogory TableHedder">
-                        <h6>Name</h6>
-                      </CTableHeaderCell>
-                      <CTableHeaderCell scope="col">NIC</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Mobile</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -130,29 +115,21 @@ const Driver = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
-                              <CButton
-                                onClick={() => {
-                                  deleteDriver(item.Driver_ID)
-                                }}
-                                className="buttons m-1"
-                                color="danger"
-                              >
-                                Delete
-                              </CButton>
+                              <CButton className="button1">Option</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -165,7 +142,7 @@ const Driver = () => {
                       breakLabel={'...'}
                       pageCount={pageCount}
                       marginPagesDisplayed={2}
-                      pageRangeDisplayed={3}
+                      pageRangeDisplayed={2}
                       onPageChange={handlePageClick}
                       containerClassName={'pagination justify-content-center'}
                       pageClassName={'page-item'}
@@ -190,4 +167,4 @@ const Driver = () => {
   )
 }
 
-export default Driver
+export default FuelTable
