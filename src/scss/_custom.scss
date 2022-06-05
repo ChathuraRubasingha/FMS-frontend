@@ -66,6 +66,7 @@
   float: right;
 }
 
+
 .button2 {
   background: linear-gradient(to right, #d679dd, #6c046c);
   border: black;
@@ -74,6 +75,24 @@
 
 .buttons {
   float: left;
+
+.vertical-center {
+  left: 50%;
+  margin: 0;
+  height: 35px;
+  width: 100px;
+  position: relative;
+  border-radius: 5%;
+  color: #1c0507;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+    background: linear-gradient(to right, #19a3e9, #090268);
+    border: black;
+    float: right;
+  }
+.buttons{
+    float: left;
+
 }
 //   .footer{
 //       height: 100px;

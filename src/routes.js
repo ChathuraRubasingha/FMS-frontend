@@ -1,4 +1,11 @@
 import React from 'react'
+import AssignDriver from './views/pages/AssignDriver'
+import CancelledBookingRequests from './views/pages/CancelledBookingRequests'
+import CompletedBookingRequests from './views/pages/CompletedBookingRequests'
+import DisapprovedBookingRequests from './views/pages/DisapprovedBookingRequests'
+import PendingBookingRequests from './views/pages/PendingBookingRequests'
+import TransfterVehicle from './views/pages/TransfterVehicle'
+import NotTransferedVehicles from './views/pages/NotTransferedVehicles'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Allocated = React.lazy(() => import('./views/tabs/allocated/Allocated'))
@@ -55,17 +62,62 @@ const Driver = React.lazy(() => import('./views/pages/Driver'))
 const Fuel = React.lazy(() => import('./views/pages/Fuel'))
 const Odometer = React.lazy(() => import('./views/pages/Odometer'))
 const Registory = React.lazy(() => import('./views/pages/Registory'))
+const Booking = React.lazy(() => import('./views/pages/Booking'))
 const Accident = React.lazy(() => import('./views/pages/Accident'))
+const Reports = React.lazy(() => import('./views/pages/Reports'))
+const Repair = React.lazy(() => import('./views/pages/Repair'))
+const Maintainance_cost = React.lazy(() => import('./views/pages/Maintainance_cost'))
+const Insurance_due = React.lazy(() => import('./views/pages/Insurance_due'))
+const Repair_form = React.lazy(() => import('./views/pages/Repair_form'))
+const Maintainance_form = React.lazy(() => import('./views/pages/Maintainance_form'))
+const License_due = React.lazy(() => import('./views/pages/License_due'))
+const Fitness_Test_due = React.lazy(() => import('./views/pages/Fitness_Test_due'))
+const Emission_Test_Due = React.lazy(() => import('./views/pages/Emission_Test_Due'))
+const Fuel_vehicle = React.lazy(() => import('./views/pages/Fuel_vehicle'))
+const Fuel_vehicle_form = React.lazy(() => import('./views/pages/Fuel_vehicle_form'))
+const Fuel_All_Vehicles = React.lazy(() => import('./views/pages/Fuel_All_Vehicles'))
+const Booking_Status = React.lazy(() => import('./views/pages/Booking_Status'))
+const Booking_Vehicle = React.lazy(() => import('./views/pages/Booking_Vehicle'))
+const Booking_Requester = React.lazy(() => import('./views/pages/Booking_Requester'))
+const Performance_Driver = React.lazy(() => import('./views/pages/Performance_Driver'))
+const Driver_Form = React.lazy(() => import('./views/pages/Driver_Form'))
+const Performance_Summary = React.lazy(() => import('./views/pages/Performance_Summary'))
+const Vehicle_Detail = React.lazy(() => import('./views/pages/Vehicle_Detail'))
+const Vehicle_Category = React.lazy(() => import('./views/pages/Vehicle_Category'))
+const Vehicle_Allocation = React.lazy(() => import('./views/pages/Vehicle_Allocation'))
+const Vehicle_Status = React.lazy(() => import('./views/pages/Vehicle_Status'))
+const Accident_Details = React.lazy(() => import('./views/pages/Accident_Details'))
+const Configuration = React.lazy(() => import('./views/pages/Configuration'))
 const Access = React.lazy(() => import('./views/pages/Access'))
 const Manage_Role = React.lazy(() => import('./views/pages/Manage_Role'))
 const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
 const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
+const AddVehicle = React.lazy(() => import('./views/pages/RegistoringVehicleform'))
+const AssignVehicle = React.lazy(() => import('./views/pages/AssigningLocationform'))
+const VehicleAssigning = React.lazy(() => import('./views/pages/AssigningLocation'))
+const UnassignVehicles = React.lazy(() => import('./views/pages/UnassignVehicles'))
+const ApprovedBookingRequests = React.lazy(() => import('./views/pages/ApprovedBookingRequests'))
+const AssignedBookingRequests = React.lazy(() => import('./views/pages/AssignedBookingRequests'))
+const VehicleINandOUT = React.lazy(() => import('./views/pages/VehicleINandOUT'))
+const AssignDriverform = React.lazy(() => import('./views/pages/AssignDriverform'))
+const DriverAssigning = React.lazy(() => import('./views/pages/AssignDriver'))
+const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers'))
+
+const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
+const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicle'))
+
 const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
+
+
+
+
+
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
 const Individual_Vehicle_Details = React.lazy(() =>
@@ -124,6 +176,7 @@ const routes = [
   { path: '/test/Test', name: 'Test', component: Test },
   { path: '/driver', name: 'Driver', component: Driver },
   { path: '/registory', name: 'Registory', component: Registory },
+  { path: '/booking', name: 'Booking', component: Booking },
   { path: '/fuel', name: 'Fuel', component: Fuel },
   { path: '/AddFuel', name: 'Add Fuel', component: AddFuel },
   { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
@@ -135,7 +188,143 @@ const routes = [
   { path: '/access_permission', name: 'Access_Permission', component: Access_Permission },
   { path: '/dashboard_permission', name: 'Dashboard_Permission', component: Dashboard_Permission },
   { path: '/accident', name: 'Accident', component: Accident },
+  { path: '/Reports', name: 'Reports', component: Reports },
+  { path: '/Repair', name: 'Repair', component: Repair },
+  { path: '/Maintainance_cost', name: 'Maintainance cost', component: Maintainance_cost },
+  { path: '/Insurance_due', name: 'Insurance due', component: Insurance_due },
+  { path: '/Repair_form', name: 'Repair form', component: Repair_form },
+  { path: '/Maintainance_form', name: 'Maintainance form', component: Maintainance_form },
+  { path: '/License_due', name: 'License Due Reports ', component: License_due },
+  { path: '/Fitness_Test_due', name: 'Fitness Test due Reports  ', component: Fitness_Test_due },
+  { path: '/Emission_Test_Due', name: 'Emission Test due Reports  ', component: Emission_Test_Due },
+  { path: '/Driver_Form', name: 'Driver Performance Report ', component: Driver_Form },
+  { path: '/Configuration', name: 'Configuration Module ', component: Configuration },
+  {
+    path: '/Accident_Details',
+    name: 'Accident Details Report - Vehicle wise ',
+    component: Accident_Details,
+  },
+  {
+    path: '/Vehicle_Status',
+    name: 'Vehicle Details Report - Status wise ',
+    component: Vehicle_Status,
+  },
+  {
+    path: '/Vehicle_Allocation',
+    name: 'Vehicle Allocation Report ',
+    component: Vehicle_Allocation,
+  },
+  {
+    path: '/Vehicle_Category',
+    name: 'Vehicle Details Report - Category wise ',
+    component: Vehicle_Category,
+  },
+
+  {
+    path: '/Vehicle_Detail',
+    name: 'Vehicle Details Report - Vehicle wise',
+    component: Vehicle_Detail,
+  },
+  {
+    path: '/Performance_Summary',
+    name: 'Driver Performance Summary Report ',
+    component: Performance_Summary,
+  },
+
+  {
+    path: '/Performance_Driver',
+    name: 'Driver Performance Report - By Driver  ',
+    component: Performance_Driver,
+  },
+  {
+    path: '/Booking_Requester',
+    name: 'Vehicle Booking Report - Requester wise  ',
+    component: Booking_Requester,
+  },
+  {
+    path: '/Booking_Vehicle',
+    name: 'Vehicle Booking Report - Vehicle Wise   ',
+    component: Booking_Vehicle,
+  },
+  {
+    path: '/Booking_Status',
+    name: 'Vehicle Booking Report - Status Wise  ',
+    component: Booking_Status,
+  },
+  {
+    path: '/Fuel_All_Vehicles',
+    name: 'Fuel Consumption Reports - All Vehicle  ',
+    component: Fuel_All_Vehicles,
+  },
+  {
+    path: '/Fuel_vehicle_form',
+    name: 'Fuel Consumption Reports - Vehicle Wise  ',
+    component: Fuel_vehicle_form,
+  },
+  {
+    path: '/Fuel_vehicle',
+    name: 'Fuel Consumption Reports - Vehicle wise  ',
+    component: Fuel_vehicle,
+  },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+
+  { path: '/addvehicle', name: 'Registory/ AddNewVehicle', component: AddVehicle },
+
+  { path: '/assignAvehicle', name: 'VehicleAssigning/ AssignAVehicle', component: AssignVehicle },
+  { path: '/vehicleassigning', name: 'VehicleAssigning', component: VehicleAssigning },
+  { path: '/unassignvehicles', name: 'UnassignVehicles', component: UnassignVehicles },
+  { path: '/assignAdriver', name: 'DriverAssigning/ AssignADriver', component: AssignDriverform },
+  { path: '/driverassigning', name: 'DriverAssigning', component: AssignDriver },
+  { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
+  { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
+  {
+    path: '/completedbookingrequests',
+    name: 'CompletedBookingRequests',
+    component: CompletedBookingRequests,
+  },
+  {
+    path: '/transferAvehicle',
+    name: 'VehicleTransfering/ TransferVehicle',
+    component: TransferVehicleform,
+  },
+  {
+    path: '/nottransferedvehicles',
+    name: 'VehicleTransfering/Nottransferedvehicles',
+    component: NotTransferedVehicles,
+  },
+
+  {
+    path: '/approvedbookingrequests',
+    name: 'ApprovedBookingRequests',
+    component: ApprovedBookingRequests,
+  },
+
+  {
+    path: '/pendingbookingrequests',
+    name: 'PendingBookingRequests',
+    component: PendingBookingRequests,
+  },
+
+  {
+    path: '/assignedbookingrequests',
+    name: 'AssignedBookingRequests',
+    component: AssignedBookingRequests,
+  },
+
+  {
+    path: '/disapprovedbookingrequests',
+    name: 'DisapprovedBookingRequests',
+    component: DisapprovedBookingRequests,
+  },
+
+  {
+    path: '/cancelledbookingrequests',
+    name: 'CancelledBookingRequests',
+    component: CancelledBookingRequests,
+  },
+
+  { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
+
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
   {
