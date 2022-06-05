@@ -144,6 +144,8 @@ const Individual_Vehicle_Details = React.lazy(() =>
   import('./views/Vehicle_details/Individual_Vehicle_Details'),
 )
 
+const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -239,6 +241,8 @@ const routes = [
   { path: '/Repair_Type', name: 'Repair Type Registry', component: Repair_Type },
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
+  { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+
   {
     path: '/System_Configurations',
     name: ' System Configurations Registry',
