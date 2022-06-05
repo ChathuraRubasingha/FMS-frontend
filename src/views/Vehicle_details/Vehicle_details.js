@@ -49,145 +49,65 @@ const Vehicle_details = () => {
             </CTableHead>
             <CTableBody>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>KY-1256</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>JCB</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">KY-1256</CTableHeaderCell>
+                <CTableDataCell>JCB</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
 
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>CAC-1156</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>CAR</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">CAC-1156</CTableHeaderCell>
+                <CTableDataCell>CAR</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>BAL-5956</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>MOTOR BIKE</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">BAL-5956</CTableHeaderCell>
+                <CTableDataCell>MOTOR BIKE</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>PB-7865</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>VAN</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">PB-7865</CTableHeaderCell>
+                <CTableDataCell>VAN</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>NB-1568</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>BUS</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">NB-1568</CTableHeaderCell>
+                <CTableDataCell>BUS</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>TX-1456</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>BIKE</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">TX-1456</CTableHeaderCell>
+                <CTableDataCell>BIKE</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>KT-1586</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>JCB</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">KT-1586</CTableHeaderCell>
+                <CTableDataCell>JCB</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>KB-1456</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>CAR</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">KB-1456</CTableHeaderCell>
+                <CTableDataCell>CAR</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>CAS-7864</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>JEEP</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">CAS-7864</CTableHeaderCell>
+                <CTableDataCell>JEEP</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>LN-1896</strong>
-                </CTableHeaderCell>
-                <CTableDataCell>
-                  <strong>LORRY</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2021/12/15</strong>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <strong>2022/12/15</strong>
-                </CTableDataCell>
+                <CTableHeaderCell scope="row">LN-1896</CTableHeaderCell>
+                <CTableDataCell>LORRY</CTableDataCell>
+                <CTableDataCell>2021/12/15</CTableDataCell>
+                <CTableDataCell>2022/12/15</CTableDataCell>
               </CTableRow>
             </CTableBody>
           </CTable>

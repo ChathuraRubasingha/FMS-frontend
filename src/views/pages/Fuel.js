@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
-class Fuel extends Component {
-  state = {}
-  render() {
-    return <h1>This is Fuel page..!</h1>
-  }
+import React, { lazy } from 'react'
+
+import { CCol, CRow } from '@coreui/react'
+
+import Tables from '../base/tables/fueltable'
+
+const Fuel = () => {
+  return (
+    <CCol>
+      <Tables />
+    </CCol>
+  )
 }
 
 export default Fuel

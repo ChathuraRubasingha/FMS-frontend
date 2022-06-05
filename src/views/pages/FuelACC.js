@@ -2,9 +2,9 @@ import React, { lazy } from 'react'
 
 import { CCol, CRow } from '@coreui/react'
 
-import Tables from '../base/tables/AccidentDetails'
+import Tables from '../base/tables/fuelacctable'
 
-const Accident = () => {
+const Fuel = () => {
   return (
     <CCol>
       <Tables />
@@ -12,4 +12,4 @@ const Accident = () => {
   )
 }
 
-export default Accident
+export default Fuel
