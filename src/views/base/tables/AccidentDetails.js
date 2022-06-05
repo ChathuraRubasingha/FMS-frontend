@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
-import { BsCartPlus } from 'react-icons/bs'
-import { BsCartPlusFill } from 'react-icons/bs'
+import { FaCarCrash } from 'react-icons/fa'
 import {
   CCol,
   CRow,
@@ -21,8 +20,9 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
+import Accident from 'src/views/pages/Accident'
 
-const FuelTable = () => {
+const AccidentTable = () => {
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -72,8 +72,8 @@ const FuelTable = () => {
           <CRow>
             <CCol xs={5}>
               <h3>
-                Filling Details &nbsp;
-                <BsCartPlusFill />
+                Accident Details &nbsp;
+                <FaCarCrash />
               </h3>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
@@ -104,12 +104,13 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Filled Date</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Fuel Station</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Accident Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">View Photos </CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Police Station</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Filled Volume</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Bill Amount</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">View Bill </CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Claim Amount</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">View Claim Details </CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -128,8 +129,12 @@ const FuelTable = () => {
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+
+                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell>
+                              <CButton className="button2">View</CButton>
+                            </CTableDataCell>
+                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell>
@@ -171,4 +176,4 @@ const FuelTable = () => {
   )
 }
 
-export default FuelTable
+export default AccidentTable
