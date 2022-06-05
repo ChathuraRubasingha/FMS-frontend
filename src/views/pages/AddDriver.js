@@ -8,6 +8,11 @@ import {
   CForm,
   CFormInput,
   CInputGroup,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
   CRow,
 } from '@coreui/react'
 import axios from 'axios'
@@ -24,7 +29,7 @@ function AddDriver() {
 
   const addDriver = () => {
     axios
-      .post(`http://localhost:5000/adddriver`, {
+      .post(`http://localhost:5000/api/addriver`, {
         callingName: callingName,
         fullName: fullName,
         location: location,

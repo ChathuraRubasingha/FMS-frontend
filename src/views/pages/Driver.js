@@ -34,7 +34,7 @@ const Driver = () => {
 
   const deleteDriver = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deletedriver/${id}`).then((response) => {
       setDriverList(
         DriverList.filter((items) => {
           return items.Driver_ID != id
@@ -45,7 +45,7 @@ const Driver = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(`http://localhost:5000/api/drivers`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
