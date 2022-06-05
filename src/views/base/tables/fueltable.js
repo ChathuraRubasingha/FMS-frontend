@@ -33,9 +33,7 @@ const FuelTable = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/fuelrequest`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -106,6 +104,7 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Avg Fuel consumption</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
                     </CTableRow>
@@ -122,12 +121,15 @@ const FuelTable = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Request_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Meter_Reading}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Fuel_Balance}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.Required_Fuel_Capacity}
+                            </CTableDataCell>
                             <CTableDataCell>
                               <CButton className="button1">Option</CButton>
                             </CTableDataCell>
