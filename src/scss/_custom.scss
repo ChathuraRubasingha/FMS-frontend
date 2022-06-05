@@ -66,6 +66,16 @@
   float: right;
 }
 
+
+.button2 {
+  background: linear-gradient(to right, #d679dd, #6c046c);
+  border: black;
+  float: right;
+}
+
+.buttons {
+  float: left;
+
 .vertical-center {
   left: 50%;
   margin: 0;
@@ -76,6 +86,7 @@
   color: #1c0507;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+<<<<<<< HEAD
 
   background: linear-gradient(to right, #19a3e9, #090268);
   border: black;
@@ -83,6 +94,15 @@
 }
 .buttons {
   float: left;
+=======
+    background: linear-gradient(to right, #19a3e9, #090268);
+    border: black;
+    float: right;
+  }
+.buttons{
+    float: left;
+
+>>>>>>> 42fb84a475e49a9963d68f2078404634e5b64cf0
 }
 //   .footer{
 //       height: 100px;

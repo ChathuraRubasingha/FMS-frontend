@@ -18,12 +18,14 @@ import {
   CCardBody,
   CPagination,
   CButton,
+  CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
 import { Link } from '@mui/material'
 import axios from 'axios'
-const Driver = () => {
-  const [DriverList, setDriverList] = useState([])
+const DisapprovedBookingRequests_Table = () => {
+  const [DisapprovedBookingRequests_Table_List, setDisapprovedBookingRequests_Table_List] =
+    useState([])
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -32,12 +34,12 @@ const Driver = () => {
 
   const [search, setSearch] = useState('')
 
-  const deleteDriver = (id) => {
+  const deleteDisapprovedBookingRequests_Table = (id) => {
     alert('Are you sure to delete this record!')
     axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
-      setDriverList(
-        DriverList.filter((items) => {
-          return items.Driver_ID != id
+      setDisapprovedBookingRequests_Table_List(
+        DisapprovedBookingRequests_Table_List.filter((items) => {
+          return items.DisapprovedBookingRequests_Table_ID != id
         }),
       )
     })
@@ -81,13 +83,13 @@ const Driver = () => {
   }
   return (
     <div>
-      <CCard>
+      <CCardHeader>
         <CCardBody>
           <CRow>
-            <CCol xs={5}>
-              <h5>Driver Details</h5>
+            <CCol xs={7}>
+              <h5>Disapproved Vehicle Booking Requests Registry</h5>
             </CCol>
-            <CCol xs={5} sm={4} lg={5}>
+            <CCol xs={3} sm={4} lg={5}>
               <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
@@ -100,14 +102,14 @@ const Driver = () => {
                 />
               </CInputGroup>
             </CCol>
-            <CCol xs={2}>
-              <a href="/adddriver">
-                <CButton> Add new Driver</CButton>
+            {/* <CCol xs={3}>
+              <a href="/addvehicle">
+                <CButton> Add new Vehicle</CButton>
               </a>
-            </CCol>
+            </CCol> */}
           </CRow>
         </CCardBody>
-      </CCard>
+      </CCardHeader>
       <br />
       <CCard>
         <CCardBody>
@@ -117,12 +119,12 @@ const Driver = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col" className="Catogory TableHedder">
-                        <h6>Name</h6>
-                      </CTableHeaderCell>
-                      <CTableHeaderCell scope="col">NIC</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Mobile</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Vehicle Number</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Category</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> Allocaton Type</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> Vehicle Status</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> Vehicle Location</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -140,20 +142,10 @@ const Driver = () => {
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
-                              <CButton
-                                onClick={() => {
-                                  deleteDriver(item.Driver_ID)
-                                }}
-                                className="buttons m-1"
-                                color="danger"
-                              >
-                                Delete
-                              </CButton>
-                            </CTableDataCell>
+                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell></CTableDataCell>
                           </CTableRow>
                         )
                       })}
@@ -190,4 +182,4 @@ const Driver = () => {
   )
 }
 
-export default Driver
+export default DisapprovedBookingRequests_Table
