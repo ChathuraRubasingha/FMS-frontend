@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons'
-import Registory_Table from './Registory_Table'
+import NotTranferedVehicle_Table from './NotTranferedVehicle_Table'
 import {
   CCol,
   CRow,
@@ -13,13 +13,13 @@ import {
   CListGroupItem,
 } from '@coreui/react'
 
-function Registory() {
+function NotTranferedVehicle() {
   return (
     <div>
       <CRow>
         <CCol sm={8} lg={8}>
           {' '}
-          <Registory_Table />
+          <NotTranferedVehicle_Table />
           {/* <CCardHeader>
             <CRow>
               <CCol sm={10} lg={10}>
@@ -35,14 +35,14 @@ function Registory() {
         </CCol>
         <CCol sm={4} lg={4}>
           {' '}
-          <CCardHeader style={{ height: '90px' }}>
+          <CCardHeader style={{ height: '110px' }}>
             <h5 style={{ paddingTop: '15px' }}>Menu</h5>
           </CCardHeader>
           <br />
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <CListGroupItem component="a" href="/registory" active>
+                <CListGroupItem component="a" href="/registory">
                   Vehicle Registry
                 </CListGroupItem>
                 <CListGroupItem component="a" href="/vehicleassigning">
@@ -51,7 +51,7 @@ function Registory() {
                 <CListGroupItem component="a" href="/driverassigning">
                   Assign Driver for Vehicle
                 </CListGroupItem>
-                <CListGroupItem component="a" href="vehicletransfering">
+                <CListGroupItem component="a" href="/vehicletransfering" active>
                   Transfer Vehicle
                 </CListGroupItem>
               </CListGroup>
@@ -94,4 +94,4 @@ function Registory() {
   )
 }
 
-export default Registory
+export default NotTranferedVehicle
