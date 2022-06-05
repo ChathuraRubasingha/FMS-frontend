@@ -19,8 +19,7 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
-
-const Odometer = () => {
+const Manage_Role = () => {
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -69,7 +68,7 @@ const Odometer = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Odometer Details</h5>
+              <h5>Manage Role Details</h5>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
               <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
@@ -84,6 +83,9 @@ const Odometer = () => {
                 />
               </CInputGroup>
             </CCol>
+            <CCol xs={2}>
+              <CButton>Add new Role</CButton>
+            </CCol>
           </CRow>
         </CCardBody>
       </CCard>
@@ -96,12 +98,8 @@ const Odometer = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Vehicle Category</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Model</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Out odometer reading</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">In odometer reading</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Role ID</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Role</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -119,12 +117,12 @@ const Odometer = () => {
                           <CTableRow key={item.id}>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="m-1">Update</CButton>
+                              <CButton>View</CButton>
+                              <CButton className="m-1" color="success">
+                                Edit
+                              </CButton>
+                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -157,7 +155,8 @@ const Odometer = () => {
           </div>
         </CCardBody>
       </CCard>
+      <br />
     </div>
   )
 }
-export default Odometer
+export default Manage_Role

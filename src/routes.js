@@ -80,6 +80,16 @@ const Vehicle_Allocation = React.lazy(() => import('./views/pages/Vehicle_Alloca
 const Vehicle_Status = React.lazy(() => import('./views/pages/Vehicle_Status'))
 const Accident_Details = React.lazy(() => import('./views/pages/Accident_Details'))
 const Configuration = React.lazy(() => import('./views/pages/Configuration'))
+const Access = React.lazy(() => import('./views/pages/Access'))
+const Manage_Role = React.lazy(() => import('./views/pages/Manage_Role'))
+const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
+const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
+const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
+const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
+const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
+const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
+const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
@@ -140,7 +150,15 @@ const routes = [
   { path: '/driver', name: 'Driver', component: Driver },
   { path: '/registory', name: 'Registory', component: Registory },
   { path: '/fuel', name: 'Fuel', component: Fuel },
+  { path: '/AddFuel', name: 'Add Fuel', component: AddFuel },
+  { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
+  { path: '/FuelACC', name: 'Fuel Accept', component: FuelACC },
   { path: '/odometer', name: 'Odometer', component: Odometer },
+  { path: '/access', name: 'Access', component: Access },
+  { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
+  { path: '/manage_user', name: 'Manage_User', component: Manage_User },
+  { path: '/access_permission', name: 'Access_Permission', component: Access_Permission },
+  { path: '/dashboard_permission', name: 'Dashboard_Permission', component: Dashboard_Permission },
   { path: '/accident', name: 'Accident', component: Accident },
   { path: '/Reports', name: 'Reports', component: Reports },
   { path: '/Repair', name: 'Repair', component: Repair },
@@ -220,7 +238,7 @@ const routes = [
     name: 'Fuel Consumption Reports - Vehicle wise  ',
     component: Fuel_vehicle,
   },
-
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   {
     path: '/Vehicle_details/Vehicle_details',

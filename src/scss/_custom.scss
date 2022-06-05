@@ -76,6 +76,12 @@
   color: #1c0507;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+    background: linear-gradient(to right, #19a3e9, #090268);
+    border: black;
+    float: right;
+  }
+.buttons{
+    float: left;
 }
 //   .footer{
 //       height: 100px;

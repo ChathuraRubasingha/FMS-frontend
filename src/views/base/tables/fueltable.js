@@ -1,7 +1,9 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { BsCartPlus } from 'react-icons/bs'
+import { BsCartPlusFill } from 'react-icons/bs'
 import {
   CCol,
   CRow,
@@ -20,12 +22,12 @@ import {
   CButton,
 } from '@coreui/react'
 
-const Odometer = () => {
+const FuelTable = () => {
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
 
-  let limit = 15
+  let limit = 10
 
   const [search, setSearch] = useState('')
 
@@ -69,15 +71,18 @@ const Odometer = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Odometer Details</h5>
+              <h3>
+                Filling Requests &nbsp;
+                <BsCartPlusFill />
+              </h3>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
-              <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
+              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search"
+                  placeholder="Search Requests"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -97,12 +102,12 @@ const Odometer = () => {
                   <CTableHead>
                     <CTableRow>
                       <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Vehicle Category</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Model</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Out odometer reading</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">In odometer reading</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -119,12 +124,12 @@ const Odometer = () => {
                           <CTableRow key={item.id}>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="m-1">Update</CButton>
+                              <CButton className="button1">Option</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -137,7 +142,7 @@ const Odometer = () => {
                       breakLabel={'...'}
                       pageCount={pageCount}
                       marginPagesDisplayed={2}
-                      pageRangeDisplayed={3}
+                      pageRangeDisplayed={2}
                       onPageChange={handlePageClick}
                       containerClassName={'pagination justify-content-center'}
                       pageClassName={'page-item'}
@@ -157,7 +162,9 @@ const Odometer = () => {
           </div>
         </CCardBody>
       </CCard>
+      <br />
     </div>
   )
 }
-export default Odometer
+
+export default FuelTable
