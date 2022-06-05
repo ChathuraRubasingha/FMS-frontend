@@ -83,14 +83,14 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Report',
-    to: '/report',
+    name: 'Reports',
+    to: '/Reports',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Configuration',
-    to: '/configuration',
+    to: '/Configuration',
     icon: <CIcon icon={cilColorBorder} customClassName="nav-icon" />,
   },
   {

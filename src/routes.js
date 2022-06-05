@@ -56,6 +56,30 @@ const Fuel = React.lazy(() => import('./views/pages/Fuel'))
 const Odometer = React.lazy(() => import('./views/pages/Odometer'))
 const Registory = React.lazy(() => import('./views/pages/Registory'))
 const Accident = React.lazy(() => import('./views/pages/Accident'))
+const Reports = React.lazy(() => import('./views/pages/Reports'))
+const Repair = React.lazy(() => import('./views/pages/Repair'))
+const Maintainance_cost = React.lazy(() => import('./views/pages/Maintainance_cost'))
+const Insurance_due = React.lazy(() => import('./views/pages/Insurance_due'))
+const Repair_form = React.lazy(() => import('./views/pages/Repair_form'))
+const Maintainance_form = React.lazy(() => import('./views/pages/Maintainance_form'))
+const License_due = React.lazy(() => import('./views/pages/License_due'))
+const Fitness_Test_due = React.lazy(() => import('./views/pages/Fitness_Test_due'))
+const Emission_Test_Due = React.lazy(() => import('./views/pages/Emission_Test_Due'))
+const Fuel_vehicle = React.lazy(() => import('./views/pages/Fuel_vehicle'))
+const Fuel_vehicle_form = React.lazy(() => import('./views/pages/Fuel_vehicle_form'))
+const Fuel_All_Vehicles = React.lazy(() => import('./views/pages/Fuel_All_Vehicles'))
+const Booking_Status = React.lazy(() => import('./views/pages/Booking_Status'))
+const Booking_Vehicle = React.lazy(() => import('./views/pages/Booking_Vehicle'))
+const Booking_Requester = React.lazy(() => import('./views/pages/Booking_Requester'))
+const Performance_Driver = React.lazy(() => import('./views/pages/Performance_Driver'))
+const Driver_Form = React.lazy(() => import('./views/pages/Driver_Form'))
+const Performance_Summary = React.lazy(() => import('./views/pages/Performance_Summary'))
+const Vehicle_Detail = React.lazy(() => import('./views/pages/Vehicle_Detail'))
+const Vehicle_Category = React.lazy(() => import('./views/pages/Vehicle_Category'))
+const Vehicle_Allocation = React.lazy(() => import('./views/pages/Vehicle_Allocation'))
+const Vehicle_Status = React.lazy(() => import('./views/pages/Vehicle_Status'))
+const Accident_Details = React.lazy(() => import('./views/pages/Accident_Details'))
+const Configuration = React.lazy(() => import('./views/pages/Configuration'))
 const Access = React.lazy(() => import('./views/pages/Access'))
 const Manage_Role = React.lazy(() => import('./views/pages/Manage_Role'))
 const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
@@ -65,6 +89,7 @@ const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
@@ -135,6 +160,84 @@ const routes = [
   { path: '/access_permission', name: 'Access_Permission', component: Access_Permission },
   { path: '/dashboard_permission', name: 'Dashboard_Permission', component: Dashboard_Permission },
   { path: '/accident', name: 'Accident', component: Accident },
+  { path: '/Reports', name: 'Reports', component: Reports },
+  { path: '/Repair', name: 'Repair', component: Repair },
+  { path: '/Maintainance_cost', name: 'Maintainance cost', component: Maintainance_cost },
+  { path: '/Insurance_due', name: 'Insurance due', component: Insurance_due },
+  { path: '/Repair_form', name: 'Repair form', component: Repair_form },
+  { path: '/Maintainance_form', name: 'Maintainance form', component: Maintainance_form },
+  { path: '/License_due', name: 'License Due Reports ', component: License_due },
+  { path: '/Fitness_Test_due', name: 'Fitness Test due Reports  ', component: Fitness_Test_due },
+  { path: '/Emission_Test_Due', name: 'Emission Test due Reports  ', component: Emission_Test_Due },
+  { path: '/Driver_Form', name: 'Driver Performance Report ', component: Driver_Form },
+  { path: '/Configuration', name: 'Configuration Module ', component: Configuration },
+  {
+    path: '/Accident_Details',
+    name: 'Accident Details Report - Vehicle wise ',
+    component: Accident_Details,
+  },
+  {
+    path: '/Vehicle_Status',
+    name: 'Vehicle Details Report - Status wise ',
+    component: Vehicle_Status,
+  },
+  {
+    path: '/Vehicle_Allocation',
+    name: 'Vehicle Allocation Report ',
+    component: Vehicle_Allocation,
+  },
+  {
+    path: '/Vehicle_Category',
+    name: 'Vehicle Details Report - Category wise ',
+    component: Vehicle_Category,
+  },
+
+  {
+    path: '/Vehicle_Detail',
+    name: 'Vehicle Details Report - Vehicle wise',
+    component: Vehicle_Detail,
+  },
+  {
+    path: '/Performance_Summary',
+    name: 'Driver Performance Summary Report ',
+    component: Performance_Summary,
+  },
+
+  {
+    path: '/Performance_Driver',
+    name: 'Driver Performance Report - By Driver  ',
+    component: Performance_Driver,
+  },
+  {
+    path: '/Booking_Requester',
+    name: 'Vehicle Booking Report - Requester wise  ',
+    component: Booking_Requester,
+  },
+  {
+    path: '/Booking_Vehicle',
+    name: 'Vehicle Booking Report - Vehicle Wise   ',
+    component: Booking_Vehicle,
+  },
+  {
+    path: '/Booking_Status',
+    name: 'Vehicle Booking Report - Status Wise  ',
+    component: Booking_Status,
+  },
+  {
+    path: '/Fuel_All_Vehicles',
+    name: 'Fuel Consumption Reports - All Vehicle  ',
+    component: Fuel_All_Vehicles,
+  },
+  {
+    path: '/Fuel_vehicle_form',
+    name: 'Fuel Consumption Reports - Vehicle Wise  ',
+    component: Fuel_vehicle_form,
+  },
+  {
+    path: '/Fuel_vehicle',
+    name: 'Fuel Consumption Reports - Vehicle wise  ',
+    component: Fuel_vehicle,
+  },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   {
