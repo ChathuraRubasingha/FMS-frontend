@@ -118,7 +118,6 @@ const Manage_Role = () => {
                             <CTableDataCell scope="row">{item.id}</CTableDataCell>
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton>View</CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
