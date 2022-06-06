@@ -64,10 +64,6 @@ const Odometer = React.lazy(() => import('./views/pages/Odometer'))
 const Registory = React.lazy(() => import('./views/pages/Registory'))
 const Booking = React.lazy(() => import('./views/pages/Booking'))
 const Accident = React.lazy(() => import('./views/pages/Accident'))
-<<<<<<< HEAD
-
-=======
->>>>>>> 42fb84a475e49a9963d68f2078404634e5b64cf0
 const Reports = React.lazy(() => import('./views/pages/Reports'))
 const Repair = React.lazy(() => import('./views/pages/Repair'))
 const Maintainance_cost = React.lazy(() => import('./views/pages/Maintainance_cost'))
@@ -98,7 +94,6 @@ const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
 const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
-<<<<<<< HEAD
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
 const Destination = React.lazy(() => import('./views/pages/Destination'))
@@ -123,7 +118,6 @@ const Emission_Test_Company = React.lazy(() => import('./views/pages/Emission_Te
 const Insurance_Type = React.lazy(() => import('./views/pages/Insurance_Type'))
 const Insurance_Company = React.lazy(() => import('./views/pages/Insurance_Company'))
 const System_Configurations = React.lazy(() => import('./views/pages/System_Configurations'))
-=======
 const AddVehicle = React.lazy(() => import('./views/pages/RegistoringVehicleform'))
 const AssignVehicle = React.lazy(() => import('./views/pages/AssigningLocationform'))
 const VehicleAssigning = React.lazy(() => import('./views/pages/AssigningLocation'))
@@ -143,11 +137,6 @@ const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
 
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
-
-
-
-
->>>>>>> 42fb84a475e49a9963d68f2078404634e5b64cf0
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle_details'))
@@ -397,11 +386,7 @@ const routes = [
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
 
-<<<<<<< HEAD
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
-
-=======
->>>>>>> 42fb84a475e49a9963d68f2078404634e5b64cf0
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
   {
