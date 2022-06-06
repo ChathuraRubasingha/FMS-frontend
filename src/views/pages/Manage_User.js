@@ -126,7 +126,6 @@ const Manage_User = () => {
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.name}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton>View</CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
