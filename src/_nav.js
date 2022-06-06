@@ -30,7 +30,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Home',
-    to: '/test',
+    to: 'test',
     icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   {
@@ -60,7 +60,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Maintenance',
-    to: '/maintenance',
+    to: '/maintanace',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
   {
@@ -83,14 +83,14 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Report',
-    to: '/report',
+    name: 'Reports',
+    to: '/Reports',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Configuration',
-    to: '/configuration',
+    to: '/Configuration',
     icon: <CIcon icon={cilColorBorder} customClassName="nav-icon" />,
   },
   {

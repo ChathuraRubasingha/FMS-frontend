@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-class Accident extends Component {
-  state = {}
-  render() {
-    return (
-      <div>
-        <h1>This is Accident page..!</h1>
-      </div>
-    )
-  }
+import React, { lazy } from 'react'
+
+import { CCol, CRow } from '@coreui/react'
+
+import Tables from '../base/tables/AccidentDetails'
+
+const Accident = () => {
+  return (
+    <CCol>
+      <Tables />
+    </CCol>
+  )
 }
 
 export default Accident

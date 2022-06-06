@@ -101,7 +101,7 @@ const Driver = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <a href="http://localhost:3000/adddriver">
+              <a href="/adddriver">
                 <CButton> Add new Driver</CButton>
               </a>
             </CCol>
