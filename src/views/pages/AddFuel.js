@@ -14,7 +14,6 @@ import axios from 'axios'
 import { FaGasPump } from 'react-icons/fa'
 
 function AddFuel() {
-  const [fullName, setFullName] = useState('')
   const [driverid, setdriverid] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
@@ -23,13 +22,12 @@ function AddFuel() {
 
   const AddFuel = () => {
     axios
-      .post(`http://localhost:3000/AddFuel`, {
-        fullName: fullName,
+      .post(`http://localhost:5000/api/addfuel`, {
         driverid: driverid,
         vehicleid: vehicleid,
+        date: date,
         odometer: odometer,
         Liters: Liters,
-        date: date,
       })
       .then(() => {
         console.log('Success')
@@ -55,16 +53,6 @@ function AddFuel() {
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setFullName(event.target.value)
-                      }}
-                      placeholder="Driver Name"
-                      autoComplete="FullName"
-                    />
-                  </CInputGroup>
-
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
                         setdriverid(event.target.value)
                       }}
                       type="text"
@@ -78,7 +66,7 @@ function AddFuel() {
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle ID"
+                      placeholder="Vehicle Number"
                       autoComplete="vehicleid"
                     />
                   </CInputGroup>

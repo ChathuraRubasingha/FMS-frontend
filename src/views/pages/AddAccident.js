@@ -16,30 +16,26 @@ import { MdAddAPhoto } from 'react-icons/md'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 
 function AddAccident() {
-  const [fullName, setFullName] = useState('')
   const [driverid, setdriverid] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
   const [location, setLocation] = useState('')
   const [odometer, setodometer] = useState('')
   const [police, setpolice] = useState('')
-  const [claim, setclaim] = useState('')
 
   const AddAccident = () => {
     axios
-      .post(`http://localhost:3000/AddAccident`, {
-        fullName: fullName,
-        driverid: driverid,
+      .post(`http://localhost:5000/api/addaccident`, {
         vehicleid: vehicleid,
-        location: location,
-        odometer: odometer,
-        police: police,
-        claim: claim,
+        driverid: driverid,
         date: date,
+        location: location,
+        police: police,
+        odometer: odometer,
       })
       .then(() => {
         console.log('Success')
-        alert('Filling  Details Added Successed!')
+        alert('Accident  Details Added Successed!')
       })
   }
 
@@ -57,15 +53,6 @@ function AddAccident() {
                       <FaCarCrash />
                     </h3>
                   </strong>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setFullName(event.target.value)
-                      }}
-                      placeholder="Driver Name"
-                      autoComplete="FullName"
-                    />
-                  </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
@@ -124,16 +111,7 @@ function AddAccident() {
                       autoComplete="police"
                     />
                   </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setclaim(event.target.value)
-                      }}
-                      type="text"
-                      placeholder="Insurance claim"
-                      autoComplete="claim"
-                    />
-                  </CInputGroup>
+
                   <a href="url">
                     <h6>
                       Add Accident Photos &nbsp;
