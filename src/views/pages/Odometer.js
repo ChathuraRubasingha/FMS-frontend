@@ -96,7 +96,9 @@ const Odometer = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
+                      <CTableHeaderCell scope="col" xs={2}>
+                        Vehicle No
+                      </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Vehicle Category</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Make</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Model</CTableHeaderCell>
