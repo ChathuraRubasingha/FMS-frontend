@@ -33,9 +33,7 @@ const AccidentTable = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/accident`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -75,9 +73,10 @@ const AccidentTable = () => {
                 Accident Details &nbsp;
                 <FaCarCrash />
               </h3>
+              <br />
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
-              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
+              <CInputGroup className="mb-2 my-0 mx-1 " lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
@@ -88,6 +87,11 @@ const AccidentTable = () => {
                   }}
                 />
               </CInputGroup>
+            </CCol>
+            <CCol xs={2}>
+              <a href="/AddAccident">
+                <CButton className="button1"> Add Accident</CButton>
+              </a>
             </CCol>
           </CRow>
         </CCardBody>
@@ -102,15 +106,14 @@ const AccidentTable = () => {
                   <CTableHead>
                     <CTableRow>
                       <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
+
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Accident Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Accident Date & Time</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Location</CTableHeaderCell>
                       <CTableHeaderCell scope="col">View Photos </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Police Station</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Claim Amount</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">View Claim Details </CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Claim Details</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -125,18 +128,20 @@ const AccidentTable = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
 
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Date_and_Time}</CTableDataCell>
+
+                            <CTableDataCell scope="row">{item.Accident_Place}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="button2">View</CButton>
                             </CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Police_Station}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.Odometer_After_Accident}
+                            </CTableDataCell>
+
                             <CTableDataCell>
                               <CButton className="button1">View</CButton>
                             </CTableDataCell>

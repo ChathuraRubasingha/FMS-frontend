@@ -137,6 +137,7 @@ const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicl
 const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+const Fuelrequier = React.lazy(() => import('./views/pages/Fuelrequier'))
 
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
 
@@ -205,6 +206,7 @@ const routes = [
   { path: '/AddFuel', name: 'Add Fuel', component: AddFuel },
   { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
   { path: '/FuelACC', name: 'Fuel Accept', component: FuelACC },
+  { path: '/Fuelrequier', name: 'Fuel Requier ', component: Fuelrequier },
   { path: '/odometer', name: 'Odometer', component: Odometer },
   { path: '/access', name: 'Access', component: Access },
   { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
