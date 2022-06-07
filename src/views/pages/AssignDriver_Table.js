@@ -46,7 +46,7 @@ const AssignDriver_Table = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(`http://localhost:5000/api/getdriverassignedvehicles`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -118,12 +118,12 @@ const AssignDriver_Table = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
+                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Vehicle Number</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Allocaton Type</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Status</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Catergory</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> From Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> To Date</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -139,11 +139,11 @@ const AssignDriver_Table = () => {
                         return (
                           <CTableRow key={item.id}>
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Catergory_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
                                 Update

@@ -72,6 +72,10 @@
   float: right;
 }
 
+
+.buttons {
+  float: left;
+}
 .vertical-center {
   left: 50%;
   margin: 0;
@@ -83,6 +87,12 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 
+  background: linear-gradient(to right, #19a3e9, #090268);
+  border: black;
+  float: right;
+}
+.buttons {
+  float: left;
   background: linear-gradient(to right, #19a3e9, #090268);
   border: black;
   float: right;

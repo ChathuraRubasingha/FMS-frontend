@@ -94,6 +94,7 @@ const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
 const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
+const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
 const Destination = React.lazy(() => import('./views/pages/Destination'))
@@ -135,6 +136,7 @@ const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicl
 const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+const Fuelrequier = React.lazy(() => import('./views/pages/Fuelrequier'))
 
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
 
@@ -205,6 +207,7 @@ const routes = [
   { path: '/AddFuel', name: 'Add Fuel', component: AddFuel },
   { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
   { path: '/FuelACC', name: 'Fuel Accept', component: FuelACC },
+  { path: '/Fuelrequier', name: 'Fuel Requier ', component: Fuelrequier },
   { path: '/odometer', name: 'Odometer', component: Odometer },
   { path: '/access', name: 'Access', component: Access },
   { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
@@ -394,6 +397,8 @@ const routes = [
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
   {
