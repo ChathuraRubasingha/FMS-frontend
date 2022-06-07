@@ -95,7 +95,6 @@ const Access_Permission = React.lazy(() => import('./views/pages/Access_Permissi
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
-
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
 const Destination = React.lazy(() => import('./views/pages/Destination'))
@@ -393,6 +392,7 @@ const routes = [
   },
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
