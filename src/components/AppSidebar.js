@@ -7,6 +7,8 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
+import CIcon from '@coreui/icons-react'
+import { cibFeathub, cibFoursquare, cibOpensuse, cilBed } from '@coreui/icons'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -24,10 +26,8 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <img
-          src="C:\Users\chathura rubasingha\OneDrive\Desktop\Software Project\fms-frontend\src\assets\images\Logo\FMS-logo.jpg"
-          alt="Logo"
-        />
+        <CIcon icon={cibOpensuse} height={48} alt="Logo"></CIcon>
+        <h3>FMS</h3>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

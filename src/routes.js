@@ -147,6 +147,8 @@ const Individual_Vehicle_Details = React.lazy(() =>
 )
 
 const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+const MaintainanceDetails = React.lazy(() => import('./views/pages/Maintanace_details'))
+const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -245,6 +247,7 @@ const routes = [
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
   { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+  { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
 
   {
     path: '/System_Configurations',
@@ -345,6 +348,7 @@ const routes = [
   { path: '/driverassigning', name: 'DriverAssigning', component: AssignDriver },
   { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
   { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
+  { path: '/updateDriver', name: 'UpdateDriver', component: UpdateDriver },
   {
     path: '/completedbookingrequests',
     name: 'CompletedBookingRequests',

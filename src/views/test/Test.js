@@ -1,117 +1,189 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import CIcon from '@coreui/icons-react'
-import { cilSearch } from '@coreui/icons'
 import {
-  CCol,
-  CRow,
-  CPagination,
-  CPaginationItem,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
-  CTable,
-  CTableBody,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-  CTableDataCell,
-  CCard,
-  CCardBody,
-} from '@coreui/react'
+  cilBattery3,
+  cilBell,
+  cilBook,
+  cilCarAlt,
+  cilColorBorder,
+  cilContact,
+  cilLockLocked,
+  cilNotes,
+  cilPen,
+  cilSettings,
+  cilUserPlus,
+} from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
+import React from 'react'
 
-const Test = () => {
-  const [product, setProduct] = useState([])
-  const [search, setSearch] = useState('')
-  const getProductData = async () => {
-    try {
-      const data = await axios.get('http://localhost:5000/driver')
-      console.log(data.data)
-      setProduct(data.data)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  useEffect(() => {
-    getProductData()
-  }, [])
+function Test() {
   return (
-    <CCard>
-      <CCardBody>
-        <div className="table-container">
-          <>
-            <CCol xs={12}>
-              <div className="inner-hedder">
-                <CCard>
-                  <CCardBody className="Allocated-innerHedder">
-                    <CRow>
-                      <CCol sm={6} lg={6}>
-                        <h5>Vehicle Overview</h5>
-                      </CCol>
-                      <CCol sm={6} lg={6}>
-                        <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
-                          <CInputGroupText>
-                            <CIcon icon={cilSearch} />
-                          </CInputGroupText>
-                          <CFormInput
-                            placeholder="Search"
-                            onChange={(e) => {
-                              setSearch(e.target.value)
-                            }}
-                          />
-                        </CInputGroup>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCard>
-              </div>
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col" className="Catogory TableHedder">
-                      Ctogory
-                    </CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Registered</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Allocated</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Idle</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Accident</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  {product
-                    .filter((item) => {
-                      if (search == '') {
-                        return item
-                      } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
-                        return item
-                      }
-                    })
-                    .map((item) => {
-                      return (
-                        <CTableRow key={item.Driver_ID}>
-                          <CTableHeaderCell scope="row">{item.Driver_ID}</CTableHeaderCell>
-                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
-                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
-                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
-                          <CTableDataCell>{item.Driver_ID}</CTableDataCell>
-                        </CTableRow>
-                      )
-                    })}
-                  <CPagination className="justify-content-end" aria-label="Page navigation example">
-                    <CPaginationItem disabled>Previous</CPaginationItem>
-                    <CPaginationItem>1</CPaginationItem>
-                    <CPaginationItem>2</CPaginationItem>
-                    <CPaginationItem>3</CPaginationItem>
-                    <CPaginationItem>4</CPaginationItem>
-                    <CPaginationItem>Next</CPaginationItem>
-                  </CPagination>
-                </CTableBody>
-              </CTable>
-            </CCol>
-          </>
+    <section>
+      <div className="menu">
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilUserPlus} height={48} />
+              {/* <img aria-hidden="false" src="../src/assets/" alt="" className="background" />
+              <img src="./dashboardIcons/register.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Registory</h3>{' '}
+          </a>
         </div>
-      </CCardBody>
-    </CCard>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilContact} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/driver.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/driver.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Driver</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilBook} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/booking"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/booking.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Booking</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilSettings} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/maintenance.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/maintenance.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Maintenance</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilBattery3} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/fuel.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/fuel.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Fuel</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilPen} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/odometer.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/odometer.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Odometer</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilCarAlt} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/accident.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/accident.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Accident</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilNotes} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/reports.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/reports.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Reports</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilColorBorder} height={48}></CIcon>
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/config.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/config.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Config</h3>{' '}
+          </a>
+        </div>
+
+        <div>
+          {' '}
+          <a href="#" className="btn" id="btn">
+            <span className="icons">
+              <CIcon icon={cilLockLocked} height={48} />
+              {/* <img
+                aria-hidden="false"
+                src="./dashboardIcons/access.png"
+                alt=""
+                className="background"
+              />
+              <img src="./dashboardIcons/access.png" alt="Icon" width="100" height="100" /> */}
+            </span>
+            <h3>Access</h3>{' '}
+          </a>
+        </div>
+      </div>
+    </section>
   )
 }
 
