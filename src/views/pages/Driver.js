@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -20,8 +21,9 @@ import {
   CButton,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+
 import axios from 'axios'
+
 const Driver = () => {
   const [DriverList, setDriverList] = useState([])
   const [items, setItems] = useState([])
@@ -101,9 +103,9 @@ const Driver = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <a href="/adddriver">
+              <Link to="/adddriver">
                 <CButton> Add new Driver</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -141,9 +143,12 @@ const Driver = () => {
                             <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
+                              {/* <Link to={`/updateDriver?driverid=${item.Driver_ID}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link> */}
+
                               <CButton
                                 onClick={() => {
                                   deleteDriver(item.Driver_ID)

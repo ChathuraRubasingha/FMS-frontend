@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import {
   CButton,
   CCard,
@@ -15,8 +16,38 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import axios from 'axios'
 
-const Login = () => {
+function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [loginstatus, setLoginStatus] = useState('')
+
+  const UserLogin = () => {
+    axios
+      .post('http://localhost:5000/api/userLogin', {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response)
+        if (response.data) {
+          //  alert(response.data.message)
+          //window("/dashboard")
+          window.location = '/dashboard'
+        } else {
+          alert(response.data[0].username)
+          console.log('hi')
+        }
+        console.log(response.data)
+      })
+  }
+
+  const button = () => {
+    console.log(username + password)
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -32,13 +63,22 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        onChange={(e) => {
+                          setUsername(e.target.value)
+                        }}
+                        placeholder="Username"
+                        autoComplete="username"
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
+                        onChange={(e) => {
+                          setPassword(e.target.value)
+                        }}
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
@@ -46,7 +86,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton onClick={UserLogin} color="primary" className="px-4">
                           Login
                         </CButton>
                       </CCol>
