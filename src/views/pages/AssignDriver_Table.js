@@ -21,7 +21,7 @@ import {
   CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 const AssignDriver_Table = () => {
   const [AssignDriverg_Table_List, setAssignDriver_Table_List] = useState([])
@@ -102,9 +102,9 @@ const AssignDriver_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <a href="/unassigndrivers">
-                <CButton>Unassigned Drivers</CButton>
-              </a>
+              <Link to="/unassigndrivers">
+                <CButton> Unassigned Drivers</CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>

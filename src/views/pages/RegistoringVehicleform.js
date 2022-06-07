@@ -12,31 +12,47 @@ import {
 } from '@coreui/react'
 import axios from 'axios'
 
-function AddDriver() {
-  const [callingName, setCallingName] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [location, setLocation] = useState('')
-  const [nic, setnic] = useState('')
-  const [status, setStatus] = useState('')
-  const [mobile, setmobile] = useState('')
-  const [address, setAddress] = useState('')
-  const [image, setimage] = useState('')
+function RegistoringVehicleform() {
+  const [VehicleNo, setVehicleNo] = useState('')
+  const [RegistrationFee, setRegistrationFee] = useState('')
+  const [VehicleCategoryID, setVehicleCategoryID] = useState('')
+  const [PurchaseValue, setPurchaseValue] = useState('')
+  const [EngineNo, setEngineNo] = useState('')
+  const [ChassisNo, setChassisNo] = useState('')
+  const [DriverID, setDriverID] = useState('')
+  const [FuelTypeID, setFuelTypeID] = useState('')
 
-  const addDriver = () => {
+  const [TyreSizeID, setTyreSizeID] = useState('')
+  const [TyreTypeID, setTyreTypeID] = useState('')
+  const [MakeID, setMakeID] = useState('')
+  const [ModelID, setModelID] = useState('')
+
+  const [BatteryTypeID, setBatteryTypeID] = useState('')
+  const [VehicleStatusID, setVehicleStatusID] = useState('')
+  const [AllocationTypeID, setAllocationTypeID] = useState('')
+
+  const registoringVehicleform = () => {
     axios
-      .post(`http://localhost:5000/adddriver`, {
-        callingName: callingName,
-        fullName: fullName,
-        location: location,
-        nic: nic,
-        status: status,
-        mobile: mobile,
-        address: address,
-        image: image,
+      .post(`http://localhost:5000/api/registervehicle`, {
+        VehicleNo: VehicleNo,
+        RegistrationFee: RegistrationFee,
+        VehicleCategoryID: VehicleCategoryID,
+        PurchaseValue: PurchaseValue,
+        EngineNo: EngineNo,
+        ChassisNo: ChassisNo,
+        DriverID: DriverID,
+        FuelTypeID: FuelTypeID,
+        TyreSizeID: TyreSizeID,
+        TyreTypeID: TyreTypeID,
+        MakeID: MakeID,
+        ModelID: ModelID,
+        BatteryTypeID: BatteryTypeID,
+        VehicleStatusID: VehicleStatusID,
+        AllocationTypeID: AllocationTypeID,
       })
       .then(() => {
         console.log('Success')
-        alert('Driver added successed!')
+        alert('Vehicle added successed!')
       })
   }
 
@@ -48,87 +64,161 @@ function AddDriver() {
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm>
-                  <h3>Add new driver</h3>
+                  <h3>Register new Vehicle</h3>
                   <br />
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setCallingName(event.target.value)
+                        setVehicleNo(event.target.value)
                       }}
-                      placeholder="Calling Name"
-                      autoComplete="CallingName"
+                      placeholder="Vehicle No"
+                      autoComplete="VehicleNo"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setFullName(event.target.value)
+                        setRegistrationFee(event.target.value)
                       }}
-                      placeholder="Full Name Name"
-                      autoComplete="FullName"
+                      placeholder="Registration Fee"
+                      autoComplete="RegistrationFee"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setLocation(event.target.value)
+                        setVehicleCategoryID(event.target.value)
                       }}
-                      placeholder="Location"
-                      autoComplete="location"
+                      placeholder="Vehicle Category"
+                      autoComplete="VehicleCategoryID"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setnic(event.target.value)
-                      }}
-                      type="text"
-                      placeholder="NIC"
-                      autoComplete="nic"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setStatus(event.target.value)
-                      }}
-                      placeholder="Status(Active/Inacctive)"
-                      autoComplete="status"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setmobile(event.target.value)
+                        setPurchaseValue(event.target.value)
                       }}
                       type="number"
-                      placeholder="Mobile"
-                      autoComplete="mobile"
+                      placeholder="Purchase Value"
+                      autoComplete="PurchaseValue"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CFormInput
+                      onChange={(event) => {
+                        setEngineNo(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Engine No)"
+                      autoComplete="EngineNo"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CFormInput
+                      onChange={(event) => {
+                        setChassisNo(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Chassis No"
+                      autoComplete="ChassisNo"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
                     <CFormInput
                       onChange={(event) => {
-                        setAddress(event.target.value)
+                        setDriverID(event.target.value)
                       }}
-                      type="text-box"
-                      placeholder="Private Address"
-                      autoComplete="address"
+                      type="number"
+                      placeholder="Driver"
+                      autoComplete="DriverID"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
                     <CFormInput
                       onChange={(event) => {
-                        setimage(event.target.value)
+                        setFuelTypeID(event.target.value)
                       }}
-                      type="text"
-                      placeholder="image link"
-                      autoComplete="image"
+                      type="number"
+                      placeholder="Fuel Type"
+                      autoComplete="FuelTypeID"
                     />
                   </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setTyreSizeID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Tyre Size"
+                      autoComplete="TyreSizeID"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setTyreTypeID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Tyre Type"
+                      autoComplete="TyreTypeID"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setMakeID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Make"
+                      autoComplete="MakeID"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setModelID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Model"
+                      autoComplete="ModelID"
+                    />
+                  </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setBatteryTypeID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Battery Type"
+                      autoComplete="BatteryTypeID"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setVehicleStatusID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Vehicle Status"
+                      autoComplete="VehicleStatusID"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CFormInput
+                      onChange={(event) => {
+                        setAllocationTypeID(event.target.value)
+                      }}
+                      type="number"
+                      placeholder="Allocation Type"
+                      autoComplete="AllocationTypeID"
+                    />
+                  </CInputGroup>
+
                   <div className="d-grid">
-                    <CButton onClick={addDriver} color="success">
-                      Add Driver
+                    <CButton onClick={registoringVehicleform} color="success">
+                      Register New Vehicle
                     </CButton>
                   </div>
                 </CForm>
@@ -142,4 +232,4 @@ function AddDriver() {
   )
 }
 
-export default AddDriver
+export default RegistoringVehicleform

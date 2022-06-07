@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -21,7 +22,7 @@ import {
   CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+
 import axios from 'axios'
 const TransfterVehicle_Table = () => {
   const [TransfterVehicle_Table_List, setTransfterVehicle_Table_List] = useState([])
@@ -102,9 +103,9 @@ const TransfterVehicle_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <a href="/nottransferedvehicles">
+              <Link to="/nottransferedvehicles">
                 <CButton>Not Transfered vehicles</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>

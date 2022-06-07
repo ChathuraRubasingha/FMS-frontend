@@ -12,6 +12,7 @@ import {
   CListGroup,
   CListGroupItem,
 } from '@coreui/react'
+import { Link } from 'react-router-dom'
 
 function VehicleINandOUT() {
   return (
@@ -30,31 +31,54 @@ function VehicleINandOUT() {
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <CListGroupItem component="a" href="/booking">
-                  Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/pendingbookingrequests">
-                  Pending Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/approvedbookingrequests">
-                  Approved Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/assignedbookingrequests">
-                  Assigned Booking Requests
-                </CListGroupItem>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  <CListGroupItem component="a" href="/booking">
+                    Booking Requests
+                  </CListGroupItem>
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/pendingbookingrequests">
+                    Pending Booking Requests
+                  </CListGroupItem>
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/approvedbookingrequests">
+                    Approved Booking Requests
+                  </CListGroupItem>
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/assignedbookingrequests">
+                    Assigned Booking Requests
+                  </CListGroupItem>
+                </Link>
 
-                <CListGroupItem component="a" href="/disapprovedbookingrequests">
-                  Disapproved Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/cancelledbookingrequests">
-                  Cancelled Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/completedbookingrequests">
-                  Completed Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/vehicleinandout" active>
-                  Vehicle IN and OUT
-                </CListGroupItem>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/disapprovedbookingrequests">
+                    Disapproved Booking Requests
+                  </CListGroupItem>{' '}
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/cancelledbookingrequests">
+                    Cancelled Booking Requests
+                  </CListGroupItem>{' '}
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/completedbookingrequests">
+                    Completed Booking Requests
+                  </CListGroupItem>{' '}
+                </Link>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem component="a" href="/vehicleinandout" active>
+                    Vehicle IN and OUT
+                  </CListGroupItem>
+                </Link>
               </CListGroup>
             </CCardBody>
           </CCard>

@@ -21,7 +21,7 @@ import {
   CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 const VehicleAssigning_Table = () => {
   const [VehicleAssigning_Table_List, setVehicleAssigning_Table_List] = useState([])
@@ -102,9 +102,9 @@ const VehicleAssigning_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <a href="/unassignvehicles">
+              <Link to="/unassignvehicles">
                 <CButton>Unassigned Vehicles</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>

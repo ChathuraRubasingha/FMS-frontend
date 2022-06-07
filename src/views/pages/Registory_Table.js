@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+
 import {
   CCol,
   CRow,
@@ -21,7 +22,7 @@ import {
   CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 const Registory_Table = () => {
   const [Registory_Table_List, setRegistory_Table_List] = useState([])
@@ -102,9 +103,9 @@ const Registory_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <a href="/addvehicle">
+              <Link to="/addvehicle">
                 <CButton> Add new Vehicle</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -131,7 +132,7 @@ const Registory_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
