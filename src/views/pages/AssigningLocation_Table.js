@@ -46,7 +46,7 @@ const VehicleAssigning_Table = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(`http://localhost:5000/api/getlocationassignedvehicles`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -121,9 +121,7 @@ const VehicleAssigning_Table = () => {
                       <CTableHeaderCell scope="col">Vehicle Number</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Category</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Allocaton Type</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Status</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> Purshed Date</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -138,12 +136,10 @@ const VehicleAssigning_Table = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Make}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Requested_Date}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
                                 Update

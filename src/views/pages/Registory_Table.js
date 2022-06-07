@@ -46,7 +46,7 @@ const Registory_Table = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(`http://localhost:5000/api/registedVehicles`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -138,12 +138,12 @@ const Registory_Table = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Make}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Allocation_Type_ID}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_Status}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
                                 Update
