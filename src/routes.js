@@ -150,6 +150,8 @@ const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
 const Add_Branch = React.lazy(() => import('./views/pages/Add_Branch'))
 const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
 const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
+const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
+const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -249,6 +251,8 @@ const routes = [
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
   { path: '/maintanace', name: 'Maintanance', component: Maintainance },
   { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
+  { path: '/Add_Make', name: 'Add Make', component: Add_Make },
+  { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
 
   {
     path: '/System_Configurations',
@@ -402,6 +406,7 @@ const routes = [
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
   { path: '/Add_Branch', name: 'Add New Branch ', component: Add_Branch },
+  { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
   { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
   {
     path: '/Vehicle_details/Vehicle_details',
