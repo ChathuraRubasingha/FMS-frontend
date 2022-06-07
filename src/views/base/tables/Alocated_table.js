@@ -43,9 +43,7 @@ const Alocated_Table = () => {
             </CTableHead>
             <CTableBody>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>Kelaniya Tower</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">Kelaniya Tower</CTableHeaderCell>
                 <CTableDataCell>
                   {<CAvatar src={avatar8} size="md" />}
                   {<CAvatar src={avatar8} size="md" />}
@@ -67,9 +65,7 @@ const Alocated_Table = () => {
               </CTableRow>
 
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>Araliaya Hotels</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">Araliaya Hotels</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">
@@ -85,9 +81,7 @@ const Alocated_Table = () => {
                 </CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>UOM</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">UOM</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">
@@ -103,9 +97,7 @@ const Alocated_Table = () => {
                 </CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>KCC</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">KCC</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">
@@ -121,9 +113,7 @@ const Alocated_Table = () => {
                 </CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>KFC</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">KFC</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">
@@ -139,9 +129,7 @@ const Alocated_Table = () => {
                 </CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>Jetwing</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">Jetwing</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">
@@ -157,9 +145,7 @@ const Alocated_Table = () => {
                 </CTableDataCell>
               </CTableRow>
               <CTableRow>
-                <CTableHeaderCell scope="row">
-                  <strong>UOC</strong>
-                </CTableHeaderCell>
+                <CTableHeaderCell scope="row">UOC</CTableHeaderCell>
                 <CTableDataCell>Photo</CTableDataCell>
                 <CTableDataCell>
                   <CProgress className="my-3 mx-3">

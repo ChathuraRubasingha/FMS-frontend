@@ -16,7 +16,6 @@ import { FaRegMoneyBillAlt } from 'react-icons/fa'
 
 function ConfirmFuel() {
   const [fullName, setFullName] = useState('')
-  const [driverid, setdriverid] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
   const [location, setLocation] = useState('')
@@ -26,9 +25,8 @@ function ConfirmFuel() {
 
   const ConfirmFuel = () => {
     axios
-      .post(`http://localhost:3000/ConfirmFuel`, {
+      .post(`http://localhost:5000/api/addfuelconfirm`, {
         fullName: fullName,
-        driverid: driverid,
         vehicleid: vehicleid,
         location: location,
         odometer: odometer,
@@ -56,6 +54,7 @@ function ConfirmFuel() {
                       <FaGasPump />
                     </h3>
                   </strong>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
@@ -65,20 +64,11 @@ function ConfirmFuel() {
                       autoComplete="FullName"
                     />
                   </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setdriverid(event.target.value)
-                      }}
-                      type="text"
-                      placeholder="Driver ID"
-                      autoComplete="driverid"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setFullName(event.target.value)
+                        setvehicleid(event.target.value)
                       }}
                       placeholder="Vehicle ID"
                       autoComplete="vehicleid"
