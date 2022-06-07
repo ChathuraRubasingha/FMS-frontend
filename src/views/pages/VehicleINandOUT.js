@@ -31,53 +31,37 @@ function VehicleINandOUT() {
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
-                  <CListGroupItem component="a" href="/booking">
-                    Booking Requests
-                  </CListGroupItem>
+                <Link to="/booking" style={{ textDecoration: 'none' }}>
+                  <CListGroupItem>Booking Requests</CListGroupItem>
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/pendingbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/pendingbookingrequests">
-                    Pending Booking Requests
-                  </CListGroupItem>
+                  <CListGroupItem>Pending Booking Requests</CListGroupItem>
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/approvedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/approvedbookingrequests">
-                    Approved Booking Requests
-                  </CListGroupItem>
+                  <CListGroupItem>Approved Booking Requests</CListGroupItem>
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/assignedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/assignedbookingrequests">
-                    Assigned Booking Requests
-                  </CListGroupItem>
+                  <CListGroupItem>Assigned Booking Requests</CListGroupItem>
                 </Link>
 
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/disapprovedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/disapprovedbookingrequests">
-                    Disapproved Booking Requests
-                  </CListGroupItem>{' '}
+                  <CListGroupItem>Disapproved Booking Requests</CListGroupItem>{' '}
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/cancelledbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/cancelledbookingrequests">
-                    Cancelled Booking Requests
-                  </CListGroupItem>{' '}
+                  <CListGroupItem>Cancelled Booking Requests</CListGroupItem>{' '}
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/completedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/completedbookingrequests">
-                    Completed Booking Requests
-                  </CListGroupItem>{' '}
+                  <CListGroupItem>Completed Booking Requests</CListGroupItem>{' '}
                 </Link>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                <Link to="/vehicleinandout" style={{ textDecoration: 'none' }}>
                   {' '}
-                  <CListGroupItem component="a" href="/vehicleinandout" active>
-                    Vehicle IN and OUT
-                  </CListGroupItem>
+                  <CListGroupItem active>Vehicle IN and OUT</CListGroupItem>
                 </Link>
               </CListGroup>
             </CCardBody>

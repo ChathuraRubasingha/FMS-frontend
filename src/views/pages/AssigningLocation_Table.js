@@ -35,10 +35,10 @@ const VehicleAssigning_Table = () => {
 
   const deleteVehicleAssigning_Table = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteassignedlocation/${id}`).then((response) => {
       setVehicleAssigning_Table_List(
         VehicleAssigning_Table_List.filter((items) => {
-          return items.VehicleAssigning_Table_ID != id
+          return items.Location_Name != id
         }),
       )
     })
@@ -118,10 +118,11 @@ const VehicleAssigning_Table = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Vehicle Number</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Vehicle</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Purshed Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> From Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> To Date</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -136,17 +137,18 @@ const VehicleAssigning_Table = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Make}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Requested_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
                                 Update
                               </CButton>
                               <CButton
                                 onClick={() => {
-                                  deleteVehicleAssigning_Table(item.VehicleAssigning_Table_ID)
+                                  deleteVehicleAssigning_Table(item.Location_Name)
                                 }}
                                 className="buttons m-1"
                                 color="danger"

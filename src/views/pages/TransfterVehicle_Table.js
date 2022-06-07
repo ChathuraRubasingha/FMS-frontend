@@ -36,10 +36,10 @@ const TransfterVehicle_Table = () => {
 
   const deleteTransfterVehicle_Table = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deletetranferedvehicle/${id}`).then((response) => {
       setTransfterVehicle_Table_List(
         TransfterVehicle_Table_List.filter((items) => {
-          return items.TransfterVehicle_Table_ID != id
+          return items.From_Location_ID != id
         }),
       )
     })
@@ -149,7 +149,7 @@ const TransfterVehicle_Table = () => {
                               </CButton>
                               <CButton
                                 onClick={() => {
-                                  deleteTransfterVehicle_Table(item.TransfterVehicle_Table_ID)
+                                  deleteTransfterVehicle_Table(item.From_Location_ID)
                                 }}
                                 className="buttons m-1"
                                 color="danger"

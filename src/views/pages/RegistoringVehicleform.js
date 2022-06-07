@@ -109,7 +109,7 @@ function RegistoringVehicleform() {
                         setEngineNo(event.target.value)
                       }}
                       type="number"
-                      placeholder="Engine No)"
+                      placeholder="Engine No"
                       autoComplete="EngineNo"
                     />
                   </CInputGroup>

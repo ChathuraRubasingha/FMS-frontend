@@ -36,10 +36,10 @@ const Registory_Table = () => {
 
   const deleteRegistory_Table = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deletevehicle/${id}`).then((response) => {
       setRegistory_Table_List(
         Registory_Table_List.filter((items) => {
-          return items.Registory_Table_ID != id
+          return items.Vehicle_No != id
         }),
       )
     })
@@ -151,7 +151,7 @@ const Registory_Table = () => {
                               </CButton>
                               <CButton
                                 onClick={() => {
-                                  deleteRegistory_Table(item.Registory_Table_ID)
+                                  deleteRegistory_Table(item.Vehicle_No)
                                 }}
                                 className="buttons m-1"
                                 color="danger"
