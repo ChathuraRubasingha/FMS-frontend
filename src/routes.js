@@ -95,7 +95,6 @@ const Access_Permission = React.lazy(() => import('./views/pages/Access_Permissi
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
-
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
 const Destination = React.lazy(() => import('./views/pages/Destination'))
@@ -148,6 +147,8 @@ const Individual_Vehicle_Details = React.lazy(() =>
 )
 
 const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+const MaintainanceDetails = React.lazy(() => import('./views/pages/Maintanace_details'))
+const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -246,6 +247,7 @@ const routes = [
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
   { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+  { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
 
   {
     path: '/System_Configurations',
@@ -346,6 +348,7 @@ const routes = [
   { path: '/driverassigning', name: 'DriverAssigning', component: AssignDriver },
   { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
   { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
+  { path: '/updateDriver', name: 'UpdateDriver', component: UpdateDriver },
   {
     path: '/completedbookingrequests',
     name: 'CompletedBookingRequests',
@@ -393,6 +396,7 @@ const routes = [
   },
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
