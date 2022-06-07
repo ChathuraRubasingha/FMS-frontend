@@ -3,6 +3,8 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   CAvatar,
   CCol,
@@ -21,20 +23,29 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
-const Destination = () => {
+const Designation = () => {
   const [items, setItems] = useState([])
+  const [LocationList, setLocationList] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
 
   let limit = 15
+  const deleteDesignation = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteDesignation/${id}`).then((response) => {
+      setLocationList(
+        LocationList.filter((items) => {
+          return items.Location_ID != id
+        }),
+      )
+    })
+  }
 
   const [search, setSearch] = useState('')
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/Designation`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -70,7 +81,7 @@ const Destination = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Destination Registry</h5>
+              <h5>Designation Registry</h5>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
               <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
@@ -86,7 +97,9 @@ const Destination = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Destination </CButton>
+              <Link to="/Add_Designation">
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Designation </CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -100,7 +113,7 @@ const Destination = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Destination</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Designation</CTableHeaderCell>
 
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
@@ -117,14 +130,21 @@ const Destination = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Designation}</CTableDataCell>
 
                             <CTableDataCell>
                               <CButton>View</CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteDesignation(item.Designation_ID)
+                                }}
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -161,4 +181,4 @@ const Destination = () => {
     </div>
   )
 }
-export default Destination
+export default Designation

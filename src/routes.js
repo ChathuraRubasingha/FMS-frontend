@@ -94,9 +94,10 @@ const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
 const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
+const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
-const Destination = React.lazy(() => import('./views/pages/Destination'))
+const Designation = React.lazy(() => import('./views/pages/Designation'))
 const Make = React.lazy(() => import('./views/pages/Make'))
 const Modal = React.lazy(() => import('./views/pages/Modal'))
 const Category = React.lazy(() => import('./views/pages/Category'))
@@ -143,6 +144,11 @@ const Vehicle_details = React.lazy(() => import('./views/Vehicle_details/Vehicle
 const Individual_Vehicle_Details = React.lazy(() =>
   import('./views/Vehicle_details/Individual_Vehicle_Details'),
 )
+
+const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+const Add_Branch = React.lazy(() => import('./views/pages/Add_Branch'))
+const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
+const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -221,7 +227,7 @@ const routes = [
   { path: '/Configuration', name: 'Configuration Module ', component: Configuration },
   { path: '/Branch', name: 'Branch  ', component: Branch },
   { path: '/Location', name: 'Location  ', component: Location },
-  { path: '/Destination', name: 'Destination  ', component: Destination },
+  { path: '/Designation', name: 'Designation  ', component: Designation },
   { path: '/Make', name: 'Make  ', component: Make },
   { path: '/Modal', name: 'Modal  ', component: Modal },
   { path: '/Category', name: 'Category  ', component: Category },
@@ -239,6 +245,9 @@ const routes = [
   { path: '/Repair_Type', name: 'Repair Type Registry', component: Repair_Type },
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
+  { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+  { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
+
   {
     path: '/System_Configurations',
     name: ' System Configurations Registry',
@@ -385,10 +394,13 @@ const routes = [
   },
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
-
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
+  { path: '/Add_Branch', name: 'Add New Branch ', component: Add_Branch },
+  { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
   {
     path: '/Vehicle_details/Vehicle_details',
     name: 'Vehicle_details',
