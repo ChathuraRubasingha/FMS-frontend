@@ -152,6 +152,8 @@ const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
 const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
 const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
 const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
+const MaintainanceDetails = React.lazy(() => import('./views/pages/Maintanace_details'))
+const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -253,6 +255,7 @@ const routes = [
   { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
   { path: '/Add_Make', name: 'Add Make', component: Add_Make },
   { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
+  { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
 
   {
     path: '/System_Configurations',
@@ -353,6 +356,7 @@ const routes = [
   { path: '/driverassigning', name: 'DriverAssigning', component: AssignDriver },
   { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
   { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
+  { path: '/updateDriver', name: 'UpdateDriver', component: UpdateDriver },
   {
     path: '/completedbookingrequests',
     name: 'CompletedBookingRequests',
