@@ -3,6 +3,8 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   CAvatar,
   CCol,
@@ -22,19 +24,30 @@ import {
   CButton,
 } from '@coreui/react'
 const Location = () => {
+  const [LocationList, setLocationList] = useState([])
+
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
 
   let limit = 15
 
+  const deleteLocation = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteLocation/${id}`).then((response) => {
+      setLocationList(
+        LocationList.filter((items) => {
+          return items.Location_ID != id
+        }),
+      )
+    })
+  }
+
   const [search, setSearch] = useState('')
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/Location`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -86,7 +99,10 @@ const Location = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Location </CButton>
+              <Link to="/Add_Location">
+                {' '}
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Location </CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -102,7 +118,7 @@ const Location = () => {
                     <CTableRow>
                       <CTableHeaderCell scope="col">Location Name</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Address</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Telephone</CTableHeaderCell>
+
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -118,15 +134,22 @@ const Location = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+
                             <CTableDataCell>
                               <CButton>View</CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteLocation(item.Location_ID)
+                                }}
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

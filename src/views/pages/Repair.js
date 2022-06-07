@@ -40,9 +40,7 @@ const Repair = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/repair`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -116,7 +114,7 @@ const Repair = () => {
                       </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Make</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Model</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Fuel Type</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Vehicle Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -132,12 +130,12 @@ const Repair = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Make}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Model}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Fuel_Type}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Vehicle_Status}</CTableDataCell>
 
                             <CTableDataCell>
                               <CButton href="Repair_form">

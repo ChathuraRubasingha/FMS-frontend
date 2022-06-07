@@ -32,9 +32,7 @@ const Performance_Driver = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/PerformanceDriver`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -121,11 +119,11 @@ const Performance_Driver = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Status}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
                             <CTableDataCell>
                               <CButton href="Driver_Form">
                                 {<CAvatar src={arrow} size="sm" />}
