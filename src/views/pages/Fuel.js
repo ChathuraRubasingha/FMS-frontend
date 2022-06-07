@@ -44,7 +44,7 @@ class Fuel extends Component {
           </CCardBody>
         </CCard>
         <br />
-        <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
+        <CRow>
           <CCol xs>
             <CCard>
               <CCardImage orientation="top" src={ask_fuel} />
