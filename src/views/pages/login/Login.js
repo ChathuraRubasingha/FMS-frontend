@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
+
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -12,11 +14,33 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CCardImage,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import login from './../../../assets/images/avatars/Login.jpg'
+import logo from './../../../assets/images/avatars/logo.png'
 
-const Login = () => {
+function Login() {
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
+
+  const [LoginStatus, setLoginStatus] = useState('')
+
+  const Login = () => {
+    axios
+      .post(`http://localhost:5000/api/login`, {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.massage) {
+          setLoginStatus(response.data.massage)
+        } else {
+          setLoginStatus(response.data[0].username)
+        }
+      })
+  }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -32,7 +56,14 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        type="text"
+                        placeholder="User Name"
+                        autoComplete="user name"
+                        onChange={(e) => {
+                          setusername(e.target.value)
+                        }}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -41,12 +72,15 @@ const Login = () => {
                       <CFormInput
                         type="password"
                         placeholder="Password"
-                        autoComplete="current-password"
+                        autoComplete="password"
+                        onChange={(e) => {
+                          setpassword(e.target.value)
+                        }}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton onClick={Login} color="primary">
                           Login
                         </CButton>
                       </CCol>
@@ -59,20 +93,27 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
+
+              <CCard>
+                <CCardBody className="text-white bg-primary ">
+                  <CCardImage src={login} class="img-fluid img-thumbnail" />
+
+                  <br />
+                  <br />
+
                   <div>
-                    <h2>Sign up</h2>
-                    <p>Fleet Management System</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
+                    <h4 style={{ textAlign: 'center' }}>
+                      <i>CIRRUS FMS</i>
+                    </h4>
+                    <i>
+                      <h5 style={{ textAlign: 'center' }}>Fleet Management System</h5>
+                    </i>
                   </div>
                 </CCardBody>
               </CCard>
             </CCardGroup>
+
+            <h1 style={{ textAlign: 'center' }}>{LoginStatus}</h1>
           </CCol>
         </CRow>
       </CContainer>
