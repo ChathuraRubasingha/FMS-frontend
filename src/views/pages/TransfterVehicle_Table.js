@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -21,7 +22,7 @@ import {
   CCardHeader,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+
 import axios from 'axios'
 const TransfterVehicle_Table = () => {
   const [TransfterVehicle_Table_List, setTransfterVehicle_Table_List] = useState([])
@@ -35,10 +36,10 @@ const TransfterVehicle_Table = () => {
 
   const deleteTransfterVehicle_Table = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deletetranferedvehicle/${id}`).then((response) => {
       setTransfterVehicle_Table_List(
         TransfterVehicle_Table_List.filter((items) => {
-          return items.TransfterVehicle_Table_ID != id
+          return items.From_Location_ID != id
         }),
       )
     })
@@ -102,9 +103,9 @@ const TransfterVehicle_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <a href="/nottransferedvehicles">
+              <Link to="/nottransferedvehicles">
                 <CButton>Not Transfered vehicles</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -148,7 +149,7 @@ const TransfterVehicle_Table = () => {
                               </CButton>
                               <CButton
                                 onClick={() => {
-                                  deleteTransfterVehicle_Table(item.TransfterVehicle_Table_ID)
+                                  deleteTransfterVehicle_Table(item.From_Location_ID)
                                 }}
                                 className="buttons m-1"
                                 color="danger"
