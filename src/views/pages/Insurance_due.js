@@ -36,36 +36,21 @@ const Insurance_due = () => {
           <CCardBody>
             <CInputGroup className="mb-3">
               <CInputGroupText id="basic-addon3">Vehicle Category</CInputGroupText>
-              <CCard className="mb-4">
-                <CCardBody>
-                  <CDropdown>
-                    <CDropdownToggle color="success">
-                      Select the Vehicle Category{' '}
-                      <CDropdownMenu>
-                        <CDropdownItem href="#">Motor Car</CDropdownItem>
-                        <CDropdownItem href="#">Dual Purpose Vehicle</CDropdownItem>
-                        <CDropdownItem href="#">Motor Coach</CDropdownItem>
-                        <CDropdownItem href="#">Motor cycle</CDropdownItem>
-                        <CDropdownItem href="#">Heavy</CDropdownItem>
-                        <CDropdownItem href="#">Hybrid</CDropdownItem>
-                        <CDropdownItem href="#">Pilling Machine</CDropdownItem>
-                        <CDropdownItem href="#">Tractor </CDropdownItem>
-                        <CDropdownItem href="#">Land Vehicle</CDropdownItem>
-                        <CDropdownItem href="#">Motor Lorry</CDropdownItem>
-                        <CDropdownItem href="#">Special Purpose Vehicle</CDropdownItem>
-                        <CDropdownItem href="#">Dual Purpose Cab</CDropdownItem>
-                        <CDropdownItem href="#">Crew Cab</CDropdownItem>
-                        <CDropdownItem href="#">Cab</CDropdownItem>
-                        <CDropdownItem href="#">Lorry Trail</CDropdownItem>
-                        <CDropdownItem href="#">Excavator </CDropdownItem>
-                        <CDropdownItem href="#">Loader</CDropdownItem>
-                        <CDropdownItem href="#">Bob cat</CDropdownItem>
-                        <CDropdownItem href="#">Van</CDropdownItem>
-                      </CDropdownMenu>
-                    </CDropdownToggle>
-                  </CDropdown>
-                </CCardBody>
-              </CCard>
+
+              <CCardBody>
+                <CCol md>
+                  <CFormSelect
+                    id="floatingSelectGrid"
+                    floatingLabel="Email address"
+                    aria-label="Works with selects"
+                  >
+                    <option>Select Vehicle Category</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </CFormSelect>
+                </CCol>
+              </CCardBody>
             </CInputGroup>
 
             <CInputGroup className="mb-3">

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-
 import axios from 'axios'
 
 import { Link } from 'react-router-dom'
-
 import {
   CButton,
   CCard,
@@ -20,7 +18,6 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-
 import login from './../../../assets/images/avatars/Login.jpg'
 import logo from './../../../assets/images/avatars/logo.png'
 
@@ -43,8 +40,7 @@ function Login() {
           setLoginStatus(response.data[0].username)
         }
       })
-  
-
+  }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -61,20 +57,12 @@ function Login() {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-
                         type="text"
                         placeholder="User Name"
                         autoComplete="user name"
                         onChange={(e) => {
                           setusername(e.target.value)
                         }}
-
-                  onChange={(e) => {
-                          setUsername(e.target.value)
-                        }}
-                        placeholder="Username"
-                        autoComplete="username"
-
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -82,9 +70,6 @@ function Login() {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
-                        onChange={(e) => {
-                          setPassword(e.target.value)
-                        }}
                         type="password"
                         placeholder="Password"
                         autoComplete="password"
@@ -95,11 +80,7 @@ function Login() {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-
                         <CButton onClick={Login} color="primary">
-
-                        <CButton onClick={UserLogin} color="primary" className="px-4">
-
                           Login
                         </CButton>
                       </CCol>
@@ -139,5 +120,3 @@ function Login() {
     </div>
   )
 }
-
-export default Login
