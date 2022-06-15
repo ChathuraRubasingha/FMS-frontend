@@ -14,11 +14,13 @@ import axios from 'axios'
 
 function Add_Modal() {
   const [modal, setModel] = useState('')
+  const [makeid, setMakeID] = useState('')
 
   const Add_Modal = () => {
     axios
       .post(`http://localhost:5000/api/addModal`, {
         modal: modal,
+        makeid: makeid,
       })
       .then(() => {
         console.log('Success')
@@ -36,6 +38,16 @@ function Add_Modal() {
                 <CForm>
                   <h3>Add new Model</h3>
                   <br />
+                  <CInputGroup className="mb-3">
+                    <CFormInput
+                      onChange={(event) => {
+                        setMakeID(event.target.value)
+                      }}
+                      placeholder="Vehicle Make ID "
+                      autoComplete="makeid"
+                    />
+                  </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {

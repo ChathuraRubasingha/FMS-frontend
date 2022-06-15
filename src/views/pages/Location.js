@@ -135,7 +135,7 @@ const Location = () => {
                         return (
                           <CTableRow key={item.id}>
                             <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Address}</CTableDataCell>
 
                             <CTableDataCell>
                               <CButton>View</CButton>

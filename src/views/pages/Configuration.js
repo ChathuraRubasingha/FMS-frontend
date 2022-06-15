@@ -18,11 +18,10 @@ class Configuration extends Component {
   state = {}
   render() {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${configuration} )`,
-        }}
-      >
+      <div>
+        <h4>
+          <strong>Configurations</strong>
+        </h4>
         <CCol xs={12}>
           <CCard
             className="mb-4"
@@ -31,11 +30,7 @@ class Configuration extends Component {
             }}
           >
             <CCardHeader>
-              <CBadge color="primary">
-                <h4>
-                  <strong>Configurations</strong>
-                </h4>
-              </CBadge>
+              <CBadge color="primary"></CBadge>
             </CCardHeader>
             <CCardBody>
               <CAccordion>
