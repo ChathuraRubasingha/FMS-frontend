@@ -27,7 +27,9 @@ const AppSidebar = () => {
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
         <CIcon icon={cibOpensuse} height={48} alt="Logo"></CIcon>
-        <h3>FMS</h3>
+        <h3>
+          <i>FMS</i>
+        </h3>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
