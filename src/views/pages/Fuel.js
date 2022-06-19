@@ -1,27 +1,5 @@
 import React, { Component } from 'react'
-import {
-  CCol,
-  CRow,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
-  CTable,
-  CTableBody,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-  CTableDataCell,
-  CCard,
-  CCardBody,
-  CPagination,
-  CButton,
-  CLink,
-  CCardImage,
-  CCardTitle,
-  CCardText,
-  CCardFooter,
-  CAvatar,
-} from '@coreui/react'
+import { CCol, CRow, CCard, CCardBody, CLink, CCardImage, CCardTitle } from '@coreui/react'
 import ask_fuel from './../../assets/images/avatars/askfuel.png'
 import view_fuel from './../../assets/images/avatars/viewfuel.png'
 import bill from './../../assets/images/avatars/bill.png'
@@ -29,23 +7,22 @@ import fuelacc from './../../assets/images/avatars/fuelacc.png'
 import { FaGasPump } from 'react-icons/fa'
 
 class Fuel extends Component {
-  state = {}
   render() {
     return (
       <div>
         <CCard>
           <CCardBody>
             <CRow>
-              <h3>
+              <h2 style={{ textAlign: 'center' }}>
                 Fleet Fuel Details &nbsp;
                 <FaGasPump />
-              </h3>
+              </h2>
             </CRow>
           </CCardBody>
         </CCard>
         <br />
         <CRow>
-          <CCol xs>
+          <CCol xs lg>
             <CCard>
               <CCardImage orientation="top" src={ask_fuel} />
               <CCardBody>

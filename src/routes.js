@@ -7,8 +7,9 @@ import PendingBookingRequests from './views/pages/PendingBookingRequests'
 import TransfterVehicle from './views/pages/TransfterVehicle'
 import NotTransferedVehicles from './views/pages/NotTransferedVehicles'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Allocated = React.lazy(() => import('./views/tabs/allocated/Allocated'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+
 const Idle = React.lazy(() => import('./views/tabs/idle/Idle'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -129,6 +130,8 @@ const VehicleINandOUT = React.lazy(() => import('./views/pages/VehicleINandOUT')
 const AssignDriverform = React.lazy(() => import('./views/pages/AssignDriverform'))
 const DriverAssigning = React.lazy(() => import('./views/pages/AssignDriver'))
 const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers'))
+const project = React.lazy(() => import('./views/pages/project'))
+const photo = React.lazy(() => import('./views/pages/photo'))
 
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
 const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicle'))
@@ -256,6 +259,8 @@ const routes = [
   { path: '/Add_Make', name: 'Add Make', component: Add_Make },
   { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
   { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
+  { path: '/project', name: 'Mproject', component: project },
+  { path: '/photo', name: 'photo', component: photo },
 
   {
     path: '/System_Configurations',

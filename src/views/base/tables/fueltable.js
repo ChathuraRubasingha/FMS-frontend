@@ -25,7 +25,7 @@ import {
 const FuelTable = () => {
   const [items, setItems] = useState([])
 
-  const [pageCount, setpageCount] = useState(0)
+  const [pageCount, setpageCount] = useState('')
 
   let limit = 10
 
@@ -80,7 +80,7 @@ const FuelTable = () => {
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search Requests"
+                  placeholder="Search by Vehicle Number"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -113,7 +113,7 @@ const FuelTable = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
