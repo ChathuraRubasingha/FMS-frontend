@@ -47,11 +47,8 @@ const Driver = () => {
 
   const getProductData = async () => {
     try {
-<<<<<<< HEAD
-=======
       const res = await fetch(`http://localhost:5000/api/driver`)
->>>>>>> 912857fb6206998621ae4ddba85736a494a5e3f2
-      const res = await fetch(`http://localhost:5000/api/drivers`)
+      //const res = await fetch(`http://localhost:5000/api/drivers`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
