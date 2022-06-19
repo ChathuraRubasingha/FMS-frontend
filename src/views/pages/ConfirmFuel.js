@@ -28,21 +28,22 @@ function ConfirmFuel() {
   const [photo, setphoto] = useState('')
 
   const ConfirmFuel = () => {
-    axios
-      .post(`http://localhost:5000/api/addfuelconfirm`, {
-        fullName: fullName,
-        vehicleid: vehicleid,
-        location: location,
-        odometer: odometer,
-        Liters: Liters,
-        amount: amount,
-        date: date,
-        photo: photo,
-      })
-      .then(() => {
-        console.log('Success')
-        alert('Filling  Details Added Successed!')
-      })
+    const formData = new FormData()
+    formData.append('fullName', fullName)
+    formData.append('vehicleid', vehicleid)
+    formData.append('location', location)
+    formData.append('odometer', odometer)
+    formData.append('Liters', Liters)
+    formData.append('amount', amount)
+    formData.append('date', date)
+    formData.append('photo', photo)
+    console.log(formData)
+    console.log(fullName)
+    console.log(photo)
+    axios.post(`http://localhost:5000/api/addfuelconfirm`, formData).then(() => {
+      console.log('Success')
+      alert('Filling  Details Added Successed!')
+    })
   }
 
   return (
@@ -129,20 +130,20 @@ function ConfirmFuel() {
                     />
                   </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setvehicleid(event.target.value)
-                      }}
-                    />
-                  </CInputGroup>
-
                   <div className="mb-3">
                     <h6>
                       Add Bill &nbsp;
                       <FaRegMoneyBillAlt />
                     </h6>
-                    <CFormInput type="file" id="formFile" />
+
+                    <CFormInput
+                      onChange={(event) => {
+                        // console.log(event)
+                        setphoto(event.target.files[0])
+                      }}
+                      type="file"
+                      id="formFile"
+                    />
                   </div>
 
                   <div className="d-grid">

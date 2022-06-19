@@ -96,7 +96,7 @@ const FuelTable = () => {
           <CRow>
             <CCol xs={5}>
               <h3>
-                Filling Requests &nbsp;
+                Requests Status &nbsp;
                 <BsCartPlusFill />
               </h3>
             </CCol>
@@ -131,7 +131,7 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
+
                       <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -155,16 +155,7 @@ const FuelTable = () => {
                             <CTableDataCell scope="row">
                               {item.Required_Fuel_Capacity}
                             </CTableDataCell>
-                            <CTableDataCell>
-                              <CButton
-                                className="button1"
-                                onClick={() => {
-                                  changeStatus(item.Fuel_Request_ID, item.Approve_Status)
-                                }}
-                              >
-                                Option
-                              </CButton>
-                            </CTableDataCell>
+
                             <CTableDataCell scope="row">{item.Approve_Status}</CTableDataCell>
                           </CTableRow>
                         )

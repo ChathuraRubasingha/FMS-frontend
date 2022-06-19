@@ -125,7 +125,15 @@ const Allocated_table = () => {
                             <CTableDataCell scope="row">
                               <CProgress className="my-3 mx-3">
                                 <CProgressBar
-                                  color="primary"
+                                  color={
+                                    item.progress < 25
+                                      ? 'danger'
+                                      : item.progress < 50
+                                      ? 'warning'
+                                      : item.progress < 75
+                                      ? 'primary'
+                                      : 'success'
+                                  }
                                   variant="striped"
                                   animated
                                   value={item.progress}

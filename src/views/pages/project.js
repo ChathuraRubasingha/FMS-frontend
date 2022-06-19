@@ -4,6 +4,7 @@ import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import { BsCartPlus } from 'react-icons/bs'
 import { BsCartPlusFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -39,10 +40,11 @@ const Project = () => {
     axios.delete(`http://localhost:5000/deleteproject/${id}`).then((response) => {
       setProjectList(
         ProjectList.filter((items) => {
-          return items.Driver_ID != id
+          return items.project_id != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -123,7 +125,6 @@ const Project = () => {
                       <CTableHeaderCell scope="col">Progress</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
 
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
                       <CTableHeaderCell scope="col">Options</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -143,15 +144,18 @@ const Project = () => {
                             <CTableDataCell scope="row">{item.start_date}</CTableDataCell>
 
                             <CTableDataCell scope="row">{item.progress + '%'}</CTableDataCell>
-                            <CTableDataCell></CTableDataCell>
-                            <CTableDataCell></CTableDataCell>
+
                             <CTableDataCell>
-                              <CButton className="m-1" color="success">
-                                Edit
-                              </CButton>
+                              <Link to={`/Update_Project?projectid=${item.project_id}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                            </CTableDataCell>
+                            <CTableDataCell>
                               <CButton
                                 onClick={() => {
-                                  deleteproject(item.Driver_ID)
+                                  deleteproject(item.project_id)
                                 }}
                                 className="buttons m-1"
                                 color="danger"

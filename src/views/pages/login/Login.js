@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import { Link, Redirect } from 'react-router-dom'
 
-
 import {
   CButton,
   CCard,
@@ -129,3 +128,5 @@ function Login() {
     </div>
   )
 }
+
+export default Login
