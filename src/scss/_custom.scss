@@ -60,6 +60,8 @@
   min-width: 100%;
   overflow-x: auto;
 }
+
+
 .button1 {
   background: linear-gradient(to right, #19a3e9, #090268);
   border: black;
@@ -72,10 +74,15 @@
   float: right;
 }
 
+.buttons {
+  float: left;
+}
+
 
 .buttons {
   float: left;
 }
+
 .vertical-center {
   left: 50%;
   margin: 0;
@@ -99,64 +106,58 @@
 }
 .buttons {
   float: left;
-
   background: linear-gradient(to right, #19a3e9, #090268);
   border: black;
   float: right;
 }
 
-body { 
-  margin: 0; 
-  font-family: system-ui, sans-serif; 
-} 
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
 
-
-*{
-box-sizing: border-box; 
-} 
+* {
+  box-sizing: border-box;
+}
 
 section {
   /*Image in description*/
   /* background: url(img/bg.jpg) no-repeat center; */
   /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% ); */
- background-color: #193498;
-   background-size: cover; 
-   min-height: 100vh; 
-   display: flex; 
-   justify-content: center; 
-   align-items: center;
-   padding: 3em;
-   } 
-
-.menu { 
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2.5em; 
-  background: rgb(255 255 255 / 24%);
-  box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%); 
-  backdrop-filter: blur(15px); 
-  border: 1px solid
-rgba(255, 255, 255, 0.18); 
-  display: grid; 
-  grid-template-columns: repeat(5,1fr); 
-  text-align: center; 
+  background-color: #193498;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3em;
 }
 
+.menu {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5em;
+  background: rgb(255 255 255 / 24%);
+  box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
 
-.menu a { 
-  text-decoration: none; 
-  color: #dbdbdb; 
-  border: 1px solid rgba(255,255,255,0.4); 
-  border-right: 1px solid rgba(255,255,255,0.2); 
-  border-bottom: 1px solid rgba(255,255,255,0.2); 
-  box-shadow: 0 5px 45px rgba(0,0,0,0.1); 
-  backdrop-filter: blur(.5px); 
+.menu a {
+  text-decoration: none;
+  color: #dbdbdb;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.5px);
   border-radius: 10%;
- 
+}
 
-} 
-
-.menu h3 { 
+.menu h3 {
   color: #fff;
   margin: 0.4em 0 0 0;
   font-family: 'Montserrat', sans-serif;
@@ -168,24 +169,22 @@ rgba(255, 255, 255, 0.18);
 /* .menu span { 
   font-size: 3em; 
 }  */
-.menu > div { 
-  margin: 1em; 
-} 
+.menu > div {
+  margin: 1em;
+}
 
-.menu > div a { 
-  width: 100%; 
-  height: 100%; 
-  padding: 1.5em; 
+.menu > div a {
+  width: 100%;
+  height: 100%;
+  padding: 1.5em;
   /* background: rgba(255, 255, 255, 0.2);   */
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  flex-direction: column; 
-  transition: 0.5s; 
-overflow: hidden;
-} 
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.5s;
+  overflow: hidden;
+}
 
 /* .menu > div:hover a { 
   background: rgba(255, 255, 255, 0.5); 
@@ -194,19 +193,13 @@ overflow: hidden;
   color: #fff; 
 }  */
 
-.menu > div a:hover  { 
-
+.menu > div a:hover {
   transform: translateY(-20px);
+}
 
-
-} 
-
-.menu > div .icons:hover  { 
-
+.menu > div .icons:hover {
   transform: translateY(-20px);
-
-
-} 
+}
 
 /* .menu > div  a::before  { 
   content: '';
@@ -222,22 +215,17 @@ overflow: hidden;
 
 }  */
 
-
-.menu > div  .icons::before  { 
+.menu > div .icons::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 50px;
   height: 100%;
-  background:rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   transform: skewX(45deg) translateX(150px);
   transition: 1s;
-
-
-} 
-
-
+}
 
 /* .menu > div a:hover::before  { 
   
@@ -245,29 +233,20 @@ overflow: hidden;
 
 }  */
 
-.menu > div .icons:hover::before  { 
-  
+.menu > div .icons:hover::before {
   transform: skewX(45deg) translateX(-150px);
-
-} 
-
-
-
-
-
-
-@media screen and (max-width: 900px) { 
-  .menu { grid-template-columns: 1fr 1fr; 
-} 
-} 
-@media screen and (max-width: 550px) {
-  .menu { grid-template-columns: 1fr; 
-} 
 }
 
-
-
-
+@media screen and (max-width: 900px) {
+  .menu {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 550px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
+}
 
 .icons {
   position: relative;
@@ -282,12 +261,11 @@ overflow: hidden;
   border-radius: 10%;
   overflow: hidden;
 
-
   box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.015);
 
-  border: 1px solid rgba(255,255,255,0.4); 
-  border-right: 1px solid rgba(255,255,255,0.2); 
-  border-bottom: 1px solid rgba(255,255,255,0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .icons img {
@@ -310,42 +288,52 @@ overflow: hidden;
   filter: blur(13px) opacity(0.2);
 }
 
-
-
-
-
-.btn{
+.btn {
   position: relative;
-  
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: none;
+}
+
+.btn .btn-ripple {
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  border-radius: 100%;
+  animation: ripple 1s;
+  transform: scale(0);
+}
+
+@keyframes ripple {
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
-  
-  .btn{
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-  }
-  
-  .btn:hover{
-    background: none;
-  }
-  
-  .btn .btn-ripple{
-    background: rgba(255, 255, 255, 0.3);
-    position: absolute;
-    border-radius: 100%;
-    animation: ripple 1s;
-    transform: scale(0);
-  }
-  
-  @keyframes ripple {
-    100%{
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+.button1 {
+  background: linear-gradient(to right, #19a3e9, #090268);
+  border: black;
+  float: right;
+}
+
+.button2 {
+  background: linear-gradient(to right, #d679dd, #6c046c);
+  border: black;
+  float: right;
+}
+.login {
+  background: linear-gradient(to right, #19a3e9, #2519ca);
+}
 
 //   .footer{
 //       height: 100px;

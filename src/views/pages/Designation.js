@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Component } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import branch from './../../assets/images/avatars/branch.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
+  CAvatar,
   CCol,
   CRow,
   CFormInput,
@@ -18,21 +22,30 @@ import {
   CCardBody,
   CPagination,
   CButton,
-  CAvatar,
 } from '@coreui/react'
-import arrow from './../../assets/images/avatars/arrow.jpg'
-const Maintainance_cost = () => {
+const Designation = () => {
   const [items, setItems] = useState([])
+  const [LocationList, setLocationList] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
 
   let limit = 15
+  const deleteDesignation = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteDesignation/${id}`).then((response) => {
+      setLocationList(
+        LocationList.filter((items) => {
+          return items.Location_ID != id
+        }),
+      )
+    })
+  }
 
   const [search, setSearch] = useState('')
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/MaintainanceCost`)
+      const res = await fetch(`http://localhost:5000/api/Designation`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -67,10 +80,10 @@ const Maintainance_cost = () => {
       <CCard>
         <CCardBody>
           <CRow>
-            <CCol xs={6}>
-              <h5>Maintenance Cost Reports</h5>
+            <CCol xs={5}>
+              <h5>Designation Registry</h5>
             </CCol>
-            <CCol xs={6} sm={4} lg={5}>
+            <CCol xs={5} sm={4} lg={5}>
               <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
@@ -82,6 +95,11 @@ const Maintainance_cost = () => {
                   }}
                 />
               </CInputGroup>
+            </CCol>
+            <CCol xs={2}>
+              <Link to="/Add_Designation">
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Designation </CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -95,16 +113,9 @@ const Maintainance_cost = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell>
-                        <h6>Vehicle Number</h6>
-                      </CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Designation</CTableHeaderCell>
 
-                      <CTableHeaderCell scope="col" className="Catogory TableHedder">
-                        Vehicle Category Name
-                      </CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Model</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Fuel Type</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -119,14 +130,20 @@ const Maintainance_cost = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Make}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Model}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Fuel_Type}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Designation}</CTableDataCell>
+
                             <CTableDataCell>
-                              <CButton href="Maintainance_form">
-                                {<CAvatar src={arrow} size="sm" />}
+                              <CButton>View</CButton>
+                              <CButton className="m-1" color="success">
+                                Edit
+                              </CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteDesignation(item.Designation_ID)
+                                }}
+                                color="danger"
+                              >
+                                Delete
                               </CButton>
                             </CTableDataCell>
                           </CTableRow>
@@ -164,5 +181,4 @@ const Maintainance_cost = () => {
     </div>
   )
 }
-
-export default Maintainance_cost
+export default Designation

@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+import { Link, Redirect } from 'react-router-dom'
+
 
 import {
   CButton,
@@ -13,41 +16,34 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CCardImage,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-import axios from 'axios'
-
+import login from './../../../assets/images/avatars/Login.jpg'
 function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
 
-  const [loginstatus, setLoginStatus] = useState('')
+  const [LoginStatus, setLoginStatus] = useState('')
 
-  const UserLogin = () => {
+  const Login = () => {
     axios
-      .post('http://localhost:5000/api/userLogin', {
+      .post(`http://localhost:5000/api/login`, {
         username: username,
         password: password,
       })
       .then((response) => {
-        console.log(response)
-        if (response.data) {
-          //  alert(response.data.message)
-          //window("/dashboard")
-          window.location = '/dashboard'
+        console.log(password)
+        console.log(username)
+
+        if (response.data.message) {
+          setLoginStatus(response.data.message)
         } else {
-          alert(response.data[0].username)
-          console.log('hi')
+          window.location.replace('/dashboard')
         }
-        console.log(response.data)
       })
   }
-
-  const button = () => {
-    console.log(username + password)
-  }
-
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -57,18 +53,19 @@ function Login() {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h1>Login</h1>
+                    <h1>User Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
+                        type="text"
+                        placeholder="User Name"
+                        autoComplete="user name"
                         onChange={(e) => {
-                          setUsername(e.target.value)
+                          setusername(e.target.value)
                         }}
-                        placeholder="Username"
-                        autoComplete="username"
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -76,48 +73,59 @@ function Login() {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
-                        onChange={(e) => {
-                          setPassword(e.target.value)
-                        }}
                         type="password"
                         placeholder="Password"
-                        autoComplete="current-password"
+                        autoComplete="password"
+                        onChange={(e) => {
+                          setpassword(e.target.value)
+                        }}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton onClick={UserLogin} color="primary" className="px-4">
+                        <CButton onClick={Login} color="primary">
                           Login
                         </CButton>
                       </CCol>
                       <CCol xs={6} className="text-right">
                         <CButton color="link" className="px-0">
-                          Forgot password?
+                          Change Password?
                         </CButton>
                       </CCol>
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
+
+              <CCard>
+                <CCardBody className="login">
+                  <CCardImage src={login} class="img-fluid img-thumbnail" />
+
+                  <br />
+                  <br />
+
                   <div>
-                    <h2>Sign up</h2>
-                    <p>Fleet Management System</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
+                    <h4 className="text-white" style={{ textAlign: 'center' }}>
+                      <i>
+                        <b>CIRRUS FMS</b>
+                      </i>
+                    </h4>
+                    <i>
+                      <h5 className="text-white" style={{ textAlign: 'center' }}>
+                        Fleet Management System
+                      </h5>
+                    </i>
                   </div>
                 </CCardBody>
               </CCard>
             </CCardGroup>
+            <br />
+            <h4 className="text-danger" style={{ textAlign: 'center' }}>
+              {LoginStatus}
+            </h4>
           </CCol>
         </CRow>
       </CContainer>
     </div>
   )
 }
-
-export default Login

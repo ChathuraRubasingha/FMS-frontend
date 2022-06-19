@@ -36,6 +36,7 @@ const FuelTable = () => {
       const res = await fetch(`http://localhost:5000/api/fueldetails`)
       const data = await res.json()
       console.log(data.data)
+      console.log(data)
       const total = res.headers.get('x-total-count')
 
       setpageCount(Math.ceil(total / limit))
@@ -54,6 +55,16 @@ const FuelTable = () => {
     const data = await res.json()
     return data
   }
+
+  function showImage(file) {
+    console.log(file)
+    window.open('http://localhost:5000/' + file, '_blank')
+  }
+  // const handleClick = (file = (event) => {
+  //   console.log(file)
+  //   window.open('http://localhost:5000/' + file, '_blank')
+  // })
+
   const handlePageClick = async (data) => {
     console.log(data.selected)
 
@@ -80,7 +91,7 @@ const FuelTable = () => {
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search Details"
+                  placeholder="Search by Vehicle Number"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -114,7 +125,7 @@ const FuelTable = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
@@ -130,7 +141,9 @@ const FuelTable = () => {
                             <CTableDataCell scope="row">{item.Fuel_Amount}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Payable_Amount}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="button1">View</CButton>
+                              <CButton className="button1" onClick={() => showImage(item.photo)}>
+                                View
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

@@ -99,6 +99,12 @@ const _nav = [
     to: '/access',
     icon: <CIcon icon={cilLockLocked} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: 'Project',
+    to: '/project',
+    icon: <CIcon icon={cilCarAlt} customClassName="nav-icon" />,
+  },
 ]
 
 export default _nav

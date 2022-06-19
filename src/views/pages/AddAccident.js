@@ -68,7 +68,7 @@ function AddAccident() {
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle ID"
+                      placeholder="Vehicle Number"
                       autoComplete="vehicleid"
                     />
                   </CInputGroup>
@@ -78,7 +78,7 @@ function AddAccident() {
                         setdate(event.target.value)
                       }}
                       type="text"
-                      placeholder="Accident Date"
+                      placeholder="Accident Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
                   </CInputGroup>
@@ -120,7 +120,7 @@ function AddAccident() {
                   </a>
                   <a href="url">
                     <h6>
-                      Add Claim Details &nbsp;
+                      Add Insurance Details &nbsp;
                       <FaRegMoneyBillAlt />
                     </h6>
                   </a>
