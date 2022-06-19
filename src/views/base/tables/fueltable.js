@@ -106,6 +106,7 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -131,6 +132,7 @@ const FuelTable = () => {
                             <CTableDataCell>
                               <CButton className="button1">Option</CButton>
                             </CTableDataCell>
+                            <CTableDataCell scope="row">{item.Approve_Status}</CTableDataCell>
                           </CTableRow>
                         )
                       })}

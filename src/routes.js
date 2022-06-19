@@ -131,6 +131,7 @@ const AssignDriverform = React.lazy(() => import('./views/pages/AssignDriverform
 const DriverAssigning = React.lazy(() => import('./views/pages/AssignDriver'))
 const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers'))
 const project = React.lazy(() => import('./views/pages/project'))
+const Add_project = React.lazy(() => import('./views/pages/Add_project'))
 const photo = React.lazy(() => import('./views/pages/photo'))
 
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
@@ -253,6 +254,7 @@ const routes = [
   { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
   { path: '/project', name: 'Mproject', component: project },
   { path: '/photo', name: 'photo', component: photo },
+  { path: '/Add_project', name: 'Add_project', component: Add_project },
 
   {
     path: '/System_Configurations',

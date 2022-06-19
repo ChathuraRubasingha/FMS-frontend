@@ -9,10 +9,13 @@ import {
   CFormInput,
   CInputGroup,
   CRow,
+  CFormLabel,
+  DocsExample,
 } from '@coreui/react'
 import axios from 'axios'
 import { FaGasPump } from 'react-icons/fa'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
+import photo from './photo'
 
 function ConfirmFuel() {
   const [fullName, setFullName] = useState('')
@@ -22,6 +25,7 @@ function ConfirmFuel() {
   const [odometer, setodometer] = useState('')
   const [Liters, setLiters] = useState('')
   const [amount, setamount] = useState('')
+  const [photo, setphoto] = useState('')
 
   const ConfirmFuel = () => {
     axios
@@ -33,6 +37,7 @@ function ConfirmFuel() {
         Liters: Liters,
         amount: amount,
         date: date,
+        photo: photo,
       })
       .then(() => {
         console.log('Success')
@@ -123,12 +128,23 @@ function ConfirmFuel() {
                       autoComplete="amount"
                     />
                   </CInputGroup>
-                  <a href="url">
+
+                  <CInputGroup className="mb-3">
+                    <CFormInput
+                      onChange={(event) => {
+                        setvehicleid(event.target.value)
+                      }}
+                    />
+                  </CInputGroup>
+
+                  <div className="mb-3">
                     <h6>
                       Add Bill &nbsp;
                       <FaRegMoneyBillAlt />
                     </h6>
-                  </a>
+                    <CFormInput type="file" id="formFile" />
+                  </div>
+
                   <div className="d-grid">
                     <CButton onClick={ConfirmFuel} color="success">
                       ADD DETAILS

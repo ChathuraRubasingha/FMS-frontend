@@ -24,15 +24,26 @@ import {
   CProgressBar,
 } from '@coreui/react'
 import Allocated from 'src/views/tabs/allocated/Allocated'
-
+import axios from 'axios'
 const Project = () => {
   const [items, setItems] = useState([])
-
+  const [ProjectList, setProjectList] = useState([])
   const [pageCount, setpageCount] = useState('')
 
   let limit = 10
 
   const [search, setSearch] = useState('')
+
+  const deleteproject = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteproject/${id}`).then((response) => {
+      setProjectList(
+        ProjectList.filter((items) => {
+          return items.Driver_ID != id
+        }),
+      )
+    })
+  }
 
   const getProductData = async () => {
     try {
@@ -91,7 +102,7 @@ const Project = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <a href="/AddAccident">
+              <a href="/Add_project">
                 <CButton className="button1"> Add Project</CButton>
               </a>
             </CCol>
@@ -138,7 +149,15 @@ const Project = () => {
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteproject(item.Driver_ID)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
