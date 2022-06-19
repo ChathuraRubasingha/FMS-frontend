@@ -81,7 +81,7 @@ const AccidentTable = () => {
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search Details"
+                  placeholder="Search by Vehicle Number"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -108,7 +108,7 @@ const AccidentTable = () => {
                       <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
 
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Accident Date & Time</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Accident Date </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Location</CTableHeaderCell>
                       <CTableHeaderCell scope="col">View Photos </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Police Station</CTableHeaderCell>
@@ -121,7 +121,7 @@ const AccidentTable = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })

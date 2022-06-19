@@ -1,171 +1,173 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import CIcon from '@coreui/icons-react'
+import { cilSearch } from '@coreui/icons'
+import ReactPaginate from 'react-paginate'
+import { BsCartPlus } from 'react-icons/bs'
+import { BsCartPlusFill } from 'react-icons/bs'
 import {
-  CCard,
-  CCardBody,
-  CCardHeader,
   CCol,
   CRow,
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
   CTable,
   CTableBody,
-  CTableCaption,
-  CTableDataCell,
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CTableDataCell,
+  CCard,
+  CCardBody,
+  CPagination,
+  CButton,
   CProgress,
   CProgressBar,
-  CAvatar,
-  CButton,
 } from '@coreui/react'
+import Allocated from 'src/views/tabs/allocated/Allocated'
 
-import avatar8 from './../../../assets/images/avatars/11.jpg'
+const Allocated_table = () => {
+  const [items, setItems] = useState([])
 
-const Alocated_Table = () => {
+  const [pageCount, setpageCount] = useState('')
+
+  let limit = 10
+
+  const [search, setSearch] = useState('')
+
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getproject`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  }, [limit])
+  const fetchComments = async (currentPage) => {
+    const res = await fetch(
+      `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`,
+    )
+    const data = await res.json()
+    return data
+  }
+  const handlePageClick = async (data) => {
+    console.log(data.selected)
+
+    let currentPage = data.selected + 1
+
+    const commentsFormServer = await fetchComments(currentPage)
+
+    setItems(commentsFormServer)
+  }
   return (
-    <CCol xs={12}>
-      <CCard className="mb-4">
+    <div>
+      <CCard>
         <CCardBody>
-          <CTable striped hover>
-            <CTableHead>
-              <CTableRow>
-                <CTableHeaderCell scope="col">
-                  <h4>Project Name</h4>
-                </CTableHeaderCell>
-                <CTableHeaderCell scope="col">
-                  <h4>Vehicles</h4>
-                </CTableHeaderCell>
-                <CTableHeaderCell scope="col">
-                  <CTableDataCell></CTableDataCell>
-                  <h4>Progress</h4>
-                </CTableHeaderCell>
-                <CTableDataCell></CTableDataCell>
-              </CTableRow>
-            </CTableHead>
-            <CTableBody>
-              <CTableRow>
-                <CTableHeaderCell scope="row">Kelaniya Tower</CTableHeaderCell>
-                <CTableDataCell>
-                  {<CAvatar src={avatar8} size="md" />}
-                  {<CAvatar src={avatar8} size="md" />}
-                  {<CAvatar src={avatar8} size="md" />}
-                  +3 other
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="info" variant="striped" animated value={50}>
-                      50%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="/Vehicle_details/Vehicle_details">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-
-              <CTableRow>
-                <CTableHeaderCell scope="row">Araliaya Hotels</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="danger" variant="striped" animated value={75}>
-                      75%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-              <CTableRow>
-                <CTableHeaderCell scope="row">UOM</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="warning" variant="striped" animated value={25}>
-                      25%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-              <CTableRow>
-                <CTableHeaderCell scope="row">KCC</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="info" variant="striped" animated value={13}>
-                      13%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-              <CTableRow>
-                <CTableHeaderCell scope="row">KFC</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="warning" variant="striped" animated value={82}>
-                      82%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-              <CTableRow>
-                <CTableHeaderCell scope="row">Jetwing</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="success" variant="striped" animated value={59}>
-                      59%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-              <CTableRow>
-                <CTableHeaderCell scope="row">UOC</CTableHeaderCell>
-                <CTableDataCell>Photo</CTableDataCell>
-                <CTableDataCell>
-                  <CProgress className="my-3 mx-3">
-                    <CProgressBar color="danger" variant="striped" animated value={33}>
-                      33%
-                    </CProgressBar>
-                  </CProgress>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <CButton className="button1" href="#">
-                    View Project
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-            </CTableBody>
-          </CTable>
+          <CRow>
+            <CCol xs={5}>
+              <h3>
+                Projects Details &nbsp;
+                <BsCartPlusFill />
+              </h3>
+            </CCol>
+            <CCol xs={5} sm={4} lg={5}>
+              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
+                <CInputGroupText>
+                  <CIcon icon={cilSearch} />
+                </CInputGroupText>
+                <CFormInput
+                  placeholder="Search by Project Name"
+                  onChange={(e) => {
+                    setSearch(e.target.value)
+                  }}
+                />
+              </CInputGroup>
+            </CCol>
+          </CRow>
         </CCardBody>
       </CCard>
-    </CCol>
+      <br />
+      <CCard>
+        <CCardBody>
+          <div className="table-container">
+            <>
+              <CCol xs={12}>
+                <CTable>
+                  <CTableHead>
+                    <CTableRow>
+                      <CTableHeaderCell scope="col">Project Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Start Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Progress</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableHead>
+                  <CTableBody>
+                    {items
+                      .filter((item) => {
+                        if (search == '') {
+                          return item
+                        } else if (item.project_name.toLowerCase().includes(search.toLowerCase())) {
+                          return item
+                        }
+                      })
+                      .map((item) => {
+                        return (
+                          <CTableRow key={item.id}>
+                            <CTableDataCell scope="row">{item.project_name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.start_date}</CTableDataCell>
+
+                            <CTableDataCell scope="row">
+                              <CProgress className="my-3 mx-3">
+                                <CProgressBar
+                                  color="primary"
+                                  variant="striped"
+                                  animated
+                                  value={item.progress}
+                                >
+                                  {item.progress + '%'}
+                                </CProgressBar>
+                              </CProgress>
+                            </CTableDataCell>
+                          </CTableRow>
+                        )
+                      })}
+                  </CTableBody>
+                  <CPagination aria-label="Page navigation example">
+                    <ReactPaginate
+                      previousLabel={'previous'}
+                      nextLabel={'next'}
+                      breakLabel={'...'}
+                      pageCount={pageCount}
+                      marginPagesDisplayed={2}
+                      pageRangeDisplayed={2}
+                      onPageChange={handlePageClick}
+                      containerClassName={'pagination justify-content-center'}
+                      pageClassName={'page-item'}
+                      pageLinkClassName={'page-link'}
+                      previousClassName={'page-item'}
+                      previousLinkClassName={'page-link'}
+                      nextClassName={'page-item'}
+                      nextLinkClassName={'page-link'}
+                      breakClassName={'page-item'}
+                      breakLinkClassName={'page-link'}
+                      activeClassName={'active'}
+                    />
+                  </CPagination>
+                </CTable>
+              </CCol>
+            </>
+          </div>
+        </CCardBody>
+      </CCard>
+      <br />
+    </div>
   )
 }
 
-export default Alocated_Table
+export default Allocated_table

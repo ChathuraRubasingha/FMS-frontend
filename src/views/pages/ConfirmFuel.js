@@ -70,7 +70,7 @@ function ConfirmFuel() {
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle ID"
+                      placeholder="Vehicle Number"
                       autoComplete="vehicleid"
                     />
                   </CInputGroup>
@@ -80,7 +80,7 @@ function ConfirmFuel() {
                         setdate(event.target.value)
                       }}
                       type="text"
-                      placeholder="Filled Date"
+                      placeholder="Filled Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
                   </CInputGroup>
@@ -119,7 +119,7 @@ function ConfirmFuel() {
                         setamount(event.target.value)
                       }}
                       type="text"
-                      placeholder="Bill Amount"
+                      placeholder="Bill Amount (SLR)"
                       autoComplete="amount"
                     />
                   </CInputGroup>

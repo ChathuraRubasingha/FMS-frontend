@@ -66,7 +66,7 @@ function AddFuel() {
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle Number"
+                      placeholder="Vehicle Number (Add Valid Number)"
                       autoComplete="vehicleid"
                     />
                   </CInputGroup>
@@ -77,7 +77,7 @@ function AddFuel() {
                         setdate(event.target.value)
                       }}
                       type="text"
-                      placeholder="Request Date"
+                      placeholder="Request Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
                   </CInputGroup>
@@ -92,6 +92,7 @@ function AddFuel() {
                       autoComplete="odometer"
                     />
                   </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
