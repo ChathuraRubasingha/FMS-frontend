@@ -3,6 +3,8 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   CAvatar,
   CCol,
@@ -23,18 +25,26 @@ import {
 } from '@coreui/react'
 const Modal = () => {
   const [items, setItems] = useState([])
-
+  const [ModalList, setModalList] = useState([])
   const [pageCount, setpageCount] = useState(0)
 
   let limit = 15
+  const deleteModal = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteModal/${id}`).then((response) => {
+      setModalList(
+        ModalList.filter((items) => {
+          return items.Model_ID != id
+        }),
+      )
+    })
+  }
 
   const [search, setSearch] = useState('')
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/getModal`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -86,7 +96,9 @@ const Modal = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Modal </CButton>
+              <Link to="/Add_Modal">
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Modal </CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -100,7 +112,6 @@ const Modal = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Modal</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
@@ -117,14 +128,20 @@ const Modal = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Model}</CTableDataCell>
                             <CTableDataCell>
                               <CButton>View</CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteModal(item.Modal_ID)
+                                }}
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

@@ -61,9 +61,28 @@
   overflow-x: auto;
 }
 
+
+.button1 {
+  background: linear-gradient(to right, #19a3e9, #090268);
+  border: black;
+  float: right;
+}
+
+.button2 {
+  background: linear-gradient(to right, #d679dd, #6c046c);
+  border: black;
+  float: right;
+}
+
 .buttons {
   float: left;
 }
+
+
+.buttons {
+  float: left;
+}
+
 .vertical-center {
   left: 50%;
   margin: 0;
@@ -87,7 +106,6 @@
 }
 .buttons {
   float: left;
-
   background: linear-gradient(to right, #19a3e9, #090268);
   border: black;
   float: right;
@@ -326,3 +344,7 @@ section {
 //       text-decoration: none;
 //   }
 // npm run lint -- --fix
+
+.custom {
+  width: 250px !important;
+}

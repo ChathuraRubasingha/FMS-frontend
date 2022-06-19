@@ -1,8 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons'
-import UnassignVehicles_Table from './UnassignVehicles_Table'
-import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -14,13 +12,13 @@ import {
   CListGroupItem,
 } from '@coreui/react'
 
-function UnassignVehicles() {
+function Service() {
   return (
     <div>
       <CRow>
         <CCol sm={8} lg={8}>
           {' '}
-          <UnassignVehicles_Table />
+          {/* <Registory_Table /> */}
           {/* <CCardHeader>
             <CRow>
               <CCol sm={10} lg={10}>
@@ -36,28 +34,25 @@ function UnassignVehicles() {
         </CCol>
         <CCol sm={4} lg={4}>
           {' '}
-          <CCardHeader style={{ height: '110px' }}>
+          <CCardHeader style={{ height: '90px' }}>
             <h5 style={{ paddingTop: '15px' }}>Menu</h5>
           </CCardHeader>
           <br />
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <Link to="/registory" style={{ textDecoration: 'none' }}>
-                  {' '}
-                  <CListGroupItem>Vehicle Registry</CListGroupItem>
-                </Link>
-                <Link to="/vehicleassigning" style={{ textDecoration: 'none' }}>
-                  <CListGroupItem active>Vehicle Assigning for Location</CListGroupItem>
-                </Link>
-                <Link to="/driverassigning" style={{ textDecoration: 'none' }}>
-                  {' '}
-                  <CListGroupItem>Assign Driver for Vehicle</CListGroupItem>
-                </Link>
-                <Link to="/vehicletransfering" style={{ textDecoration: 'none' }}>
-                  {' '}
-                  <CListGroupItem>Transfer Vehicle</CListGroupItem>
-                </Link>
+                <CListGroupItem component="a" href="/registory" active>
+                  Vehicle Registry
+                </CListGroupItem>
+                <CListGroupItem component="a" href="/vehicleassigning">
+                  Vehicle Assigning for Location
+                </CListGroupItem>
+                <CListGroupItem component="a" href="/driverassigning">
+                  Assign Driver for Vehicle
+                </CListGroupItem>
+                <CListGroupItem component="a" href="vehicletransfering">
+                  Transfer Vehicle
+                </CListGroupItem>
               </CListGroup>
             </CCardBody>
           </CCard>
@@ -98,4 +93,4 @@ function UnassignVehicles() {
   )
 }
 
-export default UnassignVehicles
+export default Service

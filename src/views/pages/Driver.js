@@ -36,13 +36,14 @@ const Driver = () => {
 
   const deleteDriver = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deletedriver/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deletedriver/${id}`).then((response) => {
       setDriverList(
         DriverList.filter((items) => {
           return items.Driver_ID != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -124,6 +125,7 @@ const Driver = () => {
                       </CTableHeaderCell>
                       <CTableHeaderCell scope="col">NIC</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Mobile</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Private Address</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -142,13 +144,8 @@ const Driver = () => {
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Private_Address}</CTableDataCell>
                             <CTableDataCell>
-                              {/* <Link to={`/updateDriver?driverid=${item.Driver_ID}`}>
-                                <CButton className="buttons m-1" color="success">
-                                  Update
-                                </CButton>
-                              </Link> */}
-
                               <CButton
                                 onClick={() => {
                                   deleteDriver(item.Driver_ID)
@@ -158,6 +155,11 @@ const Driver = () => {
                               >
                                 Delete
                               </CButton>
+                              <Link to={`/updateDriver?driverid=${item.Driver_ID}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
                             </CTableDataCell>
                           </CTableRow>
                         )

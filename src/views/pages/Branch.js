@@ -32,9 +32,7 @@ const Branch = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/Branch`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -86,7 +84,9 @@ const Branch = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Branch </CButton>
+              <CButton href="/Add_Branch">
+                {<CAvatar src={branch} size="md" />}Add new Branch{' '}
+              </CButton>
             </CCol>
           </CRow>
         </CCardBody>
@@ -117,8 +117,8 @@ const Branch = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Branch}</CTableDataCell>
                             <CTableDataCell>
                               <CButton>View</CButton>
                               <CButton className="m-1" color="success">

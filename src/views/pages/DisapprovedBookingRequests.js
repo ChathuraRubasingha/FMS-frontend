@@ -1,7 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons'
-import DisapprovedBookingRequests_Table from './DisapprovedBookingRequests.js_Table'
+import DisapprovedBookingRequests_Table from './DisapprovedBookingRequests_Table'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -30,31 +31,38 @@ function DisapprovedBookingRequests() {
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <CListGroupItem component="a" href="/booking">
-                  Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/pendingbookingrequests">
-                  Pending Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/approvedbookingrequests">
-                  Approved Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/assignedbookingrequests">
-                  Assigned Booking Requests
-                </CListGroupItem>
+                <Link to="/booking" style={{ textDecoration: 'none' }}>
+                  <CListGroupItem>Booking Requests</CListGroupItem>
+                </Link>
+                <Link to="/pendingbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Pending Booking Requests</CListGroupItem>
+                </Link>
+                <Link to="/approvedbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Approved Booking Requests</CListGroupItem>
+                </Link>
+                <Link to="/assignedbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Assigned Booking Requests</CListGroupItem>
+                </Link>
 
-                <CListGroupItem component="a" href="/disapprovedbookingrequests" active>
-                  Disapproved Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/cancelledbookingrequests">
-                  Cancelled Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/completedbookingrequests">
-                  Completed Booking Requests
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/vehicleinandout">
-                  Vehicle IN and OUT
-                </CListGroupItem>
+                <Link to="/disapprovedbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem active>Disapproved Booking Requests</CListGroupItem>{' '}
+                </Link>
+                <Link to="/cancelledbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Cancelled Booking Requests</CListGroupItem>{' '}
+                </Link>
+                <Link to="/completedbookingrequests" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Completed Booking Requests</CListGroupItem>{' '}
+                </Link>
+                <Link to="/vehicleinandout" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Vehicle IN and OUT</CListGroupItem>
+                </Link>
               </CListGroup>
             </CCardBody>
           </CCard>
