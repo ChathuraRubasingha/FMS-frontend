@@ -4,6 +4,7 @@ import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import { BsCartPlus } from 'react-icons/bs'
 import { BsCartPlusFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -24,15 +25,27 @@ import {
   CProgressBar,
 } from '@coreui/react'
 import Allocated from 'src/views/tabs/allocated/Allocated'
-
+import axios from 'axios'
 const Project = () => {
   const [items, setItems] = useState([])
-
+  const [ProjectList, setProjectList] = useState([])
   const [pageCount, setpageCount] = useState('')
 
   let limit = 10
 
   const [search, setSearch] = useState('')
+
+  const deleteproject = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/deleteproject/${id}`).then((response) => {
+      setProjectList(
+        ProjectList.filter((items) => {
+          return items.project_id != id
+        }),
+      )
+    })
+    window.location.reload(false)
+  }
 
   const getProductData = async () => {
     try {
@@ -91,7 +104,7 @@ const Project = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <a href="/AddAccident">
+              <a href="/Add_project">
                 <CButton className="button1"> Add Project</CButton>
               </a>
             </CCol>
@@ -112,7 +125,6 @@ const Project = () => {
                       <CTableHeaderCell scope="col">Progress</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
 
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
                       <CTableHeaderCell scope="col">Options</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -132,13 +144,24 @@ const Project = () => {
                             <CTableDataCell scope="row">{item.start_date}</CTableDataCell>
 
                             <CTableDataCell scope="row">{item.progress + '%'}</CTableDataCell>
-                            <CTableDataCell></CTableDataCell>
-                            <CTableDataCell></CTableDataCell>
+
                             <CTableDataCell>
-                              <CButton className="m-1" color="success">
-                                Edit
+                              <Link to={`/Update_Project?projectid=${item.project_id}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                            </CTableDataCell>
+                            <CTableDataCell>
+                              <CButton
+                                onClick={() => {
+                                  deleteproject(item.project_id)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

@@ -131,6 +131,7 @@ const AssignDriverform = React.lazy(() => import('./views/pages/AssignDriverform
 const DriverAssigning = React.lazy(() => import('./views/pages/AssignDriver'))
 const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers'))
 const project = React.lazy(() => import('./views/pages/project'))
+const Add_project = React.lazy(() => import('./views/pages/Add_project'))
 const photo = React.lazy(() => import('./views/pages/photo'))
 
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
@@ -140,6 +141,7 @@ const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
 const Fuelrequier = React.lazy(() => import('./views/pages/Fuelrequier'))
+const FuelStatus = React.lazy(() => import('./views/pages/Fuel_Status'))
 
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
 
@@ -158,8 +160,9 @@ const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
 const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
 const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
 const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
-const MaintainanceDetails = React.lazy(() => import('./views/pages/Maintanace_details'))
+
 const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
+const UpdateProject = React.lazy(() => import('./views/pages/Update_Project'))
 const Maintanace_details = React.lazy(() => import('./views/pages/Maintanace_details'))
 const Service = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Service'))
 const Insuarance = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Insuarance'))
@@ -229,6 +232,7 @@ const routes = [
   { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
   { path: '/FuelACC', name: 'Fuel Accept', component: FuelACC },
   { path: '/Fuelrequier', name: 'Fuel Requier ', component: Fuelrequier },
+  { path: '/FuelStatus', name: 'Fuel status ', component: FuelStatus },
   { path: '/odometer', name: 'Odometer', component: Odometer },
   { path: '/access', name: 'Access', component: Access },
   { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
@@ -275,6 +279,8 @@ const routes = [
   { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
   { path: '/project', name: 'Mproject', component: project },
   { path: '/photo', name: 'photo', component: photo },
+  { path: '/Add_project', name: 'Add_project', component: Add_project },
+  { path: '/Update_Project', name: 'Update_Project', component: UpdateProject },
 
   {
     path: '/System_Configurations',
