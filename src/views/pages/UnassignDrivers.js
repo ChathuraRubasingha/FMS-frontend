@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons'
 import UnassignDriver_Table from './UnassignDriver_Table'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -42,18 +43,21 @@ function UnassignDrivers() {
           <CCard className="mb-4">
             <CCardBody>
               <CListGroup>
-                <CListGroupItem component="a" href="/registory">
-                  Vehicle Registry
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/vehicleassigning">
-                  Vehicle Assigning for Location
-                </CListGroupItem>
-                <CListGroupItem component="a" href="/driverassigning" active>
-                  Assign Driver for Vehicle
-                </CListGroupItem>
-                <CListGroupItem component="a" href="vehicletransfering">
-                  Transfer Vehicle
-                </CListGroupItem>
+                <Link to="/registory" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Vehicle Registry</CListGroupItem>
+                </Link>
+                <Link to="/vehicleassigning" style={{ textDecoration: 'none' }}>
+                  <CListGroupItem>Vehicle Assigning for Location</CListGroupItem>
+                </Link>
+                <Link to="/driverassigning" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem active>Assign Driver for Vehicle</CListGroupItem>
+                </Link>
+                <Link to="/vehicletransfering" style={{ textDecoration: 'none' }}>
+                  {' '}
+                  <CListGroupItem>Transfer Vehicle</CListGroupItem>
+                </Link>
               </CListGroup>
             </CCardBody>
           </CCard>
