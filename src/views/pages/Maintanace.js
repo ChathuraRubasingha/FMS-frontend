@@ -19,9 +19,7 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
-import { NavLink } from 'react-bootstrap'
 import { Link } from '@mui/material'
-import axios from 'axios'
 
 function Maintanace() {
   const [DriverList, setDriverList] = useState([])
@@ -34,14 +32,7 @@ function Maintanace() {
   const [search, setSearch] = useState('')
 
   const veiwDriver = (id) => {
-    alert('this is view!')
-    axios.delete(`http://localhost:5000/api/deletedriver/${id}`).then((response) => {
-      setDriverList(
-        DriverList.filter((items) => {
-          return items.Driver_ID != id
-        }),
-      )
-    })
+    window.location = `/Vehicle_maintanace_details/${id}`
   }
 
   const getProductData = async () => {
@@ -147,15 +138,9 @@ function Maintanace() {
                               <CTableDataCell scope="row">{item.Fuel_Type}</CTableDataCell>
                               <CTableDataCell scope="row">{item.Tyre_Size}</CTableDataCell>
                               <CTableDataCell>
-                                {/* <CButton
-                                  onClick={() => {
-                                    veiwDriver(item.Vehicle_No)
-                                  }}
-                                  className="buttons m-1"
-                                  color="danger"
-                                >
+                                <CButton href={`/maintenance?vehicleNO=${item.Vehicle_No}`}>
                                   View
-                                </CButton> */}
+                                </CButton>
                               </CTableDataCell>
                             </CTableRow>
                           )

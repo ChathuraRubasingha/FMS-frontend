@@ -150,6 +150,9 @@ const Individual_Vehicle_Details = React.lazy(() =>
 )
 
 const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+const MaintainanceDetails = React.lazy(() =>
+  import('./views/pages/Vehicle Maintanance Details/Vehicle_maintanance_details'),
+)
 const Add_Branch = React.lazy(() => import('./views/pages/Add_Branch'))
 const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
 const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
@@ -157,6 +160,16 @@ const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
 const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
 const MaintainanceDetails = React.lazy(() => import('./views/pages/Maintanace_details'))
 const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
+const Maintanace_details = React.lazy(() => import('./views/pages/Maintanace_details'))
+const Service = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Service'))
+const Insuarance = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Insuarance'))
+const EmissionTest = React.lazy(() =>
+  import('./views/pages/Vehicle Maintanance Details/EmissionTest'),
+)
+const Licence = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Licence'))
+const Battery = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Battery'))
+const Tyre = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Tyre'))
+const AddService = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/AddService'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -255,6 +268,7 @@ const routes = [
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
   { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+  { path: '/maintanace_details', name: 'Maintanance', component: Maintanace_details },
   { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
   { path: '/Add_Make', name: 'Add Make', component: Add_Make },
   { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
@@ -426,6 +440,52 @@ const routes = [
     path: '/Vehicle_details/Individual_Vehicle_Details',
     name: 'Individual_Vehicle_Details',
     component: Individual_Vehicle_Details,
+  },
+  {
+    path: '/maintenance',
+    name: 'Maintenance Details',
+    component: MaintainanceDetails,
+    exact: true,
+  },
+  {
+    path: '/maintenance/maintenacedetails',
+    name: 'Maintanance Details',
+    component: MaintainanceDetails,
+  },
+  {
+    path: '/maintenance/service',
+    name: 'Service',
+    component: Service,
+  },
+  {
+    path: '/maintenance/insuarance',
+    name: 'Insuarance',
+    component: Insuarance,
+  },
+  {
+    path: '/maintenance/emissiontest',
+    name: 'Emissiontest',
+    component: EmissionTest,
+  },
+  {
+    path: '/maintenance/licence',
+    name: 'Licence',
+    component: Licence,
+  },
+  {
+    path: '/maintenance/battery',
+    name: 'Battery',
+    component: Battery,
+  },
+  {
+    path: '/maintenance/tyre',
+    name: 'Tyre',
+    component: Tyre,
+  },
+  {
+    path: '/maintenance/addservice',
+    name: 'Add Service Details',
+    component: AddService,
   },
 ]
 
