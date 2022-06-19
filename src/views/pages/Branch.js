@@ -122,7 +122,7 @@ const Branch = () => {
                             <CTableDataCell>
                               <CButton>View</CButton>
                               <CButton className="m-1" color="success">
-                                Edit
+                                Update
                               </CButton>
                               <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
