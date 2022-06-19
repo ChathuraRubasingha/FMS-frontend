@@ -20,12 +20,15 @@ import {
   CCardBody,
   CPagination,
   CButton,
+  CProgress,
+  CProgressBar,
 } from '@coreui/react'
+import Allocated from 'src/views/tabs/allocated/Allocated'
 
-const FuelTable = () => {
+const Project = () => {
   const [items, setItems] = useState([])
 
-  const [pageCount, setpageCount] = useState(0)
+  const [pageCount, setpageCount] = useState('')
 
   let limit = 10
 
@@ -33,10 +36,9 @@ const FuelTable = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/fueldetails`)
+      const res = await fetch(`http://localhost:5000/api/getproject`)
       const data = await res.json()
       console.log(data.data)
-      console.log(data)
       const total = res.headers.get('x-total-count')
 
       setpageCount(Math.ceil(total / limit))
@@ -55,16 +57,6 @@ const FuelTable = () => {
     const data = await res.json()
     return data
   }
-
-  function showImage(file) {
-    console.log(file)
-    window.open('http://localhost:5000/' + file, '_blank')
-  }
-  // const handleClick = (file = (event) => {
-  //   console.log(file)
-  //   window.open('http://localhost:5000/' + file, '_blank')
-  // })
-
   const handlePageClick = async (data) => {
     console.log(data.selected)
 
@@ -81,7 +73,7 @@ const FuelTable = () => {
           <CRow>
             <CCol xs={5}>
               <h3>
-                Filling Details &nbsp;
+                Projects Details &nbsp;
                 <BsCartPlusFill />
               </h3>
             </CCol>
@@ -91,12 +83,17 @@ const FuelTable = () => {
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search by Vehicle Number"
+                  placeholder="Search by Project Name"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
                 />
               </CInputGroup>
+            </CCol>
+            <CCol xs={2}>
+              <a href="/AddAccident">
+                <CButton className="button1"> Add Project</CButton>
+              </a>
             </CCol>
           </CRow>
         </CCardBody>
@@ -110,14 +107,13 @@ const FuelTable = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Filled Date</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Fuel Station</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Filled Volume</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Bill Amount</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">View Bill </CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Project Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Start Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Progress</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+
+                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Options</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -125,25 +121,24 @@ const FuelTable = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.project_name.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.add_by}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Fuel_Pumped_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Fuel_Station}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.project_name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.start_date}</CTableDataCell>
 
-                            <CTableDataCell scope="row">{item.Distance_Driven}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Fuel_Amount}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Payable_Amount}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.progress + '%'}</CTableDataCell>
+                            <CTableDataCell></CTableDataCell>
+                            <CTableDataCell></CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="button1" onClick={() => showImage(item.photo)}>
-                                View
+                              <CButton className="m-1" color="success">
+                                Edit
                               </CButton>
+                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -181,4 +176,4 @@ const FuelTable = () => {
   )
 }
 
-export default FuelTable
+export default Project

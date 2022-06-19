@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-
 import axios from 'axios'
-
-import { Link } from 'react-router-dom'
-
+import { Link, Redirect } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -20,10 +17,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-
 import login from './../../../assets/images/avatars/Login.jpg'
-import logo from './../../../assets/images/avatars/logo.png'
-
 function Login() {
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
@@ -37,14 +31,16 @@ function Login() {
         password: password,
       })
       .then((response) => {
-        if (response.data.massage) {
-          setLoginStatus(response.data.massage)
+        console.log(password)
+        console.log(username)
+
+        if (response.data.message) {
+          setLoginStatus(response.data.message)
         } else {
-          setLoginStatus(response.data[0].username)
+          window.location.replace('/dashboard')
         }
       })
-  
-
+  }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -54,27 +50,19 @@ function Login() {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h1>Login</h1>
+                    <h1>User Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-
                         type="text"
                         placeholder="User Name"
                         autoComplete="user name"
                         onChange={(e) => {
                           setusername(e.target.value)
                         }}
-
-                  onChange={(e) => {
-                          setUsername(e.target.value)
-                        }}
-                        placeholder="Username"
-                        autoComplete="username"
-
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -82,9 +70,6 @@ function Login() {
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
                       <CFormInput
-                        onChange={(e) => {
-                          setPassword(e.target.value)
-                        }}
                         type="password"
                         placeholder="Password"
                         autoComplete="password"
@@ -95,17 +80,13 @@ function Login() {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-
                         <CButton onClick={Login} color="primary">
-
-                        <CButton onClick={UserLogin} color="primary" className="px-4">
-
                           Login
                         </CButton>
                       </CCol>
                       <CCol xs={6} className="text-right">
                         <CButton color="link" className="px-0">
-                          Forgot password?
+                          Change Password?
                         </CButton>
                       </CCol>
                     </CRow>
@@ -114,25 +95,31 @@ function Login() {
               </CCard>
 
               <CCard>
-                <CCardBody className="text-white bg-primary ">
+                <CCardBody className="login">
                   <CCardImage src={login} class="img-fluid img-thumbnail" />
 
                   <br />
                   <br />
 
                   <div>
-                    <h4 style={{ textAlign: 'center' }}>
-                      <i>CIRRUS FMS</i>
+                    <h4 className="text-white" style={{ textAlign: 'center' }}>
+                      <i>
+                        <b>CIRRUS FMS</b>
+                      </i>
                     </h4>
                     <i>
-                      <h5 style={{ textAlign: 'center' }}>Fleet Management System</h5>
+                      <h5 className="text-white" style={{ textAlign: 'center' }}>
+                        Fleet Management System
+                      </h5>
                     </i>
                   </div>
                 </CCardBody>
               </CCard>
             </CCardGroup>
-
-            <h1 style={{ textAlign: 'center' }}>{LoginStatus}</h1>
+            <br />
+            <h4 className="text-danger" style={{ textAlign: 'center' }}>
+              {LoginStatus}
+            </h4>
           </CCol>
         </CRow>
       </CContainer>
