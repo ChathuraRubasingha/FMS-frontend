@@ -53,7 +53,7 @@ const Idel = () => {
 
   const getPlayerData = async () => {
     try {
-      const data = await axios.get('https://nba-players.herokuapp.com/players-stats')
+      const data = await axios.get('http://localhost:5000/api/getTotalIdelVehiclesCountwise')
       setPlayers(data.data)
     } catch (e) {
       console.log(e)
@@ -65,13 +65,13 @@ const Idel = () => {
 
   const columns = [
     {
-      dataField: 'name',
+      dataField: 'Category_Name',
       filter: textFilter({
         placeholder: 'Enter Vehicle Catergory', // custom the input placeholder
         className: 'my-custom-text-filter', // custom classname on input
       }),
     },
-    { dataField: 'points_per_game' },
+    { dataField: 'Count(ma_vehicle_registry.Vehicle_No)' },
   ]
 
   const rowEvents = {
@@ -92,7 +92,7 @@ const Idel = () => {
         {' '}
         <CTableHead closeButton>
           {' '}
-          <CCardTitle>{modalInfo.name}</CCardTitle>
+          <CCardTitle>{modalInfo.Category_Name}</CCardTitle>
         </CTableHead>{' '}
         <CTableBody>
           <CCardGroup>
@@ -100,7 +100,7 @@ const Idel = () => {
           </CCardGroup>
           <hl> Players stats</hl>
           <ul>
-            <ol>team name: {modalInfo.team_name}</ol>
+            <ol>team name: {modalInfo.Vehicle_No}</ol>
             <ol> assists_per_game: {modalInfo.assists_per_game}</ol>{' '}
             <ol>blocks_per_game: {modalInfo.blocks_per_game}</ol>{' '}
             <ol>games_played: {modalInfo.games_played}</ol>

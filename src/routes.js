@@ -174,6 +174,16 @@ const Battery = React.lazy(() => import('./views/pages/Vehicle Maintanance Detai
 const Tyre = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Tyre'))
 const AddService = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/AddService'))
 
+const Update_Registory_Form = React.lazy(() => import('./views/pages/Update_Registory_Form'))
+const Update_Assigned_Location_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Location_Form'),
+)
+const Update_Assigned_Driver_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Driver_Form'),
+)
+
+const Update_Tranfered_Form = React.lazy(() => import('./views/pages/Update_Tranfered_Form'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -435,9 +445,30 @@ const routes = [
   { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
+
+  { path: '/updateVehicleReg', name: 'UpdateVehicleReg', component: Update_Registory_Form },
+  {
+    path: '/updateassignedlocationform',
+    name: 'UpdateAssignedLocationForm',
+    component: Update_Assigned_Location_Form,
+  },
+
+  {
+    path: '/updatetranferedform',
+    name: 'UpdateTranferedForm',
+    component: Update_Tranfered_Form,
+  },
+
+  {
+    path: '/updateassigneddriverform',
+    name: 'UpdateAssignedDriverForm',
+    component: Update_Assigned_Driver_Form,
+  },
+
   { path: '/Add_Branch', name: 'Add New Branch ', component: Add_Branch },
   { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
   { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
+
   {
     path: '/Vehicle_details/Vehicle_details',
     name: 'Vehicle_details',

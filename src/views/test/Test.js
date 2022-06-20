@@ -20,7 +20,9 @@ function Test() {
       <div className="menu">
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/registory" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilUserPlus} height={48} />
               {/* <img aria-hidden="false" src="../src/assets/" alt="" className="background" />
@@ -32,7 +34,11 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/driver" className="btn" id="btn">
+
+          
+
             <span className="icons">
               <CIcon icon={cilContact} height={48} />
               {/* <img
@@ -49,7 +55,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/booking" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilBook} height={48} />
               {/* <img
@@ -66,7 +74,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/maintanace" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilSettings} height={48} />
               {/* <img
@@ -83,7 +93,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/fuel" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilBattery3} height={48} />
               {/* <img
@@ -100,7 +112,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/odometer" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilPen} height={48} />
               {/* <img
@@ -117,7 +131,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/accident" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilCarAlt} height={48} />
               {/* <img
@@ -134,7 +150,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/Reports" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilNotes} height={48} />
               {/* <img
@@ -151,7 +169,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/Configuration" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilColorBorder} height={48}></CIcon>
               {/* <img
@@ -168,7 +188,9 @@ function Test() {
 
         <div>
           {' '}
-          <a href="#" className="btn" id="btn">
+
+          <a href="http://localhost:3000/access" className="btn" id="btn">
+
             <span className="icons">
               <CIcon icon={cilLockLocked} height={48} />
               {/* <img

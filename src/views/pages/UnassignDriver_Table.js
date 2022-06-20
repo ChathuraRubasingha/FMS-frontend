@@ -86,7 +86,7 @@ const UnassignDriver_Table = () => {
         <CCardBody>
           <CRow>
             <CCol xs={4}>
-              <h5>Select vehicles to Assign Drivers </h5>
+              <h5>Select Vehicles to Assign Drivers </h5>
             </CCol>
             <CCol xs={4} sm={4} lg={5}>
               <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
@@ -123,7 +123,7 @@ const UnassignDriver_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
@@ -135,7 +135,7 @@ const UnassignDriver_Table = () => {
                             <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
-                                Update
+                                Assign
                               </CButton>
                             </CTableDataCell>
                           </CTableRow>
