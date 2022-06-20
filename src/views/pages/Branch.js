@@ -120,10 +120,10 @@ const Branch = () => {
                             <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Branch}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton>View</CButton>
                               <CButton className="m-1" color="success">
-                                Update
+                                View
                               </CButton>
+
                               <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>

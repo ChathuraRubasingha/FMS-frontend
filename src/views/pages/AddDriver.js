@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -7,17 +7,16 @@ import {
   CContainer,
   CForm,
   CFormInput,
+  CFormSelect,
   CInputGroup,
-  CModal,
-  CModalBody,
-  CModalFooter,
-  CModalHeader,
-  CModalTitle,
   CRow,
 } from '@coreui/react'
 import axios from 'axios'
 
 function AddDriver() {
+  const [items, setItems] = useState([])
+  const [pageCount, setpageCount] = useState(0)
+
   const [callingName, setCallingName] = useState('')
   const [fullName, setFullName] = useState('')
   const [location, setLocation] = useState('')
@@ -42,8 +41,27 @@ function AddDriver() {
       .then(() => {
         console.log('Success')
         alert('Driver added successed!')
+        window.location.reload(false)
       })
   }
+  let limit = 15
+
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getLocation`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  }, [limit])
 
   return (
     <div className="bg-light d-flex flex-row align-items-center">
@@ -74,13 +92,22 @@ function AddDriver() {
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setLocation(event.target.value)
                       }}
-                      placeholder="Location"
-                      autoComplete="location"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Location
+                      </option>
+                      {items.map((item) => {
+                        return (
+                          <option key={item.Location_ID} value={item.Location_ID}>
+                            {item.Location_Name}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
@@ -93,13 +120,17 @@ function AddDriver() {
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setStatus(event.target.value)
                       }}
-                      placeholder="Status(Active/Inacctive)"
-                      autoComplete="status"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Status
+                      </option>
+                      <option value="1">Active</option>
+                      <option value="2">Inacctive</option>
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
