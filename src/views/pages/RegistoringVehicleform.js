@@ -22,6 +22,8 @@ function RegistoringVehicleform() {
   const [items7, setItems7] = useState([])
   const [items8, setItems8] = useState([])
   const [items9, setItems9] = useState([])
+  const [items10, setItems10] = useState([])
+  const [items11, setItems11] = useState([])
   const [VehicleNo, setVehicleNo] = useState('')
   const [RegistrationFee, setRegistrationFee] = useState('')
   const [VehicleCategoryID, setVehicleCategoryID] = useState('')
@@ -176,6 +178,33 @@ function RegistoringVehicleform() {
       console.log(e)
     }
   }
+  const getVehicleStatus = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getVehicleStatus`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems10(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getAllocationType = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllocationType`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems11(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   useEffect(() => {
     getDriver()
@@ -186,6 +215,8 @@ function RegistoringVehicleform() {
     getMake()
     getModel()
     getBattery()
+    getVehicleStatus()
+    getAllocationType()
   }, [limit])
   return (
     <div className="bg-light d-flex flex-row align-items-center">
@@ -389,22 +420,40 @@ function RegistoringVehicleform() {
                     </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setVehicleStatusID(event.target.value)
                       }}
-                      placeholder="Vehicle Status"
-                      autoComplete="VehicleStatusID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Vehicle Status
+                      </option>
+                      {items10.map((item) => {
+                        return (
+                          <option key={item.Vehicle_Status_ID} value={item.Vehicle_Status_ID}>
+                            {item.Vehicle_Status}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setAllocationTypeID(event.target.value)
                       }}
-                      placeholder="Allocation Type"
-                      autoComplete="AllocationTypeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Allocation Type
+                      </option>
+                      {items11.map((item) => {
+                        return (
+                          <option key={item.Allocation_Type_ID} value={item.Allocation_Type_ID}>
+                            {item.Allocation_Type}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
 
                   <div className="d-grid">
