@@ -150,7 +150,9 @@ const FuelTable = () => {
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Request_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.Request_Date.slice(0, 10)}
+                            </CTableDataCell>
                             <CTableDataCell scope="row">{item.Meter_Reading}</CTableDataCell>
                             <CTableDataCell scope="row">
                               {item.Required_Fuel_Capacity}
@@ -166,7 +168,15 @@ const FuelTable = () => {
                               </CButton>
                             </CTableDataCell>
                             <CTableDataCell scope="row">
-                              <b>{item.Approve_Status}</b>
+                              <b
+                                style={
+                                  item.Approve_Status == 'Approved'
+                                    ? { color: 'green' }
+                                    : { color: 'red' }
+                                }
+                              >
+                                {item.Approve_Status}
+                              </b>
                             </CTableDataCell>
                           </CTableRow>
                         )
