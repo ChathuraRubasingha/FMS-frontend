@@ -36,13 +36,13 @@ const Project = () => {
 
   const [search, setSearch] = useState('')
 
-  const deleteProject = (id) => {
-    console.log(id)
+  const deleteProject = (project_id) => {
+    console.log(project_id)
     alert('Are you sure to delete this project!')
-    axios.delete(`http://localhost:5000/deleteproject/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteproject/${project_id}`).then((response) => {
       setProjectList(
         ProjectList.filter((items) => {
-          return items.project_id != id
+          return items.project_id != project_id
         }),
       )
     })
