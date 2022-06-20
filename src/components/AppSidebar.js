@@ -9,6 +9,8 @@ import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
+import CIcon from '@coreui/icons-react'
+import { cibFeathub, cibFoursquare, cibOpensuse, cilBed } from '@coreui/icons'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()

@@ -12,16 +12,16 @@ import {
   CAccordionBody,
   CAccordionHeader,
   CAccordionItem,
+  CBadge,
 } from '@coreui/react'
 class Configuration extends Component {
   state = {}
   render() {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${configuration} )`,
-        }}
-      >
+      <div>
+        <h4>
+          <strong>Configurations</strong>
+        </h4>
         <CCol xs={12}>
           <CCard
             className="mb-4"
@@ -30,10 +30,10 @@ class Configuration extends Component {
             }}
           >
             <CCardHeader>
-              <strong>Configurations</strong>
+              <CBadge color="primary"></CBadge>
             </CCardHeader>
             <CCardBody>
-              <CAccordion activeItemKey={2}>
+              <CAccordion>
                 <CAccordionItem itemKey={1}>
                   <CAccordionHeader>Admin Information</CAccordionHeader>
                   <CAccordionBody>
@@ -52,8 +52,8 @@ class Configuration extends Component {
                         </CNavLink>
                       </li>
                       <li>
-                        <CNavLink href="Destination" active>
-                          Destination
+                        <CNavLink href="Designation" active>
+                          Designation
                         </CNavLink>
                       </li>
                     </ul>

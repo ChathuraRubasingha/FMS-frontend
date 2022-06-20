@@ -7,8 +7,9 @@ import PendingBookingRequests from './views/pages/PendingBookingRequests'
 import TransfterVehicle from './views/pages/TransfterVehicle'
 import NotTransferedVehicles from './views/pages/NotTransferedVehicles'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Allocated = React.lazy(() => import('./views/tabs/allocated/Allocated'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+
 const Idle = React.lazy(() => import('./views/tabs/idle/Idle'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -94,9 +95,10 @@ const Manage_User = React.lazy(() => import('./views/pages/Manage_User'))
 const Access_Permission = React.lazy(() => import('./views/pages/Access_Permission'))
 const Dashboard_Permission = React.lazy(() => import('./views/pages/Dashboard_Permission'))
 const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
+const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
-const Destination = React.lazy(() => import('./views/pages/Destination'))
+const Designation = React.lazy(() => import('./views/pages/Designation'))
 const Make = React.lazy(() => import('./views/pages/Make'))
 const Modal = React.lazy(() => import('./views/pages/Modal'))
 const Category = React.lazy(() => import('./views/pages/Category'))
@@ -128,13 +130,18 @@ const VehicleINandOUT = React.lazy(() => import('./views/pages/VehicleINandOUT')
 const AssignDriverform = React.lazy(() => import('./views/pages/AssignDriverform'))
 const DriverAssigning = React.lazy(() => import('./views/pages/AssignDriver'))
 const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers'))
-
+const project = React.lazy(() => import('./views/pages/project'))
+const Add_project = React.lazy(() => import('./views/pages/Add_project'))
+const photo = React.lazy(() => import('./views/pages/photo'))
+const UpdateLogin = React.lazy(() => import('./views/pages/UpdateLogin'))
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
 const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicle'))
 
 const AddFuel = React.lazy(() => import('./views/pages/AddFuel'))
 const ConfirmFuel = React.lazy(() => import('./views/pages/ConfirmFuel'))
 const FuelACC = React.lazy(() => import('./views/pages/FuelACC.js'))
+const Fuelrequier = React.lazy(() => import('./views/pages/Fuelrequier'))
+const FuelStatus = React.lazy(() => import('./views/pages/Fuel_Status'))
 
 const AddAccident = React.lazy(() => import('./views/pages/AddAccident'))
 
@@ -145,6 +152,27 @@ const Individual_Vehicle_Details = React.lazy(() =>
 )
 
 const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
+const MaintainanceDetails = React.lazy(() =>
+  import('./views/pages/Vehicle Maintanance Details/Vehicle_maintanance_details'),
+)
+const Add_Branch = React.lazy(() => import('./views/pages/Add_Branch'))
+const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
+const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
+const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
+const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
+
+const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
+const UpdateProject = React.lazy(() => import('./views/pages/Update_Project'))
+const Maintanace_details = React.lazy(() => import('./views/pages/Maintanace_details'))
+const Service = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Service'))
+const Insuarance = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Insuarance'))
+const EmissionTest = React.lazy(() =>
+  import('./views/pages/Vehicle Maintanance Details/EmissionTest'),
+)
+const Licence = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Licence'))
+const Battery = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Battery'))
+const Tyre = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Tyre'))
+const AddService = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/AddService'))
 
 const Update_Registory_Form = React.lazy(() => import('./views/pages/Update_Registory_Form'))
 const Update_Assigned_Location_Form = React.lazy(() =>
@@ -213,6 +241,8 @@ const routes = [
   { path: '/AddFuel', name: 'Add Fuel', component: AddFuel },
   { path: '/ConfirmFuel', name: 'Confirm Fuel', component: ConfirmFuel },
   { path: '/FuelACC', name: 'Fuel Accept', component: FuelACC },
+  { path: '/Fuelrequier', name: 'Fuel Requier ', component: Fuelrequier },
+  { path: '/FuelStatus', name: 'Fuel status ', component: FuelStatus },
   { path: '/odometer', name: 'Odometer', component: Odometer },
   { path: '/access', name: 'Access', component: Access },
   { path: '/manage_role', name: 'Manage_Role', component: Manage_Role },
@@ -233,7 +263,7 @@ const routes = [
   { path: '/Configuration', name: 'Configuration Module ', component: Configuration },
   { path: '/Branch', name: 'Branch  ', component: Branch },
   { path: '/Location', name: 'Location  ', component: Location },
-  { path: '/Destination', name: 'Destination  ', component: Destination },
+  { path: '/Designation', name: 'Designation  ', component: Designation },
   { path: '/Make', name: 'Make  ', component: Make },
   { path: '/Modal', name: 'Modal  ', component: Modal },
   { path: '/Category', name: 'Category  ', component: Category },
@@ -252,6 +282,16 @@ const routes = [
   { path: '/Insurance_Type', name: 'Insurance Type Registry', component: Insurance_Type },
   { path: '/Insurance_Company', name: 'Insurance Company Registry', component: Insurance_Company },
   { path: '/maintanace', name: 'Maintanance', component: Maintainance },
+  { path: '/maintanace_details', name: 'Maintanance', component: Maintanace_details },
+  { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
+  { path: '/Add_Make', name: 'Add Make', component: Add_Make },
+  { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
+  { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
+  { path: '/project', name: 'Mproject', component: project },
+  { path: '/photo', name: 'photo', component: photo },
+  { path: '/Add_project', name: 'Add_project', component: Add_project },
+  { path: '/Update_Project', name: 'Update_Project', component: UpdateProject },
+  { path: '/UpdateLogin', name: 'UpdateLogin', component: UpdateLogin },
 
   {
     path: '/System_Configurations',
@@ -352,6 +392,7 @@ const routes = [
   { path: '/driverassigning', name: 'DriverAssigning', component: AssignDriver },
   { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
   { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
+  { path: '/updateDriver', name: 'UpdateDriver', component: UpdateDriver },
   {
     path: '/completedbookingrequests',
     name: 'CompletedBookingRequests',
@@ -400,8 +441,11 @@ const routes = [
 
   { path: '/vehicletransfering', name: 'VehicleTransfering', component: TransfterVehicle },
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
+  { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
+
   { path: '/updateVehicleReg', name: 'UpdateVehicleReg', component: Update_Registory_Form },
   {
     path: '/updateassignedlocationform',
@@ -420,6 +464,11 @@ const routes = [
     name: 'UpdateAssignedDriverForm',
     component: Update_Assigned_Driver_Form,
   },
+
+  { path: '/Add_Branch', name: 'Add New Branch ', component: Add_Branch },
+  { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
+  { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
+
   {
     path: '/Vehicle_details/Vehicle_details',
     name: 'Vehicle_details',
@@ -429,6 +478,52 @@ const routes = [
     path: '/Vehicle_details/Individual_Vehicle_Details',
     name: 'Individual_Vehicle_Details',
     component: Individual_Vehicle_Details,
+  },
+  {
+    path: '/maintenance',
+    name: 'Maintenance Details',
+    component: MaintainanceDetails,
+    exact: true,
+  },
+  {
+    path: '/maintenance/maintenacedetails',
+    name: 'Maintanance Details',
+    component: MaintainanceDetails,
+  },
+  {
+    path: '/maintenance/service',
+    name: 'Service',
+    component: Service,
+  },
+  {
+    path: '/maintenance/insuarance',
+    name: 'Insuarance',
+    component: Insuarance,
+  },
+  {
+    path: '/maintenance/emissiontest',
+    name: 'Emissiontest',
+    component: EmissionTest,
+  },
+  {
+    path: '/maintenance/licence',
+    name: 'Licence',
+    component: Licence,
+  },
+  {
+    path: '/maintenance/battery',
+    name: 'Battery',
+    component: Battery,
+  },
+  {
+    path: '/maintenance/tyre',
+    name: 'Tyre',
+    component: Tyre,
+  },
+  {
+    path: '/maintenance/addservice',
+    name: 'Add Service Details',
+    component: AddService,
   },
 ]
 

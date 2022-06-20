@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -9,39 +9,56 @@ import {
   CFormInput,
   CInputGroup,
   CRow,
+  CFormSelect,
 } from '@coreui/react'
 import axios from 'axios'
 import { FaCarCrash } from 'react-icons/fa'
 import { MdAddAPhoto } from 'react-icons/md'
-import { FaRegMoneyBillAlt } from 'react-icons/fa'
 
 function AddAccident() {
-  const [fullName, setFullName] = useState('')
+  const [items, setItems] = useState([])
+  const [pageCount, setpageCount] = useState(0)
   const [driverid, setdriverid] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
   const [location, setLocation] = useState('')
   const [odometer, setodometer] = useState('')
   const [police, setpolice] = useState('')
-  const [claim, setclaim] = useState('')
+  const [photo, setphoto] = useState('')
 
   const AddAccident = () => {
-    axios
-      .post(`http://localhost:3000/AddAccident`, {
-        fullName: fullName,
-        driverid: driverid,
-        vehicleid: vehicleid,
-        location: location,
-        odometer: odometer,
-        police: police,
-        claim: claim,
-        date: date,
-      })
-      .then(() => {
-        console.log('Success')
-        alert('Filling  Details Added Successed!')
-      })
+    const formData = new FormData()
+    formData.append('driverid', driverid)
+    formData.append('vehicleid', vehicleid)
+    formData.append('location', location)
+    formData.append('odometer', odometer)
+    formData.append('police', police)
+    formData.append('date', date)
+    formData.append('photo', photo)
+    axios.post(`http://localhost:5000/api/addaccident`, formData).then(() => {
+      console.log('Success')
+      alert('Accident  Details Added Successed!')
+    })
   }
+
+  let limit = 15
+
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/VehicleDetail`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  }, [limit])
 
   return (
     <div className="bg-light d-flex flex-row align-items-center">
@@ -60,15 +77,6 @@ function AddAccident() {
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setFullName(event.target.value)
-                      }}
-                      placeholder="Driver Name"
-                      autoComplete="FullName"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
                         setdriverid(event.target.value)
                       }}
                       type="text"
@@ -77,21 +85,30 @@ function AddAccident() {
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle ID"
-                      autoComplete="vehicleid"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Vehicle No
+                      </option>
+                      {items.map((item) => {
+                        return (
+                          <option key={item.Vehicle_No} value={item.Vehicle_No}>
+                            {item.Vehicle_No}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
                         setdate(event.target.value)
                       }}
-                      type="text"
-                      placeholder="Accident Date"
+                      type="date"
+                      placeholder="Accident Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
                   </CInputGroup>
@@ -124,28 +141,22 @@ function AddAccident() {
                       autoComplete="police"
                     />
                   </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setclaim(event.target.value)
-                      }}
-                      type="text"
-                      placeholder="Insurance claim"
-                      autoComplete="claim"
-                    />
-                  </CInputGroup>
-                  <a href="url">
+
+                  <div className="mb-3">
                     <h6>
                       Add Accident Photos &nbsp;
                       <MdAddAPhoto />
                     </h6>
-                  </a>
-                  <a href="url">
-                    <h6>
-                      Add Claim Details &nbsp;
-                      <FaRegMoneyBillAlt />
-                    </h6>
-                  </a>
+                    <CFormInput
+                      onChange={(event) => {
+                        // console.log(event)
+                        setphoto(event.target.files[0])
+                      }}
+                      type="file"
+                      id="formFile"
+                    />
+                  </div>
+
                   <div className="d-grid">
                     <CButton onClick={AddAccident} color="success">
                       ADD DETAILS

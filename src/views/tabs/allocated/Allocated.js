@@ -18,25 +18,7 @@ const Allocated = () => {
   return (
     <>
       <Navs />
-      <div className="inner-hedder">
-        <CCard>
-          <CCardBody className="Allocated-innerHedder">
-            <CRow>
-              <CCol sm={6} lg={6}>
-                <h5>Allocated Vehicle</h5>
-              </CCol>
-              <CCol sm={6} lg={6}>
-                <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
-                  <CInputGroupText>
-                    <CIcon icon={cilSearch} />
-                  </CInputGroupText>
-                  <CFormInput placeholder="Search" />
-                </CInputGroup>
-              </CCol>
-            </CRow>
-          </CCardBody>
-        </CCard>
-      </div>
+
       <div>
         <Alocated_Table />
       </div>

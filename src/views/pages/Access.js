@@ -16,7 +16,17 @@ import {
   CPagination,
   CButton,
   CLink,
+  CCardImage,
+  CCardTitle,
+  CCardText,
+  CCardFooter,
+  CAvatar,
 } from '@coreui/react'
+import manage_role from './../../assets/images/avatars/manage_role.png'
+import manage_user from './../../assets/images/avatars/manage_user.jpg'
+import dashboard_permission from './../../assets/images/avatars/dashboard_permission.jpg'
+import access_permission from './../../assets/images/avatars/access_permission.png'
+
 class Access extends Component {
   state = {}
   render() {
@@ -30,32 +40,49 @@ class Access extends Component {
           </CCardBody>
         </CCard>
         <br />
-        <CCard>
-          <CCardBody>
-            <CTable>
-              <CTableHead>
-                <CCol>
-                  <CTableRow>
-                    <CLink href="/manage_role">Manage Role</CLink>
-                  </CTableRow>
-                  <br />
-                  <CTableRow>
-                    <CLink href="/manage_user">Manage User</CLink>
-                  </CTableRow>
-                  <br />
-                  <CTableRow>
-                    <CLink href="/access_permission">Access Permission</CLink>
-                  </CTableRow>
-                  <br />
-                  <CTableRow>
-                    <CLink href="/dashboard_permission">Dashboard Permission</CLink>
-                  </CTableRow>
-                </CCol>
-                <CCol>{/* <img className="d-block w-100" src={VueImg} alt="slide 3" /> */}</CCol>
-              </CTableHead>
-            </CTable>
-          </CCardBody>
-        </CCard>
+        <CRow xs={{ cols: 1, gutter: 4 }} md={{ cols: 4 }}>
+          <CCol xs>
+            <CCard>
+              {/* {<CAvatar src={manage_role} size="xs" />} */}
+              <CCardImage orientation="top" src={manage_role} />
+              <CCardBody>
+                <CCardTitle>
+                  <CLink href="/manage_role">Manage Role</CLink>
+                </CCardTitle>
+              </CCardBody>
+            </CCard>
+          </CCol>
+          <CCol xs>
+            <CCard>
+              <CCardImage orientation="top" src={manage_user} />
+              <CCardBody>
+                <CCardTitle>
+                  <CLink href="/manage_user">Manage User</CLink>
+                </CCardTitle>
+              </CCardBody>
+            </CCard>
+          </CCol>
+          <CCol xs>
+            <CCard>
+              <CCardImage orientation="top" src={access_permission} />
+              <CCardBody>
+                <CCardTitle>
+                  <CLink href="/access_permission">Access Permission</CLink>
+                </CCardTitle>
+              </CCardBody>
+            </CCard>
+          </CCol>
+          <CCol xs>
+            <CCard>
+              <CCardImage orientation="top" src={dashboard_permission} />
+              <CCardBody>
+                <CCardTitle>
+                  <CLink href="/dashboard_permission">Dashboard Permission</CLink>
+                </CCardTitle>
+              </CCardBody>
+            </CCard>
+          </CCol>
+        </CRow>
       </div>
     )
   }

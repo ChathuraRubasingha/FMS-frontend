@@ -1,10 +1,11 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
-import branch from './../../assets/images/avatars/branch.png'
+import { BsCartPlus } from 'react-icons/bs'
+import { BsCartPlusFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import {
-  CAvatar,
   CCol,
   CRow,
   CFormInput,
@@ -20,21 +21,37 @@ import {
   CCardBody,
   CPagination,
   CButton,
+  CProgress,
+  CProgressBar,
 } from '@coreui/react'
-const Destination = () => {
+import Allocated from 'src/views/tabs/allocated/Allocated'
+import axios from 'axios'
+const Project = () => {
+  const [ProjectList, setProjectList] = useState([])
   const [items, setItems] = useState([])
 
-  const [pageCount, setpageCount] = useState(0)
+  const [pageCount, setpageCount] = useState('')
 
   let limit = 15
 
   const [search, setSearch] = useState('')
 
+  const deleteProject = (project_id) => {
+    console.log(project_id)
+    alert('Are you sure to delete this project!')
+    axios.delete(`http://localhost:5000/api/deleteproject/${project_id}`).then((response) => {
+      setProjectList(
+        ProjectList.filter((items) => {
+          return items.project_id != project_id
+        }),
+      )
+    })
+    window.location.reload(false)
+  }
+
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/getproject`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -70,15 +87,18 @@ const Destination = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Destination Registry</h5>
+              <h3>
+                Projects Details &nbsp;
+                <BsCartPlusFill />
+              </h3>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
-              <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
+              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search"
+                  placeholder="Search by Project Name"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -86,7 +106,9 @@ const Destination = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Destination </CButton>
+              <a href="/Add_project">
+                <CButton className="button1"> Add Project</CButton>
+              </a>
             </CCol>
           </CRow>
         </CCardBody>
@@ -100,9 +122,12 @@ const Destination = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Destination</CTableHeaderCell>
-
+                      <CTableHeaderCell scope="col">Project Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Start Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Progress</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
+
+                      <CTableHeaderCell scope="col">Options</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -110,21 +135,35 @@ const Destination = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.project_name.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.project_name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.start_date}</CTableDataCell>
+
+                            <CTableDataCell scope="row">{item.progress + '%'}</CTableDataCell>
 
                             <CTableDataCell>
-                              <CButton>View</CButton>
-                              <CButton className="m-1" color="success">
-                                Edit
+                              <Link to={`/Update_Project?projectid=${item.project_id}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                            </CTableDataCell>
+                            <CTableDataCell>
+                              <CButton
+                                onClick={() => {
+                                  deleteProject(item.project_id)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
@@ -137,7 +176,7 @@ const Destination = () => {
                       breakLabel={'...'}
                       pageCount={pageCount}
                       marginPagesDisplayed={2}
-                      pageRangeDisplayed={3}
+                      pageRangeDisplayed={2}
                       onPageChange={handlePageClick}
                       containerClassName={'pagination justify-content-center'}
                       pageClassName={'page-item'}
@@ -161,4 +200,5 @@ const Destination = () => {
     </div>
   )
 }
-export default Destination
+
+export default Project

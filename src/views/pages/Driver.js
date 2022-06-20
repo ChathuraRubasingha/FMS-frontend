@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
+import { Link } from 'react-router-dom'
 import {
   CCol,
   CRow,
@@ -20,13 +21,16 @@ import {
   CButton,
 } from '@coreui/react'
 import { NavLink } from 'react-bootstrap'
-import { Link } from '@mui/material'
+
 import axios from 'axios'
+
 const Driver = () => {
   const [DriverList, setDriverList] = useState([])
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
+  const [currentPage, setcurrentPage] = useState(0)
+  const [selectedData, setSelectedData] = useState([])
 
   let limit = 15
 
@@ -41,17 +45,20 @@ const Driver = () => {
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
     try {
       const res = await fetch(`http://localhost:5000/api/drivers`)
       const data = await res.json()
-      console.log(data.data)
+      console.log(data)
       const total = res.headers.get('x-total-count')
 
-      setpageCount(Math.ceil(total / limit))
+      setpageCount(Math.ceil(data.length / limit))
+      console.log(Math.ceil(data.length / limit))
       setItems(data)
+      setSelectedData(data.slice(0, 15))
     } catch (e) {
       console.log(e)
     }
@@ -59,6 +66,15 @@ const Driver = () => {
   useEffect(() => {
     getProductData()
   }, [limit])
+
+  useEffect(() => {
+    console.log(currentPage)
+    console.log(items)
+    var temp = items
+    console.log(temp.slice(currentPage * limit, (currentPage + 1) * limit))
+    setSelectedData(temp.slice(currentPage * limit, (currentPage + 1) * limit))
+  }, [currentPage])
+
   const fetchComments = async (currentPage) => {
     const res = await fetch(
       `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`,
@@ -69,11 +85,7 @@ const Driver = () => {
   const handlePageClick = async (data) => {
     console.log(data.selected)
 
-    let currentPage = data.selected + 1
-
-    const commentsFormServer = await fetchComments(currentPage)
-
-    setItems(commentsFormServer)
+    setcurrentPage(data.selected)
 
     const routeChang = () => {
       console.log('button worked')
@@ -101,9 +113,9 @@ const Driver = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <a href="/adddriver">
+              <Link to="/adddriver">
                 <CButton> Add new Driver</CButton>
-              </a>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -122,11 +134,12 @@ const Driver = () => {
                       </CTableHeaderCell>
                       <CTableHeaderCell scope="col">NIC</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Mobile</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Private Address</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    {items
+                    {selectedData
                       .filter((item) => {
                         if (search == '') {
                           return item
@@ -140,10 +153,8 @@ const Driver = () => {
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Private_Address}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
                               <CButton
                                 onClick={() => {
                                   deleteDriver(item.Driver_ID)
@@ -153,6 +164,11 @@ const Driver = () => {
                               >
                                 Delete
                               </CButton>
+                              <Link to={`/updateDriver?driverid=${item.Driver_ID}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
                             </CTableDataCell>
                           </CTableRow>
                         )

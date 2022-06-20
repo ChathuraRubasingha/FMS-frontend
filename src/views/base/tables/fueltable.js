@@ -21,11 +21,12 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
+import axios from 'axios'
 
 const FuelTable = () => {
   const [items, setItems] = useState([])
 
-  const [pageCount, setpageCount] = useState(0)
+  const [pageCount, setpageCount] = useState('')
 
   let limit = 10
 
@@ -33,9 +34,9 @@ const FuelTable = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/fuelrequest`)
+      const res = await fetch(`http://localhost:5000/api/fuelrequest`)
       const data = await res.json()
-      console.log(data.data)
+      console.log(data)
       const total = res.headers.get('x-total-count')
 
       setpageCount(Math.ceil(total / limit))
@@ -43,6 +44,31 @@ const FuelTable = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+  const changeStatus = async (id, status) => {
+    let body = {}
+    if (status == 'Rejected') {
+      body = {
+        Approve_status: 'Approved',
+      }
+    } else {
+      console.log('Approved')
+      body = {
+        Approve_status: 'Rejected',
+      }
+    }
+    console.log(body)
+    await axios
+      .put(`http://localhost:5000/api/updatestatus/${id}`, body)
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          getProductData()
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   useEffect(() => {
     getProductData()
@@ -80,7 +106,7 @@ const FuelTable = () => {
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search Requests"
+                  placeholder="Search by Vehicle Number"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
@@ -104,9 +130,9 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Avg Fuel consumption</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -114,24 +140,43 @@ const FuelTable = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
-                          <CTableRow key={item.id}>
+                          <CTableRow key={item.Fuel_Request_ID}>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Request_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.Request_Date.slice(0, 10)}
+                            </CTableDataCell>
                             <CTableDataCell scope="row">{item.Meter_Reading}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Fuel_Balance}</CTableDataCell>
                             <CTableDataCell scope="row">
                               {item.Required_Fuel_Capacity}
                             </CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="button1">Option</CButton>
+                              <CButton
+                                className="button1"
+                                onClick={() => {
+                                  changeStatus(item.Fuel_Request_ID, item.Approve_Status)
+                                }}
+                              >
+                                Option
+                              </CButton>
+                            </CTableDataCell>
+                            <CTableDataCell scope="row">
+                              <b
+                                style={
+                                  item.Approve_Status == 'Approved'
+                                    ? { color: 'green' }
+                                    : { color: 'red' }
+                                }
+                              >
+                                {item.Approve_Status}
+                              </b>
                             </CTableDataCell>
                           </CTableRow>
                         )

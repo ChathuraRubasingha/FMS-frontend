@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CButton,
   CCard,
@@ -9,38 +9,63 @@ import {
   CFormInput,
   CInputGroup,
   CRow,
+  CFormLabel,
+  DocsExample,
+  CFormSelect,
 } from '@coreui/react'
 import axios from 'axios'
 import { FaGasPump } from 'react-icons/fa'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
 
 function ConfirmFuel() {
+  const [items, setItems] = useState([])
+  const [pageCount, setpageCount] = useState(0)
   const [fullName, setFullName] = useState('')
-  const [driverid, setdriverid] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
   const [location, setLocation] = useState('')
   const [odometer, setodometer] = useState('')
   const [Liters, setLiters] = useState('')
   const [amount, setamount] = useState('')
+  const [photo, setphoto] = useState('')
 
   const ConfirmFuel = () => {
-    axios
-      .post(`http://localhost:3000/ConfirmFuel`, {
-        fullName: fullName,
-        driverid: driverid,
-        vehicleid: vehicleid,
-        location: location,
-        odometer: odometer,
-        Liters: Liters,
-        amount: amount,
-        date: date,
-      })
-      .then(() => {
-        console.log('Success')
-        alert('Filling  Details Added Successed!')
-      })
+    const formData = new FormData()
+    formData.append('fullName', fullName)
+    formData.append('vehicleid', vehicleid)
+    formData.append('location', location)
+    formData.append('odometer', odometer)
+    formData.append('Liters', Liters)
+    formData.append('amount', amount)
+    formData.append('date', date)
+    formData.append('photo', photo)
+    console.log(formData)
+    console.log(fullName)
+    console.log(photo)
+    axios.post(`http://localhost:5000/api/addfuelconfirm`, formData).then(() => {
+      console.log('Success')
+      alert('Filling  Details Added Successed!')
+    })
   }
+
+  let limit = 15
+
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/VehicleDetail`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  }, [limit])
 
   return (
     <div className="bg-light d-flex flex-row align-items-center">
@@ -56,6 +81,7 @@ function ConfirmFuel() {
                       <FaGasPump />
                     </h3>
                   </strong>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
@@ -65,32 +91,32 @@ function ConfirmFuel() {
                       autoComplete="FullName"
                     />
                   </CInputGroup>
+
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
-                        setdriverid(event.target.value)
+                        setvehicleid(event.target.value)
                       }}
-                      type="text"
-                      placeholder="Driver ID"
-                      autoComplete="driverid"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setFullName(event.target.value)
-                      }}
-                      placeholder="Vehicle ID"
-                      autoComplete="vehicleid"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Vehicle No
+                      </option>
+                      {items.map((item) => {
+                        return (
+                          <option key={item.Vehicle_No} value={item.Vehicle_No}>
+                            {item.Vehicle_No}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
                         setdate(event.target.value)
                       }}
-                      type="text"
-                      placeholder="Filled Date"
+                      type="date"
+                      placeholder="Filled Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
                   </CInputGroup>
@@ -129,16 +155,27 @@ function ConfirmFuel() {
                         setamount(event.target.value)
                       }}
                       type="text"
-                      placeholder="Bill Amount"
+                      placeholder="Bill Amount (SLR)"
                       autoComplete="amount"
                     />
                   </CInputGroup>
-                  <a href="url">
+
+                  <div className="mb-3">
                     <h6>
                       Add Bill &nbsp;
                       <FaRegMoneyBillAlt />
                     </h6>
-                  </a>
+
+                    <CFormInput
+                      onChange={(event) => {
+                        // console.log(event)
+                        setphoto(event.target.files[0])
+                      }}
+                      type="file"
+                      id="formFile"
+                    />
+                  </div>
+
                   <div className="d-grid">
                     <CButton onClick={ConfirmFuel} color="success">
                       ADD DETAILS
