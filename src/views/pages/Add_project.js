@@ -59,6 +59,7 @@ function Addproject() {
                       onChange={(event) => {
                         setstart_date(event.target.value)
                       }}
+                      type="date"
                       placeholder="start_date"
                       autoComplete="start_date"
                     />

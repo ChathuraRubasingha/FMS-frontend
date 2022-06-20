@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CButton,
   CCard,
@@ -11,13 +11,15 @@ import {
   CRow,
   CFormLabel,
   DocsExample,
+  CFormSelect,
 } from '@coreui/react'
 import axios from 'axios'
 import { FaGasPump } from 'react-icons/fa'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
-import photo from './photo'
 
 function ConfirmFuel() {
+  const [items, setItems] = useState([])
+  const [pageCount, setpageCount] = useState(0)
   const [fullName, setFullName] = useState('')
   const [vehicleid, setvehicleid] = useState('')
   const [date, setdate] = useState('')
@@ -46,6 +48,25 @@ function ConfirmFuel() {
     })
   }
 
+  let limit = 15
+
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/VehicleDetail`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  }, [limit])
+
   return (
     <div className="bg-light d-flex flex-row align-items-center">
       <CContainer>
@@ -72,20 +93,29 @@ function ConfirmFuel() {
                   </CInputGroup>
 
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setvehicleid(event.target.value)
                       }}
-                      placeholder="Vehicle Number"
-                      autoComplete="vehicleid"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Vehicle No
+                      </option>
+                      {items.map((item) => {
+                        return (
+                          <option key={item.Vehicle_No} value={item.Vehicle_No}>
+                            {item.Vehicle_No}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
                         setdate(event.target.value)
                       }}
-                      type="text"
+                      type="date"
                       placeholder="Filled Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />

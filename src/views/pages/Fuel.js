@@ -4,6 +4,7 @@ import ask_fuel from './../../assets/images/avatars/askfuel.png'
 import view_fuel from './../../assets/images/avatars/viewfuel.png'
 import bill from './../../assets/images/avatars/bill.png'
 import fuelacc from './../../assets/images/avatars/fuelacc.png'
+import status from './../../assets/images/avatars/status.jpg'
 import { FaGasPump } from 'react-icons/fa'
 
 class Fuel extends Component {
@@ -27,7 +28,7 @@ class Fuel extends Component {
               <CCardImage orientation="top" src={ask_fuel} />
               <CCardBody>
                 <CCardTitle style={{ textAlign: 'center' }}>
-                  <CLink href="/AddFuel"> Fuel Requet Form </CLink>
+                  <CLink href="/AddFuel"> Add Fuel Request </CLink>
                 </CCardTitle>
               </CCardBody>
             </CCard>
@@ -44,7 +45,7 @@ class Fuel extends Component {
           </CCol>
           <CCol xs>
             <CCard>
-              <CCardImage orientation="top" src={view_fuel} />
+              <CCardImage orientation="top" src={status} />
               <CCardBody>
                 <CCardTitle style={{ textAlign: 'center' }}>
                   <CLink href="/FuelStatus">View Status</CLink>

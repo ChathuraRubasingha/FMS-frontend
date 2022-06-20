@@ -165,7 +165,9 @@ const FuelTable = () => {
                                 Option
                               </CButton>
                             </CTableDataCell>
-                            <CTableDataCell scope="row">{item.Approve_Status}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              <b>{item.Approve_Status}</b>
+                            </CTableDataCell>
                           </CTableRow>
                         )
                       })}

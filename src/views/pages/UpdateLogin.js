@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { Link, Redirect } from 'react-router-dom'
@@ -19,28 +19,35 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
-import login from './../../../assets/images/avatars/Login.jpg'
-function Login() {
+import login from './../../assets/images/avatars/Login.jpg'
+import { useLocation } from 'react-router-dom'
+
+function UpdateLogin() {
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
+  const id = new URLSearchParams(useLocation().search).get('username')
 
-  const [LoginStatus, setLoginStatus] = useState('')
-
-  const Login = () => {
+  useEffect(() => {
     axios
-      .post(`http://localhost:5000/api/login`, {
+      .get(`http://localhost:5000/api/login/${username}`)
+      .then((res) => {
+        setusername(res.data.username)
+        setpassword(res.data.start_date)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const UpdateLogin = () => {
+    axios
+      .put(`http://localhost:5000/api/updateproject/${username}`, {
         username: username,
         password: password,
       })
-      .then((response) => {
-        console.log(password)
-        console.log(username)
-
-        if (response.data.message) {
-          setLoginStatus(response.data.message)
-        } else {
-          window.location.replace('/dashboard')
-        }
+      .then(() => {
+        console.log('Success')
+        alert('Project Update successed!')
       })
   }
   return (
@@ -52,8 +59,8 @@ function Login() {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h1>User Login</h1>
-                    <p className="text-medium-emphasis">Sign In to your account</p>
+                    <h2>Change Password</h2>
+                    <p className="text-medium-emphasis">Change your account password</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
@@ -82,16 +89,9 @@ function Login() {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton onClick={Login} color="primary">
-                          Login
+                        <CButton onClick={UpdateLogin} color="primary">
+                          Change
                         </CButton>
-                      </CCol>
-                      <CCol xs={6} className="text-right">
-                        <Link to={`/Update_Project?projectid=${username}`}>
-                          <CButton color="link" className="px-0">
-                            Change Password?
-                          </CButton>
-                        </Link>
                       </CCol>
                     </CRow>
                   </CForm>
@@ -121,9 +121,6 @@ function Login() {
               </CCard>
             </CCardGroup>
             <br />
-            <h4 className="text-danger" style={{ textAlign: 'center' }}>
-              {LoginStatus}
-            </h4>
           </CCol>
         </CRow>
       </CContainer>
@@ -131,4 +128,4 @@ function Login() {
   )
 }
 
-export default Login
+export default UpdateLogin
