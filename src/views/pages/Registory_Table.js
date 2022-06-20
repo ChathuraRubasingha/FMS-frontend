@@ -32,6 +32,8 @@ const Registory_Table = () => {
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
+  const [currentPage, setcurrentPage] = useState(0)
+  const [selectedData, setSelectedData] = useState([])
 
   let limit = 15
 
@@ -66,8 +68,10 @@ const Registory_Table = () => {
       console.log(data.data)
       const total = res.headers.get('x-total-count')
 
-      setpageCount(Math.ceil(total / limit))
+      setpageCount(Math.ceil(data.length / limit))
+      console.log(Math.ceil(data.length / limit))
       setItems(data)
+      setSelectedData(data.slice(0, 15))
     } catch (e) {
       console.log(e)
     }
@@ -75,6 +79,15 @@ const Registory_Table = () => {
   useEffect(() => {
     getProductData()
   }, [limit])
+
+  useEffect(() => {
+    console.log(currentPage)
+    console.log(items)
+    var temp = items
+    console.log(temp.slice(currentPage * limit, (currentPage + 1) * limit))
+    setSelectedData(temp.slice(currentPage * limit, (currentPage + 1) * limit))
+  }, [currentPage])
+
   const fetchComments = async (currentPage) => {
     const res = await fetch(
       `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`,
@@ -85,11 +98,7 @@ const Registory_Table = () => {
   const handlePageClick = async (data) => {
     console.log(data.selected)
 
-    let currentPage = data.selected + 1
-
-    const commentsFormServer = await fetchComments(currentPage)
-
-    setItems(commentsFormServer)
+    setcurrentPage(data.selected)
 
     const routeChang = () => {
       console.log('button worked')
@@ -143,7 +152,7 @@ const Registory_Table = () => {
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    {items
+                    {selectedData
                       .filter((item) => {
                         if (search == '') {
                           return item
@@ -186,8 +195,8 @@ const Registory_Table = () => {
                       nextLabel={'next'}
                       breakLabel={'...'}
                       pageCount={pageCount}
-                      marginPagesDisplayed={2}
-                      pageRangeDisplayed={3}
+                      marginPagesDisplayed={1}
+                      pageRangeDisplayed={1}
                       onPageChange={handlePageClick}
                       containerClassName={'pagination justify-content-center'}
                       pageClassName={'page-item'}

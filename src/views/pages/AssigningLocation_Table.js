@@ -143,8 +143,10 @@ const VehicleAssigning_Table = () => {
                             <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.From_Date.slice(0, 10)}
+                            </CTableDataCell>
+                            <CTableDataCell scope="row">{item.To_Date.slice(0, 10)}</CTableDataCell>
                             <CTableDataCell>
                               <Link to={`/updateassignedlocationform?vehicleno=${item.Vehicle_No}`}>
                                 <CButton className="buttons m-1" color="success">

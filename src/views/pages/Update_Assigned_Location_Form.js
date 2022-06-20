@@ -107,7 +107,7 @@ function Update_Assigned_Location_Form() {
                       }}
                       placeholder="From Date"
                       autoComplete="FromDate"
-                      value={FromDate}
+                      value={FromDate.slice(0, 10)}
                       required
                     />
                   </CInputGroup>
@@ -118,7 +118,7 @@ function Update_Assigned_Location_Form() {
                       }}
                       placeholder="To Date"
                       autoComplete="ToDate"
-                      value={ToDate}
+                      value={ToDate.slice(0, 10)}
                       required
                     />
                   </CInputGroup>
