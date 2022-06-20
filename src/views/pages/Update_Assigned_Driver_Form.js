@@ -16,36 +16,32 @@ import { useLocation, Link } from 'react-router-dom'
 
 function Update_Assigned_Driver_Form() {
   const [items, setItems] = useState([])
-  const [FullName, setDriver] = useState('')
+  const [FullName, setFullName] = useState('')
   const [VehicleNo, setVehicleNo] = useState('')
-  const [CategoryName, setCategoryName] = useState('')
-  const [LocationName, setLocationName] = useState('')
   const [FromDate, setFromDate] = useState('')
   const [ToDate, setToDate] = useState('')
 
-  const vehicleno = new URLSearchParams(useLocation().search).get('vehicleno')
+  const Asigned_ID = new URLSearchParams(useLocation().search).get('Asigned_ID')
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/getdriverassignedvehiclesAll/${vehicleno}`)
+      .get(`http://localhost:5000/api/getdriverassignedvehiclesAll/${Asigned_ID}`)
       .then((res) => {
-        setDriver(res.data.Full_Name)
+        setFullName(res.data.Full_Name)
         setVehicleNo(res.data.Vehicle_No)
-        setCategoryName(res.data.Category_Name)
-        setLocationName(res.data.Location_Name)
         setFromDate(res.data.From_Date)
         setToDate(res.data.To_Date)
       })
       .catch((err) => {
         console.log(err)
       })
-    console.log(ToDate)
+    console.log(FromDate)
   }, [])
 
-  const updateAssignedDriverForm = () => {
+  const updateAssigneDriverForm = () => {
     axios
-      .put(`http://localhost:5000/api/updateassignedlocation/${vehicleno}`, {
+      .put(`http://localhost:5000/api/updateassignedlocation/${Asigned_ID}`, {
         FullName: FullName,
-        LocationName: LocationName,
+        VehicleNo: VehicleNo,
         FromDate: FromDate,
         ToDate: ToDate,
       })
@@ -55,20 +51,20 @@ function Update_Assigned_Driver_Form() {
       })
   }
 
-  // const getProductData = async () => {
-  //   try {
-  //     const res = await fetch(`http://localhost:5000/api/getlocationalone`)
-  //     const data = await res.json()
-  //     console.log(data.data)
+  const getProductData = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getlocationalone`)
+      const data = await res.json()
+      console.log(data.data)
 
-  //     setItems(data)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
-  // useEffect(() => {
-  //   getProductData()
-  // })
+      setItems(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    getProductData()
+  })
 
   return (
     <div className="bg-light d-flex flex-row align-items-center">
@@ -81,11 +77,28 @@ function Update_Assigned_Driver_Form() {
                   <h3>Update Assigned Details</h3>
                   <br />
                   <CInputGroup className="mb-3">
+                    {/* <CFormSelect
+                      onChange={(event) => {
+                        setLocationID(event.target.key)
+                      }}
+                    >
+                      <option value="" disabled selected>
+                        Location
+                      </option>
+                      {items.map((item) => {
+                        return (
+                          <option key={item.Location_ID} value={item.Location_ID}>
+                            {item.Location_Name}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>{' '} */}
                     <CFormInput
                       onChange={(event) => {
-                        setDriver(event.target.value)
+                        setFullName(event.target.value)
                       }}
                       placeholder="Driver Name"
+                      autoComplete="FullName"
                       value={FullName}
                       required
                     />
@@ -93,10 +106,11 @@ function Update_Assigned_Driver_Form() {
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setLocationName(event.target.value)
+                        setVehicleNo(event.target.value)
                       }}
-                      placeholder="Location Name"
-                      value={LocationName}
+                      placeholder="Vehicle No"
+                      autoComplete="VehicleNo"
+                      value={VehicleNo}
                       required
                     />
                   </CInputGroup>
@@ -124,7 +138,7 @@ function Update_Assigned_Driver_Form() {
                   </CInputGroup>
 
                   <div className="d-grid">
-                    <CButton onClick={updateAssignedDriverForm} color="success">
+                    <CButton onClick={updateAssigneDriverForm} color="success">
                       Save
                     </CButton>
                   </div>

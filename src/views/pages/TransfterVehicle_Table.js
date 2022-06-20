@@ -106,9 +106,9 @@ const TransfterVehicle_Table = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={3}>
-              <Link to="/nottransferedvehicles">
+              {/* <Link to="/nottransferedvehicles">
                 <CButton>Not Transfered vehicles</CButton>
-              </Link>
+              </Link> */}
             </CCol>
           </CRow>
         </CCardBody>

@@ -25,7 +25,7 @@ function Update_Assigned_Location_Form() {
     axios
       .get(`http://localhost:5000/api/getlocation/${vehicleno}`)
       .then((res) => {
-        // setLocationID(res.data.Location_Name)
+        setLocationID(res.data.Location_ID)
         setFromDate(res.data.From_Date)
         setToDate(res.data.To_Date)
       })
@@ -74,7 +74,7 @@ function Update_Assigned_Location_Form() {
                   <h3>Update Assigned Details</h3>
                   <br />
                   <CInputGroup className="mb-3">
-                    <CFormSelect
+                    {/* <CFormSelect
                       onChange={(event) => {
                         setLocationID(event.target.key)
                       }}
@@ -89,7 +89,16 @@ function Update_Assigned_Location_Form() {
                           </option>
                         )
                       })}
-                    </CFormSelect>{' '}
+                    </CFormSelect>{' '} */}
+                    <CFormInput
+                      onChange={(event) => {
+                        setLocationID(event.target.value)
+                      }}
+                      placeholder="Location ID"
+                      autoComplete="LocationID"
+                      value={LocationID}
+                      required
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput

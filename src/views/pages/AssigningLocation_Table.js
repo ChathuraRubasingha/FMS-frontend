@@ -33,17 +33,17 @@ const VehicleAssigning_Table = () => {
 
   const [search, setSearch] = useState('')
 
-  const deleteVehicleAssigning_Table = (id) => {
-    alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/api/deleteassignedlocation/${id}`).then((response) => {
-      setVehicleAssigning_Table_List(
-        VehicleAssigning_Table_List.filter((items) => {
-          return items.Location_Name != id
-        }),
-      )
-    })
-    window.location.reload(false)
-  }
+  // const deleteVehicleAssigning_Table = (id) => {
+  //   alert('Are you sure to delete this record!')
+  //   axios.delete(`http://localhost:5000/api/deleteassignedlocation/${id}`).then((response) => {
+  //     setVehicleAssigning_Table_List(
+  //       VehicleAssigning_Table_List.filter((items) => {
+  //         return items.Location_Name != id
+  //       }),
+  //     )
+  //   })
+  //   window.location.reload(false)
+  // }
 
   const getProductData = async () => {
     try {
@@ -151,7 +151,7 @@ const VehicleAssigning_Table = () => {
                                   Update
                                 </CButton>
                               </Link>
-                              <CButton
+                              {/* <CButton
                                 onClick={() => {
                                   deleteVehicleAssigning_Table(item.Location_Name)
                                 }}
@@ -159,7 +159,7 @@ const VehicleAssigning_Table = () => {
                                 color="danger"
                               >
                                 Delete
-                              </CButton>
+                              </CButton> */}
                             </CTableDataCell>
                           </CTableRow>
                         )
