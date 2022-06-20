@@ -78,7 +78,7 @@ function Addproject() {
 
                   <div className="d-grid">
                     <CButton onClick={Addproject} color="success">
-                      ADD REQUEST
+                      ADD Project
                     </CButton>
                   </div>
                 </CForm>
