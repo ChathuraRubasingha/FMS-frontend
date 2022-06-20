@@ -42,6 +42,7 @@ const VehicleAssigning_Table = () => {
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -130,7 +131,9 @@ const VehicleAssigning_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (
+                          item.Location_Name.toLowerCase().includes(search.toLowerCase())
+                        ) {
                           return item
                         }
                       })
@@ -143,9 +146,11 @@ const VehicleAssigning_Table = () => {
                             <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
                             <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
+                              <Link to={`/updateassignedlocationform?vehicleno=${item.Vehicle_No}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
                               <CButton
                                 onClick={() => {
                                   deleteVehicleAssigning_Table(item.Location_Name)

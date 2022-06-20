@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import { AppSidebarNav } from './AppSidebarNav'
+import CIcon from '@coreui/icons-react'
+import { cibFeathub, cibFoursquare, cibOpensuse, cilBed } from '@coreui/icons'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
 
@@ -24,10 +26,10 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <img
-          src="C:\Users\chathura rubasingha\OneDrive\Desktop\Software Project\fms-frontend\src\assets\images\Logo\FMS-logo.jpg"
-          alt="Logo"
-        />
+        <CIcon icon={cibOpensuse} height={48} alt="Logo"></CIcon>
+        <h3>
+          <i>FMS</i>
+        </h3>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

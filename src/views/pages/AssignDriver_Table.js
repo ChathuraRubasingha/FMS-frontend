@@ -42,6 +42,7 @@ const AssignDriver_Table = () => {
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -145,9 +146,11 @@ const AssignDriver_Table = () => {
                             <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
                             <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
+                              <Link to={`/updateassigneddriverform?vehicleno=${item.Vehicle_No}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
                               <CButton
                                 onClick={() => {
                                   deleteAssignDriver_Table(item.Driver_ID)

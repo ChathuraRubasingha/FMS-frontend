@@ -146,6 +146,16 @@ const Individual_Vehicle_Details = React.lazy(() =>
 
 const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
 
+const Update_Registory_Form = React.lazy(() => import('./views/pages/Update_Registory_Form'))
+const Update_Assigned_Location_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Location_Form'),
+)
+const Update_Assigned_Driver_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Driver_Form'),
+)
+
+const Update_Tranfered_Form = React.lazy(() => import('./views/pages/Update_Tranfered_Form'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -392,6 +402,24 @@ const routes = [
   { path: '/adddriver', name: 'Driver/ AddNewDriver', component: AddDriver },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
+  { path: '/updateVehicleReg', name: 'UpdateVehicleReg', component: Update_Registory_Form },
+  {
+    path: '/updateassignedlocationform',
+    name: 'UpdateAssignedLocationForm',
+    component: Update_Assigned_Location_Form,
+  },
+
+  {
+    path: '/updatetranferedform',
+    name: 'UpdateTranferedForm',
+    component: Update_Tranfered_Form,
+  },
+
+  {
+    path: '/updateassigneddriverform',
+    name: 'UpdateAssignedDriverForm',
+    component: Update_Assigned_Driver_Form,
+  },
   {
     path: '/Vehicle_details/Vehicle_details',
     name: 'Vehicle_details',

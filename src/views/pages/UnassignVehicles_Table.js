@@ -124,7 +124,7 @@ const UnassignVehicles_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
@@ -137,7 +137,7 @@ const UnassignVehicles_Table = () => {
                             <CTableDataCell scope="row">{item.Requested_Date}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
-                                Update
+                                Assign
                               </CButton>
                             </CTableDataCell>
                           </CTableRow>

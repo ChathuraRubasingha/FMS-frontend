@@ -34,15 +34,18 @@ const TransfterVehicle_Table = () => {
 
   const [search, setSearch] = useState('')
 
-  const deleteTransfterVehicle_Table = (id) => {
+  const deleteTransfterVehicle_Table = (transfer_ID) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/api/deletetranferedvehicle/${id}`).then((response) => {
-      setTransfterVehicle_Table_List(
-        TransfterVehicle_Table_List.filter((items) => {
-          return items.From_Location_ID != id
-        }),
-      )
-    })
+    axios
+      .delete(`http://localhost:5000/api/deletetranferedvehicle/${transfer_ID}`)
+      .then((response) => {
+        setTransfterVehicle_Table_List(
+          TransfterVehicle_Table_List.filter((items) => {
+            return items.transfer_ID != transfer_ID
+          }),
+        )
+      })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -119,10 +122,10 @@ const TransfterVehicle_Table = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col"> From Location_ID</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">To Location_ID</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> From Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">To Location</CTableHeaderCell>
                       <CTableHeaderCell scope="col">From Date</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> TO From Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> To Date</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -130,26 +133,27 @@ const TransfterVehicle_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.from_date.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.From_Location_ID}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.To_Location_ID}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.from_location}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.to_location}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.from_date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.to_date}</CTableDataCell>
+
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
+                              <Link to={`/updatetranferedform?transfer_ID=${item.transfer_ID}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
                               <CButton
                                 onClick={() => {
-                                  deleteTransfterVehicle_Table(item.From_Location_ID)
+                                  deleteTransfterVehicle_Table(item.transfer_ID)
                                 }}
                                 className="buttons m-1"
                                 color="danger"
