@@ -46,7 +46,7 @@ const PendingBookingRequests_Table = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/driver`)
+      const res = await fetch(`http://localhost:5000/api/getPendingBookingRequest`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -57,6 +57,42 @@ const PendingBookingRequests_Table = () => {
       console.log(e)
     }
   }
+  const changeStatus = async (id, status) => {
+    let body = {}
+    if (status == 'Pending') {
+      body = {
+        Approve_status: 'Approved',
+      }
+    } else if (status == 'Approved') {
+      console.log('Disapproved')
+      body = {
+        Approve_status: 'Disapproved',
+      }
+    } else if (status == 'Disapproved') {
+      console.log('Pending')
+      body = {
+        Approve_status: 'Pending',
+      }
+    } else if (status == 'Completed') {
+      alert('Booking request is already completed!')
+      body = {
+        Approve_status: 'Completed',
+      }
+    }
+    console.log(body)
+    await axios
+      .put(`http://localhost:5000/api/updatestatus/${id}`, body)
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          getProductData()
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   useEffect(() => {
     getProductData()
   }, [limit])
@@ -118,12 +154,12 @@ const PendingBookingRequests_Table = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Vehicle Number</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Make</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Allocaton Type</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Status</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"> Vehicle Location</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Requested Date</CTableHeaderCell>
+
+                      <CTableHeaderCell scope="col">From Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"> To Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Booking Status</CTableHeaderCell>
+                      <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -131,20 +167,30 @@ const PendingBookingRequests_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (
+                          item.Booking_Status.toLowerCase().includes(search.toLowerCase())
+                        ) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.Mobile}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.NIC}</CTableDataCell>
-                            <CTableDataCell></CTableDataCell>
+                            <CTableDataCell scope="row">{item.Requested_Date}</CTableDataCell>
+
+                            <CTableDataCell scope="row">{item.From}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.To}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Booking_Status}</CTableDataCell>
+                            <CTableDataCell>
+                              <CButton
+                                className="button1"
+                                onClick={() => {
+                                  changeStatus(item.Booking_Request_ID, item.Booking_Status)
+                                }}
+                              >
+                                Change Status
+                              </CButton>
+                            </CTableDataCell>
                           </CTableRow>
                         )
                       })}

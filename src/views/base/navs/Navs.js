@@ -14,7 +14,7 @@ const Navs = () => {
             </CNavItem>
             <CNavItem>
               <CNavLink href="/tabs/allocated" active>
-                ALLOCATED VEHICLE
+                ALLOCATED PROJECTS
               </CNavLink>
             </CNavItem>
             <CNavItem>

@@ -135,7 +135,7 @@ const project = React.lazy(() => import('./views/pages/project'))
 const Add_project = React.lazy(() => import('./views/pages/Add_project'))
 const photo = React.lazy(() => import('./views/pages/photo'))
 const ViewBranch = React.lazy(() => import('./views/pages/ViewBranch'))
-
+const UpdateLogin = React.lazy(() => import('./views/pages/UpdateLogin'))
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
 const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicle'))
 
@@ -179,6 +179,16 @@ const Licence = React.lazy(() => import('./views/pages/Vehicle Maintanance Detai
 const Battery = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Battery'))
 const Tyre = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/Tyre'))
 const AddService = React.lazy(() => import('./views/pages/Vehicle Maintanance Details/AddService'))
+
+const Update_Registory_Form = React.lazy(() => import('./views/pages/Update_Registory_Form'))
+const Update_Assigned_Location_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Location_Form'),
+)
+const Update_Assigned_Driver_Form = React.lazy(() =>
+  import('./views/pages/Update_Assigned_Driver_Form'),
+)
+
+const Update_Tranfered_Form = React.lazy(() => import('./views/pages/Update_Tranfered_Form'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -291,6 +301,7 @@ const routes = [
   { path: '/Update_Project', name: 'Update_Project', component: UpdateProject },
   { path: '/LocationView', name: 'Location View', component: LocationView },
   { path: '/ViewBranch', name: 'View Branch ', component: ViewBranch },
+  { path: '/UpdateLogin', name: 'UpdateLogin', component: UpdateLogin },
 
   {
     path: '/System_Configurations',
@@ -447,6 +458,26 @@ const routes = [
   { path: '/addmanagerole', name: 'Manage_Role/ AddManageRole', component: AddManageRole },
   { path: '/Vehicle_details', name: 'Vehicle_details', component: Vehicle_details, exact: true },
   { path: '/AddAccident', name: 'Add Accident', component: AddAccident },
+
+  { path: '/updateVehicleReg', name: 'UpdateVehicleReg', component: Update_Registory_Form },
+  {
+    path: '/updateassignedlocationform',
+    name: 'UpdateAssignedLocationForm',
+    component: Update_Assigned_Location_Form,
+  },
+
+  {
+    path: '/updatetranferedform',
+    name: 'UpdateTranferedForm',
+    component: Update_Tranfered_Form,
+  },
+
+  {
+    path: '/updateassigneddriverform',
+    name: 'UpdateAssignedDriverForm',
+    component: Update_Assigned_Driver_Form,
+  },
+
   { path: '/Add_Branch', name: 'Add New Branch ', component: Add_Branch },
   { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },
   { path: '/Add_Location', name: 'Add New Location ', component: Add_Location },

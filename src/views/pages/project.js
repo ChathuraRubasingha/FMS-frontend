@@ -27,20 +27,22 @@ import {
 import Allocated from 'src/views/tabs/allocated/Allocated'
 import axios from 'axios'
 const Project = () => {
-  const [items, setItems] = useState([])
   const [ProjectList, setProjectList] = useState([])
+  const [items, setItems] = useState([])
+
   const [pageCount, setpageCount] = useState('')
 
-  let limit = 10
+  let limit = 15
 
   const [search, setSearch] = useState('')
 
-  const deleteproject = (id) => {
-    alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deleteproject/${id}`).then((response) => {
+  const deleteProject = (project_id) => {
+    console.log(project_id)
+    alert('Are you sure to delete this project!')
+    axios.delete(`http://localhost:5000/api/deleteproject/${project_id}`).then((response) => {
       setProjectList(
         ProjectList.filter((items) => {
-          return items.project_id != id
+          return items.project_id != project_id
         }),
       )
     })
@@ -155,7 +157,7 @@ const Project = () => {
                             <CTableDataCell>
                               <CButton
                                 onClick={() => {
-                                  deleteproject(item.project_id)
+                                  deleteProject(item.project_id)
                                 }}
                                 className="buttons m-1"
                                 color="danger"

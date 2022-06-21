@@ -14,7 +14,6 @@ import {
 import axios from 'axios'
 import { FaCarCrash } from 'react-icons/fa'
 import { MdAddAPhoto } from 'react-icons/md'
-import { FaRegMoneyBillAlt } from 'react-icons/fa'
 
 function AddAccident() {
   const [items, setItems] = useState([])
@@ -25,21 +24,21 @@ function AddAccident() {
   const [location, setLocation] = useState('')
   const [odometer, setodometer] = useState('')
   const [police, setpolice] = useState('')
+  const [photo, setphoto] = useState('')
 
   const AddAccident = () => {
-    axios
-      .post(`http://localhost:5000/api/addaccident`, {
-        vehicleid: vehicleid,
-        driverid: driverid,
-        date: date,
-        location: location,
-        police: police,
-        odometer: odometer,
-      })
-      .then(() => {
-        console.log('Success')
-        alert('Accident  Details Added Successed!')
-      })
+    const formData = new FormData()
+    formData.append('driverid', driverid)
+    formData.append('vehicleid', vehicleid)
+    formData.append('location', location)
+    formData.append('odometer', odometer)
+    formData.append('police', police)
+    formData.append('date', date)
+    formData.append('photo', photo)
+    axios.post(`http://localhost:5000/api/addaccident`, formData).then(() => {
+      console.log('Success')
+      alert('Accident  Details Added Successed!')
+    })
   }
 
   let limit = 15
@@ -108,7 +107,7 @@ function AddAccident() {
                       onChange={(event) => {
                         setdate(event.target.value)
                       }}
-                      type="text"
+                      type="date"
                       placeholder="Accident Date (yyyy/mm/dd)"
                       autoComplete="date"
                     />
@@ -143,18 +142,21 @@ function AddAccident() {
                     />
                   </CInputGroup>
 
-                  <a href="url">
+                  <div className="mb-3">
                     <h6>
                       Add Accident Photos &nbsp;
                       <MdAddAPhoto />
                     </h6>
-                  </a>
-                  <a href="url">
-                    <h6>
-                      Add Insurance Details &nbsp;
-                      <FaRegMoneyBillAlt />
-                    </h6>
-                  </a>
+                    <CFormInput
+                      onChange={(event) => {
+                        // console.log(event)
+                        setphoto(event.target.files[0])
+                      }}
+                      type="file"
+                      id="formFile"
+                    />
+                  </div>
+
                   <div className="d-grid">
                     <CButton onClick={AddAccident} color="success">
                       ADD DETAILS

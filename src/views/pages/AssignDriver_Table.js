@@ -38,10 +38,11 @@ const AssignDriver_Table = () => {
     axios.delete(`http://localhost:5000/api/deleteassigneddriver/${id}`).then((response) => {
       setAssignDriver_Table_List(
         AssignDriverg_Table_List.filter((items) => {
-          return items.Driver_ID != id
+          return items.Asigned_ID != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const getProductData = async () => {
@@ -137,20 +138,24 @@ const AssignDriver_Table = () => {
                       })
                       .map((item) => {
                         return (
-                          <CTableRow key={item.id}>
+                          <CTableRow key={item.Asigned_ID}>
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             {/* <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell> */}
                             <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.From_Date.slice(0, 10)}
+                            </CTableDataCell>
+                            <CTableDataCell scope="row">{item.To_Date.slice(0, 10)}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
+                              {/* <Link to={`/updateassigneddriverform?Asigned_ID=${item.Asigned_ID}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link> */}
                               <CButton
                                 onClick={() => {
-                                  deleteAssignDriver_Table(item.Driver_ID)
+                                  deleteAssignDriver_Table(item.Asigned_ID)
                                 }}
                                 className="buttons m-1"
                                 color="danger"

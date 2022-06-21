@@ -42,27 +42,27 @@ function CompletedBookingRequests() {
                   {' '}
                   <CListGroupItem>Approved Booking Requests</CListGroupItem>
                 </Link>
-                <Link to="/assignedbookingrequests" style={{ textDecoration: 'none' }}>
+                {/* <Link to="/assignedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
                   <CListGroupItem>Assigned Booking Requests</CListGroupItem>
-                </Link>
+                </Link> */}
 
                 <Link to="/disapprovedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
                   <CListGroupItem>Disapproved Booking Requests</CListGroupItem>{' '}
                 </Link>
-                <Link to="/cancelledbookingrequests" style={{ textDecoration: 'none' }}>
+                {/* <Link to="/cancelledbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
                   <CListGroupItem>Cancelled Booking Requests</CListGroupItem>{' '}
-                </Link>
+                </Link> */}
                 <Link to="/completedbookingrequests" style={{ textDecoration: 'none' }}>
                   {' '}
                   <CListGroupItem active>Completed Booking Requests</CListGroupItem>{' '}
                 </Link>
-                <Link to="/vehicleinandout" style={{ textDecoration: 'none' }}>
+                {/* <Link to="/vehicleinandout" style={{ textDecoration: 'none' }}>
                   {' '}
                   <CListGroupItem>Vehicle IN and OUT</CListGroupItem>
-                </Link>
+                </Link> */}
               </CListGroup>
             </CCardBody>
           </CCard>

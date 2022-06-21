@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CButton,
   CCard,
@@ -9,17 +9,28 @@ import {
   CFormInput,
   CInputGroup,
   CRow,
+  CFormSelect,
 } from '@coreui/react'
 import axios from 'axios'
 
 function RegistoringVehicleform() {
+  const [items2, setItems2] = useState([])
+  const [items3, setItems3] = useState([])
+  const [items4, setItems4] = useState([])
+  const [items5, setItems5] = useState([])
+  const [items6, setItems6] = useState([])
+  const [items7, setItems7] = useState([])
+  const [items8, setItems8] = useState([])
+  const [items9, setItems9] = useState([])
+  const [items10, setItems10] = useState([])
+  const [items11, setItems11] = useState([])
   const [VehicleNo, setVehicleNo] = useState('')
   const [RegistrationFee, setRegistrationFee] = useState('')
   const [VehicleCategoryID, setVehicleCategoryID] = useState('')
   const [PurchaseValue, setPurchaseValue] = useState('')
   const [EngineNo, setEngineNo] = useState('')
   const [ChassisNo, setChassisNo] = useState('')
-  const [DriverID, setDriverID] = useState('')
+  const [driver, setdriver] = useState('')
   const [FuelTypeID, setFuelTypeID] = useState('')
 
   const [TyreSizeID, setTyreSizeID] = useState('')
@@ -31,6 +42,11 @@ function RegistoringVehicleform() {
   const [VehicleStatusID, setVehicleStatusID] = useState('')
   const [AllocationTypeID, setAllocationTypeID] = useState('')
 
+  const [pageCount, setpageCount] = useState(0)
+  const [currentPage, setcurrentPage] = useState(0)
+  const [selectedData, setSelectedData] = useState([])
+  let limit = 15
+
   const registoringVehicleform = () => {
     axios
       .post(`http://localhost:5000/api/registervehicle`, {
@@ -40,7 +56,7 @@ function RegistoringVehicleform() {
         PurchaseValue: PurchaseValue,
         EngineNo: EngineNo,
         ChassisNo: ChassisNo,
-        DriverID: DriverID,
+        driver: driver,
         FuelTypeID: FuelTypeID,
         TyreSizeID: TyreSizeID,
         TyreTypeID: TyreTypeID,
@@ -55,7 +71,153 @@ function RegistoringVehicleform() {
         alert('Vehicle added successed!')
       })
   }
+  const getDriver = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/drivers`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
 
+      setpageCount(Math.ceil(total / limit))
+      setItems2(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const getCatergory = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllCatergory`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems3(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const getFuel = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllFuel`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems4(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const getTyreSize = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllTyreSize`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems5(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const getTyreType = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllTyreType`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems6(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getMake = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllMake`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems7(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getModel = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllModel`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems8(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getBattery = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllBatrey`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems9(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  const getVehicleStatus = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getVehicleStatus`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems10(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getAllocationType = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/getAllocationType`)
+      const data = await res.json()
+      console.log(data.data)
+      const total = res.headers.get('x-total-count')
+
+      setpageCount(Math.ceil(total / limit))
+      setItems11(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    getDriver()
+    getCatergory()
+    getFuel()
+    getTyreSize()
+    getTyreType()
+    getMake()
+    getModel()
+    getBattery()
+    getVehicleStatus()
+    getAllocationType()
+  }, [limit])
   return (
     <div className="bg-light d-flex flex-row align-items-center">
       <CContainer>
@@ -85,20 +247,28 @@ function RegistoringVehicleform() {
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setVehicleCategoryID(event.target.value)
                       }}
-                      placeholder="Vehicle Category"
-                      autoComplete="VehicleCategoryID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        VehicleCategory
+                      </option>
+                      {items3.map((item) => {
+                        return (
+                          <option key={item.Vehicle_Category_ID} value={item.Vehicle_Category_ID}>
+                            {item.Category_Name}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
                         setPurchaseValue(event.target.value)
                       }}
-                      type="number"
                       placeholder="Purchase Value"
                       autoComplete="PurchaseValue"
                     />
@@ -108,7 +278,6 @@ function RegistoringVehicleform() {
                       onChange={(event) => {
                         setEngineNo(event.target.value)
                       }}
-                      type="number"
                       placeholder="Engine No"
                       autoComplete="EngineNo"
                     />
@@ -118,102 +287,173 @@ function RegistoringVehicleform() {
                       onChange={(event) => {
                         setChassisNo(event.target.value)
                       }}
-                      type="number"
                       placeholder="Chassis No"
                       autoComplete="ChassisNo"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
-                        setDriverID(event.target.value)
+                        setdriver(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Driver"
-                      autoComplete="DriverID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Driver Name
+                      </option>
+                      {items2.map((item) => {
+                        return (
+                          <option key={item.Driver_Id} value={item.Driver_ID}>
+                            {item.Full_Name}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setFuelTypeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Fuel Type"
-                      autoComplete="FuelTypeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Fuel Type
+                      </option>
+                      {items4.map((item) => {
+                        return (
+                          <option key={item.Fuel_Type_ID} value={item.Fuel_Type_ID}>
+                            {item.Fuel_Type}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setTyreSizeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Tyre Size"
-                      autoComplete="TyreSizeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Tyre Size
+                      </option>
+                      {items5.map((item) => {
+                        return (
+                          <option key={item.Tyre_Size_ID} value={item.Tyre_Size_ID}>
+                            {item.Tyre_Size}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setTyreTypeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Tyre Type"
-                      autoComplete="TyreTypeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Tyre Type
+                      </option>
+                      {items6.map((item) => {
+                        return (
+                          <option key={item.Tyre_Type_ID} value={item.Tyre_Type_ID}>
+                            {item.Tyre_Type}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setMakeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Make"
-                      autoComplete="MakeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Make
+                      </option>
+                      {items7.map((item) => {
+                        return (
+                          <option key={item.Make_ID} value={item.Make_ID}>
+                            {item.Make}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setModelID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Model"
-                      autoComplete="ModelID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Model
+                      </option>
+                      {items8.map((item) => {
+                        return (
+                          <option key={item.Model_ID} value={item.Model_ID}>
+                            {item.Model}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setBatteryTypeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Battery Type"
-                      autoComplete="BatteryTypeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Battery Type
+                      </option>
+                      {items9.map((item) => {
+                        return (
+                          <option key={item.Battery_Type_ID} value={item.Battery_Type_ID}>
+                            {item.Battery_Type}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setVehicleStatusID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Vehicle Status"
-                      autoComplete="VehicleStatusID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Vehicle Status
+                      </option>
+                      {items10.map((item) => {
+                        return (
+                          <option key={item.Vehicle_Status_ID} value={item.Vehicle_Status_ID}>
+                            {item.Vehicle_Status}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
                   <CInputGroup className="mb-4">
-                    <CFormInput
+                    <CFormSelect
                       onChange={(event) => {
                         setAllocationTypeID(event.target.value)
                       }}
-                      type="number"
-                      placeholder="Allocation Type"
-                      autoComplete="AllocationTypeID"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Allocation Type
+                      </option>
+                      {items11.map((item) => {
+                        return (
+                          <option key={item.Allocation_Type_ID} value={item.Allocation_Type_ID}>
+                            {item.Allocation_Type}
+                          </option>
+                        )
+                      })}
+                    </CFormSelect>
                   </CInputGroup>
 
                   <div className="d-grid">

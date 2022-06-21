@@ -54,6 +54,11 @@ const AccidentTable = () => {
     const data = await res.json()
     return data
   }
+
+  function showImage(file) {
+    console.log(file)
+    window.open('http://localhost:5000/' + file, '_blank')
+  }
   const handlePageClick = async (data) => {
     console.log(data.selected)
 
@@ -110,10 +115,9 @@ const AccidentTable = () => {
                       <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Accident Date </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Location</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">View Photos </CTableHeaderCell>
                       <CTableHeaderCell scope="col">Police Station</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Claim Details</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">View Photos </CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -134,16 +138,15 @@ const AccidentTable = () => {
                             <CTableDataCell scope="row">{item.Date_and_Time}</CTableDataCell>
 
                             <CTableDataCell scope="row">{item.Accident_Place}</CTableDataCell>
-                            <CTableDataCell>
-                              <CButton className="button2">View</CButton>
-                            </CTableDataCell>
+
                             <CTableDataCell scope="row">{item.Police_Station}</CTableDataCell>
                             <CTableDataCell scope="row">
                               {item.Odometer_After_Accident}
                             </CTableDataCell>
-
                             <CTableDataCell>
-                              <CButton className="button1">View</CButton>
+                              <CButton className="button2" onClick={() => showImage(item.photo)}>
+                                View
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

@@ -125,7 +125,9 @@ const NotTranferedVehicle_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (
+                          item.Location_Name.toLowerCase().includes(search.toLowerCase())
+                        ) {
                           return item
                         }
                       })
@@ -139,7 +141,7 @@ const NotTranferedVehicle_Table = () => {
                             <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
                             <CTableDataCell>
                               <CButton className="buttons m-1" color="success">
-                                Update
+                                Transfer
                               </CButton>
                             </CTableDataCell>
                           </CTableRow>

@@ -33,16 +33,17 @@ const VehicleAssigning_Table = () => {
 
   const [search, setSearch] = useState('')
 
-  const deleteVehicleAssigning_Table = (id) => {
-    alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/api/deleteassignedlocation/${id}`).then((response) => {
-      setVehicleAssigning_Table_List(
-        VehicleAssigning_Table_List.filter((items) => {
-          return items.Location_Name != id
-        }),
-      )
-    })
-  }
+  // const deleteVehicleAssigning_Table = (id) => {
+  //   alert('Are you sure to delete this record!')
+  //   axios.delete(`http://localhost:5000/api/deleteassignedlocation/${id}`).then((response) => {
+  //     setVehicleAssigning_Table_List(
+  //       VehicleAssigning_Table_List.filter((items) => {
+  //         return items.Location_Name != id
+  //       }),
+  //     )
+  //   })
+  //   window.location.reload(false)
+  // }
 
   const getProductData = async () => {
     try {
@@ -130,7 +131,9 @@ const VehicleAssigning_Table = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.Full_Name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (
+                          item.Location_Name.toLowerCase().includes(search.toLowerCase())
+                        ) {
                           return item
                         }
                       })
@@ -140,13 +143,17 @@ const VehicleAssigning_Table = () => {
                             <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.From_Date}</CTableDataCell>
-                            <CTableDataCell scope="row">{item.To_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.From_Date.slice(0, 10)}
+                            </CTableDataCell>
+                            <CTableDataCell scope="row">{item.To_Date.slice(0, 10)}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="buttons m-1" color="success">
-                                Update
-                              </CButton>
-                              <CButton
+                              <Link to={`/updateassignedlocationform?vehicleno=${item.Vehicle_No}`}>
+                                <CButton className="buttons m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                              {/* <CButton
                                 onClick={() => {
                                   deleteVehicleAssigning_Table(item.Location_Name)
                                 }}
@@ -154,7 +161,7 @@ const VehicleAssigning_Table = () => {
                                 color="danger"
                               >
                                 Delete
-                              </CButton>
+                              </CButton> */}
                             </CTableDataCell>
                           </CTableRow>
                         )

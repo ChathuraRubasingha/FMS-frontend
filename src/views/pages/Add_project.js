@@ -59,6 +59,7 @@ function Addproject() {
                       onChange={(event) => {
                         setstart_date(event.target.value)
                       }}
+                      type="date"
                       placeholder="start_date"
                       autoComplete="start_date"
                     />
@@ -77,7 +78,7 @@ function Addproject() {
 
                   <div className="d-grid">
                     <CButton onClick={Addproject} color="success">
-                      ADD REQUEST
+                      ADD Project
                     </CButton>
                   </div>
                 </CForm>
