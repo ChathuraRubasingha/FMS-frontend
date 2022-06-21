@@ -32,13 +32,14 @@ const Designation = () => {
   let limit = 15
   const deleteDesignation = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deleteDesignation/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteDesignation/${id}`).then((response) => {
       setLocationList(
         LocationList.filter((items) => {
-          return items.Location_ID != id
+          return items.Designation != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const [search, setSearch] = useState('')

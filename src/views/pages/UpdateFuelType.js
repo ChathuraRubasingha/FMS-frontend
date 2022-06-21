@@ -13,31 +13,30 @@ import {
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 
-function UpdateCategory() {
-  const [CategoryName, setCategoryName] = useState('')
+function UpdateFuelType() {
+  const [FuelType, setFuelType] = useState('')
 
-  const id = new URLSearchParams(useLocation().search).get('CategoryID')
-  console.log(id)
+  const id = new URLSearchParams(useLocation().search).get('FuelTypeid')
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/Category/${id}`)
+      .get(`http://localhost:5000/api/FuelType/${id}`)
       .then((res) => {
-        setCategoryName(res.data.Category_Name)
+        setFuelType(res.data.Fuel_Type)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
 
-  const UpdateCategory = () => {
+  const UpdateFuelType = () => {
     axios
-      .put(`http://localhost:5000/api/Category/${id}`, {
-        CategoryName: CategoryName,
+      .put(`http://localhost:5000/api/FuelType/${id}`, {
+        FuelType: FuelType,
       })
       .then(() => {
         console.log('Success')
-        alert('Category Update successed!')
+        alert('Fuel Type Update successed!')
       })
   }
   return (
@@ -49,21 +48,21 @@ function UpdateCategory() {
               <CCard className="mx-4">
                 <CCardBody className="p-4">
                   <CForm>
-                    <h3>Update Category</h3>
+                    <h3>Update Fuel Type</h3>
                     <br />
                     <CInputGroup className="mb-3">
                       <CFormInput
                         onChange={(event) => {
-                          setCategoryName(event.target.value)
+                          setFuelType(event.target.value)
                         }}
-                        placeholder="Category Name"
-                        autoComplete="CategoryName"
-                        value={CategoryName}
+                        placeholder="Fuel Type "
+                        autoComplete="FuelType"
+                        value={FuelType}
                       />
                     </CInputGroup>
 
                     <div className="d-grid">
-                      <CButton onClick={UpdateCategory} color="success">
+                      <CButton onClick={UpdateFuelType} color="success">
                         Save
                       </CButton>
                     </div>
@@ -79,4 +78,4 @@ function UpdateCategory() {
   )
 }
 
-export default UpdateCategory
+export default UpdateFuelType

@@ -3,6 +3,7 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import axios from 'axios'
 import {
   CAvatar,
   CCol,
@@ -23,7 +24,7 @@ import {
 } from '@coreui/react'
 const Branch = () => {
   const [items, setItems] = useState([])
-
+  const [BranchList, setBranchList] = useState([])
   const [pageCount, setpageCount] = useState(0)
 
   let limit = 15
@@ -42,6 +43,18 @@ const Branch = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const deleteBranch = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/api/deleteBranch/${id}`).then((response) => {
+      setBranchList(
+        BranchList.filter((items) => {
+          return items.Branch_Id != id
+        }),
+      )
+    })
+    window.location.reload(false)
   }
   useEffect(() => {
     getProductData()
@@ -100,7 +113,6 @@ const Branch = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Location</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Branch</CTableHeaderCell>
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
@@ -117,14 +129,24 @@ const Branch = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Location_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Branch}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="m-1" color="success">
+                              <CButton
+                                href={`/ViewBranch?Branch_Id=${item.Branch_Id}`}
+                                className="m-1"
+                                color="success"
+                              >
                                 View
                               </CButton>
 
-                              <CButton color="danger">Delete</CButton>
+                              <CButton
+                                onClick={() => {
+                                  deleteBranch(item.Branch_Id)
+                                }}
+                                color="danger"
+                              >
+                                Delete
+                              </CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

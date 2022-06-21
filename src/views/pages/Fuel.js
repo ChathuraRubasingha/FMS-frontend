@@ -27,7 +27,7 @@ class Fuel extends Component {
               <CCardImage orientation="top" src={ask_fuel} />
               <CCardBody>
                 <CCardTitle style={{ textAlign: 'center' }}>
-                  <CLink href="/AddFuel"> Requet Fuel </CLink>
+                  <CLink href="/AddFuel"> Fuel Requet Form </CLink>
                 </CCardTitle>
               </CCardBody>
             </CCard>
@@ -38,6 +38,16 @@ class Fuel extends Component {
               <CCardBody>
                 <CCardTitle style={{ textAlign: 'center' }}>
                   <CLink href="/Fuelrequier">View Fuel Requests </CLink>
+                </CCardTitle>
+              </CCardBody>
+            </CCard>
+          </CCol>
+          <CCol xs>
+            <CCard>
+              <CCardImage orientation="top" src={view_fuel} />
+              <CCardBody>
+                <CCardTitle style={{ textAlign: 'center' }}>
+                  <CLink href="/FuelStatus">View Status</CLink>
                 </CCardTitle>
               </CCardBody>
             </CCard>

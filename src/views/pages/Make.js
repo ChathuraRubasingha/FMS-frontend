@@ -32,13 +32,14 @@ const Make = () => {
 
   const deleteMake = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deleteMake/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteMake/${id}`).then((response) => {
       setMakeList(
         MakeList.filter((items) => {
           return items.Make_ID != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const [search, setSearch] = useState('')

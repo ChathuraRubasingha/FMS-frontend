@@ -21,6 +21,7 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
+import axios from 'axios'
 
 const FuelTable = () => {
   const [items, setItems] = useState([])
@@ -35,7 +36,7 @@ const FuelTable = () => {
     try {
       const res = await fetch(`http://localhost:5000/api/fuelrequest`)
       const data = await res.json()
-      console.log(data.data)
+      console.log(data)
       const total = res.headers.get('x-total-count')
 
       setpageCount(Math.ceil(total / limit))
@@ -43,6 +44,31 @@ const FuelTable = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+  const changeStatus = async (id, status) => {
+    let body = {}
+    if (status == 'Rejected') {
+      body = {
+        Approve_status: 'Approved',
+      }
+    } else {
+      console.log('Approved')
+      body = {
+        Approve_status: 'Rejected',
+      }
+    }
+    console.log(body)
+    await axios
+      .put(`http://localhost:5000/api/updatestatus/${id}`, body)
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          getProductData()
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   useEffect(() => {
     getProductData()
@@ -106,6 +132,7 @@ const FuelTable = () => {
                       <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Accept/Reject</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -119,7 +146,7 @@ const FuelTable = () => {
                       })
                       .map((item) => {
                         return (
-                          <CTableRow key={item.id}>
+                          <CTableRow key={item.Fuel_Request_ID}>
                             <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
                             <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
@@ -129,8 +156,16 @@ const FuelTable = () => {
                               {item.Required_Fuel_Capacity}
                             </CTableDataCell>
                             <CTableDataCell>
-                              <CButton className="button1">Option</CButton>
+                              <CButton
+                                className="button1"
+                                onClick={() => {
+                                  changeStatus(item.Fuel_Request_ID, item.Approve_Status)
+                                }}
+                              >
+                                Option
+                              </CButton>
                             </CTableDataCell>
+                            <CTableDataCell scope="row">{item.Approve_Status}</CTableDataCell>
                           </CTableRow>
                         )
                       })}

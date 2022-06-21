@@ -1,12 +1,10 @@
-import React, { useEffect, useState, Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
-import branch from './../../assets/images/avatars/branch.png'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { BsCartPlus } from 'react-icons/bs'
+import { BsCartPlusFill } from 'react-icons/bs'
 import {
-  CAvatar,
   CCol,
   CRow,
   CFormInput,
@@ -23,31 +21,22 @@ import {
   CPagination,
   CButton,
 } from '@coreui/react'
-const Modal = () => {
-  const [items, setItems] = useState([])
-  const [ModalList, setModalList] = useState([])
-  const [pageCount, setpageCount] = useState(0)
+import axios from 'axios'
 
-  let limit = 15
-  const deleteModal = (id) => {
-    alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/api/deleteModal/${id}`).then((response) => {
-      setModalList(
-        ModalList.filter((items) => {
-          return items.Model_ID != id
-        }),
-      )
-    })
-    window.location.reload(false)
-  }
+const FuelTable = () => {
+  const [items, setItems] = useState([])
+
+  const [pageCount, setpageCount] = useState('')
+
+  let limit = 10
 
   const [search, setSearch] = useState('')
 
   const getProductData = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/getModal`)
+      const res = await fetch(`http://localhost:5000/api/fuelrequest`)
       const data = await res.json()
-      console.log(data.data)
+      console.log(data)
       const total = res.headers.get('x-total-count')
 
       setpageCount(Math.ceil(total / limit))
@@ -55,6 +44,31 @@ const Modal = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+  const changeStatus = async (id, status) => {
+    let body = {}
+    if (status == 'Rejected') {
+      body = {
+        Approve_status: 'Approved',
+      }
+    } else {
+      console.log('Approved')
+      body = {
+        Approve_status: 'Rejected',
+      }
+    }
+    console.log(body)
+    await axios
+      .put(`http://localhost:5000/api/updatestatus/${id}`, body)
+      .then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+          getProductData()
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   useEffect(() => {
     getProductData()
@@ -81,25 +95,23 @@ const Modal = () => {
         <CCardBody>
           <CRow>
             <CCol xs={5}>
-              <h5>Modal Registry</h5>
+              <h3>
+                Requests Status &nbsp;
+                <BsCartPlusFill />
+              </h3>
             </CCol>
             <CCol xs={5} sm={4} lg={5}>
-              <CInputGroup className="mb-1 my-0 mx-0" lg={6} xs={6}>
+              <CInputGroup className="mb-2 my-0 mx-5 " lg={6} xs={6}>
                 <CInputGroupText>
                   <CIcon icon={cilSearch} />
                 </CInputGroupText>
                 <CFormInput
-                  placeholder="Search"
+                  placeholder="Search by Vehicle Number"
                   onChange={(e) => {
                     setSearch(e.target.value)
                   }}
                 />
               </CInputGroup>
-            </CCol>
-            <CCol xs={2}>
-              <Link to="/Add_Modal">
-                <CButton>{<CAvatar src={branch} size="md" />}Add new Modal </CButton>
-              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -113,8 +125,14 @@ const Modal = () => {
                 <CTable>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Modal</CTableHeaderCell>
-                      <CTableHeaderCell scope="col"></CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Vehicle No</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver Name</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Driver ID</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Request Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Current Odometer</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Required Volume</CTableHeaderCell>
+
+                      <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
@@ -122,28 +140,23 @@ const Modal = () => {
                       .filter((item) => {
                         if (search == '') {
                           return item
-                        } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
+                        } else if (item.Vehicle_No.toLowerCase().includes(search.toLowerCase())) {
                           return item
                         }
                       })
                       .map((item) => {
                         return (
-                          <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.Model}</CTableDataCell>
-                            <CTableDataCell>
-                              <CButton>View</CButton>
-                              <CButton className="m-1" color="success">
-                                Edit
-                              </CButton>
-                              <CButton
-                                onClick={() => {
-                                  deleteModal(item.Modal_ID)
-                                }}
-                                color="danger"
-                              >
-                                Delete
-                              </CButton>
+                          <CTableRow key={item.Fuel_Request_ID}>
+                            <CTableDataCell scope="row">{item.Vehicle_No}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Full_Name}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Driver_ID}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Request_Date}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Meter_Reading}</CTableDataCell>
+                            <CTableDataCell scope="row">
+                              {item.Required_Fuel_Capacity}
                             </CTableDataCell>
+
+                            <CTableDataCell scope="row">{item.Approve_Status}</CTableDataCell>
                           </CTableRow>
                         )
                       })}
@@ -155,7 +168,7 @@ const Modal = () => {
                       breakLabel={'...'}
                       pageCount={pageCount}
                       marginPagesDisplayed={2}
-                      pageRangeDisplayed={3}
+                      pageRangeDisplayed={2}
                       onPageChange={handlePageClick}
                       containerClassName={'pagination justify-content-center'}
                       pageClassName={'page-item'}
@@ -179,4 +192,5 @@ const Modal = () => {
     </div>
   )
 }
-export default Modal
+
+export default FuelTable

@@ -9,10 +9,13 @@ import {
   CFormInput,
   CInputGroup,
   CRow,
+  CFormLabel,
+  DocsExample,
 } from '@coreui/react'
 import axios from 'axios'
 import { FaGasPump } from 'react-icons/fa'
 import { FaRegMoneyBillAlt } from 'react-icons/fa'
+import photo from './photo'
 
 function ConfirmFuel() {
   const [fullName, setFullName] = useState('')
@@ -22,22 +25,25 @@ function ConfirmFuel() {
   const [odometer, setodometer] = useState('')
   const [Liters, setLiters] = useState('')
   const [amount, setamount] = useState('')
+  const [photo, setphoto] = useState('')
 
   const ConfirmFuel = () => {
-    axios
-      .post(`http://localhost:5000/api/addfuelconfirm`, {
-        fullName: fullName,
-        vehicleid: vehicleid,
-        location: location,
-        odometer: odometer,
-        Liters: Liters,
-        amount: amount,
-        date: date,
-      })
-      .then(() => {
-        console.log('Success')
-        alert('Filling  Details Added Successed!')
-      })
+    const formData = new FormData()
+    formData.append('fullName', fullName)
+    formData.append('vehicleid', vehicleid)
+    formData.append('location', location)
+    formData.append('odometer', odometer)
+    formData.append('Liters', Liters)
+    formData.append('amount', amount)
+    formData.append('date', date)
+    formData.append('photo', photo)
+    console.log(formData)
+    console.log(fullName)
+    console.log(photo)
+    axios.post(`http://localhost:5000/api/addfuelconfirm`, formData).then(() => {
+      console.log('Success')
+      alert('Filling  Details Added Successed!')
+    })
   }
 
   return (
@@ -123,12 +129,23 @@ function ConfirmFuel() {
                       autoComplete="amount"
                     />
                   </CInputGroup>
-                  <a href="url">
+
+                  <div className="mb-3">
                     <h6>
                       Add Bill &nbsp;
                       <FaRegMoneyBillAlt />
                     </h6>
-                  </a>
+
+                    <CFormInput
+                      onChange={(event) => {
+                        // console.log(event)
+                        setphoto(event.target.files[0])
+                      }}
+                      type="file"
+                      id="formFile"
+                    />
+                  </div>
+
                   <div className="d-grid">
                     <CButton onClick={ConfirmFuel} color="success">
                       ADD DETAILS

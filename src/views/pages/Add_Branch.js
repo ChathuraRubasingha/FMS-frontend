@@ -13,18 +13,17 @@ import {
 import axios from 'axios'
 
 function AddBranch() {
-  const [location, setLocation] = useState('')
   const [branch, setBranch] = useState('')
 
   const AddBranch = () => {
     axios
       .post(`http://localhost:5000/api/addBranch`, {
-        location: location,
         branch: branch,
       })
       .then(() => {
         console.log('Success')
         alert('Branch added successed!')
+        window.location.reload(false)
       })
   }
 
@@ -38,15 +37,7 @@ function AddBranch() {
                 <CForm>
                   <h3>Add new Branch</h3>
                   <br />
-                  <CInputGroup className="mb-3">
-                    <CFormInput
-                      onChange={(event) => {
-                        setLocation(event.target.value)
-                      }}
-                      placeholder="Location"
-                      autoComplete="Location"
-                    />
-                  </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
