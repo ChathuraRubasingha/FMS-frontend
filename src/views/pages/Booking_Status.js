@@ -25,7 +25,9 @@ import {
 } from '@coreui/react'
 import calender from './../../assets/images/avatars/calender.jpg'
 import { DocsCallout, DocsExample } from 'src/components'
-const Booking_Status = () => {
+function Booking_Status() {
+  const [date, setdate] = useState('')
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -34,7 +36,7 @@ const Booking_Status = () => {
             <strong>Vehicle Booking Report - Status wise</strong>
           </CCardHeader>
           <CCardBody>
-            <CInputGroup className="mb-3">
+            {/* <CInputGroup className="mb-3">
               <CInputGroupText id="basic-addon3">Vehicle Category</CInputGroupText>
               <CCard className="mb-4">
                 <CCardBody>
@@ -54,19 +56,31 @@ const Booking_Status = () => {
                   </CDropdown>
                 </CCardBody>
               </CCard>
-            </CInputGroup>
+            </CInputGroup> */}
 
             <CInputGroup className="mb-3">
               <CInputGroupText id="basic-addon3">From Date</CInputGroupText>
 
-              <CFormInput id="basic-url" aria-describedby="basic-addon3" />
-              <CInputGroupText>{<CAvatar src={calender} size="md" />}</CInputGroupText>
+              <CFormInput
+                onChange={(event) => {
+                  setdate(event.target.value)
+                }}
+                type="date"
+                placeholder="Request Date (yyyy/mm/dd)"
+                autoComplete="date"
+              />
             </CInputGroup>
 
             <CInputGroup className="mb-3">
               <CInputGroupText>To Date</CInputGroupText>
-              <CFormInput aria-label="Amount (to the nearest dollar)" />
-              <CInputGroupText> {<CAvatar src={calender} size="md" />}</CInputGroupText>
+              <CFormInput
+                onChange={(event) => {
+                  setdate(event.target.value)
+                }}
+                type="date"
+                placeholder="Request Date (yyyy/mm/dd)"
+                autoComplete="date"
+              />
             </CInputGroup>
           </CCardBody>
           <CButton class="vertical-center">Preview</CButton>

@@ -3,6 +3,8 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 import {
   CAvatar,
   CCol,
@@ -22,6 +24,7 @@ import {
   CButton,
 } from '@coreui/react'
 const Fuel_Type = () => {
+  const [FuelTypeList, setFuelTypeList] = useState([])
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -32,9 +35,7 @@ const Fuel_Type = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/getFuelType`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -44,6 +45,18 @@ const Fuel_Type = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const deleteFuelType = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/api/deleteFuelType/${id}`).then((response) => {
+      setFuelTypeList(
+        FuelTypeList.filter((items) => {
+          return items.Fuel_Type_ID != id
+        }),
+      )
+    })
+    window.location.reload(false)
   }
   useEffect(() => {
     getProductData()
@@ -86,7 +99,9 @@ const Fuel_Type = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Fuel Type</CButton>
+              <Link to="/AddFuelType">
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Fuel Type</CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -101,7 +116,6 @@ const Fuel_Type = () => {
                   <CTableHead>
                     <CTableRow>
                       <CTableHeaderCell scope="col">Fuel Type </CTableHeaderCell>
-
                       <CTableHeaderCell scope="col"></CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -117,14 +131,23 @@ const Fuel_Type = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
-
+                            <CTableDataCell scope="row">{item.Fuel_Type}</CTableDataCell>
                             <CTableDataCell>
-                              <CButton>View</CButton>
-                              <CButton className="m-1" color="success">
-                                Edit
+                              {/* <CButton>View</CButton> */}
+                              <Link to={`/UpdateFuelType?FuelTypeid=${item.Fuel_Type_ID}`}>
+                                <CButton className="m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                              <CButton
+                                onClick={() => {
+                                  deleteFuelType(item.Fuel_Type_ID)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )

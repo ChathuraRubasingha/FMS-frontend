@@ -50,6 +50,8 @@ const Driver = () => {
 
   const getProductData = async () => {
     try {
+      // const res = await fetch(`http://localhost:5000/api/driver`)
+      //const res = await fetch(`http://localhost:5000/api/drivers`)
       const res = await fetch(`http://localhost:5000/api/drivers`)
       const data = await res.json()
       console.log(data)

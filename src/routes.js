@@ -98,6 +98,7 @@ const AddDriver = React.lazy(() => import('./views/pages/AddDriver'))
 const AddManageRole = React.lazy(() => import('./views/pages/AddManageRole'))
 const Branch = React.lazy(() => import('./views/pages/Branch'))
 const Location = React.lazy(() => import('./views/pages/Location'))
+const LocationView = React.lazy(() => import('./views/pages/LocationView'))
 const Designation = React.lazy(() => import('./views/pages/Designation'))
 const Make = React.lazy(() => import('./views/pages/Make'))
 const Modal = React.lazy(() => import('./views/pages/Modal'))
@@ -133,6 +134,7 @@ const UnassignDrivers = React.lazy(() => import('./views/pages/UnassignDrivers')
 const project = React.lazy(() => import('./views/pages/project'))
 const Add_project = React.lazy(() => import('./views/pages/Add_project'))
 const photo = React.lazy(() => import('./views/pages/photo'))
+const ViewBranch = React.lazy(() => import('./views/pages/ViewBranch'))
 const UpdateLogin = React.lazy(() => import('./views/pages/UpdateLogin'))
 const TransferVehicleform = React.lazy(() => import('./views/pages/TransfterVehicleform'))
 const VehicleTranfering = React.lazy(() => import('./views/pages/TransfterVehicle'))
@@ -155,11 +157,15 @@ const Maintainance = React.lazy(() => import('./views/pages/Maintanace'))
 const MaintainanceDetails = React.lazy(() =>
   import('./views/pages/Vehicle Maintanance Details/Vehicle_maintanance_details'),
 )
+const UpdateCategory = React.lazy(() => import('./views/pages/UpdateCategory'))
+const Add_Category = React.lazy(() => import('./views/pages/Add_Category'))
 const Add_Branch = React.lazy(() => import('./views/pages/Add_Branch'))
 const Add_Location = React.lazy(() => import('./views/pages/Add_Location'))
 const Add_Designation = React.lazy(() => import('./views/pages/Add_Designation'))
 const Add_Make = React.lazy(() => import('./views/pages/Add_Make'))
 const Add_Modal = React.lazy(() => import('./views/pages/Add_Modal'))
+const AddFuelType = React.lazy(() => import('./views/pages/AddFuelType'))
+const UpdateFuelType = React.lazy(() => import('./views/pages/UpdateFuelType'))
 
 const UpdateDriver = React.lazy(() => import('./views/pages/UpdateDriver'))
 const UpdateProject = React.lazy(() => import('./views/pages/Update_Project'))
@@ -286,11 +292,15 @@ const routes = [
   { path: '/Add_Designation', name: 'Add Designation', component: Add_Designation },
   { path: '/Add_Make', name: 'Add Make', component: Add_Make },
   { path: '/Add_Modal', name: 'Add Modal', component: Add_Modal },
+  { path: '/Add_Category', name: 'Add Category', component: Add_Category },
+  { path: '/UpdateCategory', name: 'Update Category', component: UpdateCategory },
   { path: '/maintanace_details', name: 'Maintanance', component: MaintainanceDetails },
   { path: '/project', name: 'Mproject', component: project },
   { path: '/photo', name: 'photo', component: photo },
   { path: '/Add_project', name: 'Add_project', component: Add_project },
   { path: '/Update_Project', name: 'Update_Project', component: UpdateProject },
+  { path: '/LocationView', name: 'Location View', component: LocationView },
+  { path: '/ViewBranch', name: 'View Branch ', component: ViewBranch },
   { path: '/UpdateLogin', name: 'UpdateLogin', component: UpdateLogin },
 
   {
@@ -393,6 +403,9 @@ const routes = [
   { path: '/unassigndrivers', name: 'UnassignDrivers', component: UnassignDrivers },
   { path: '/vehicleinandout', name: 'VehicleINandOUT', component: VehicleINandOUT },
   { path: '/updateDriver', name: 'UpdateDriver', component: UpdateDriver },
+  { path: '/UpdateFuelType', name: 'Update Fuel Type', component: UpdateFuelType },
+  { path: '/AddFuelType', name: 'Add Fuel Type', component: AddFuelType },
+
   {
     path: '/completedbookingrequests',
     name: 'CompletedBookingRequests',

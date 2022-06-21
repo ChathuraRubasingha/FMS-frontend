@@ -31,13 +31,14 @@ const Modal = () => {
   let limit = 15
   const deleteModal = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deleteModal/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteModal/${id}`).then((response) => {
       setModalList(
         ModalList.filter((items) => {
           return items.Model_ID != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const [search, setSearch] = useState('')

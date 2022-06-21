@@ -34,13 +34,14 @@ const Location = () => {
 
   const deleteLocation = (id) => {
     alert('Are you sure to delete this record!')
-    axios.delete(`http://localhost:5000/deleteLocation/${id}`).then((response) => {
+    axios.delete(`http://localhost:5000/api/deleteLocation/${id}`).then((response) => {
       setLocationList(
         LocationList.filter((items) => {
           return items.Location_ID != id
         }),
       )
     })
+    window.location.reload(false)
   }
 
   const [search, setSearch] = useState('')
@@ -138,7 +139,9 @@ const Location = () => {
                             <CTableDataCell scope="row">{item.Address}</CTableDataCell>
 
                             <CTableDataCell>
-                              <CButton>View</CButton>
+                              <CButton href={`/LocationView?Location_ID=${item.Location_ID}`}>
+                                View
+                              </CButton>
                               <CButton className="m-1" color="success">
                                 Edit
                               </CButton>

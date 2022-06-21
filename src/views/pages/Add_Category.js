@@ -12,17 +12,17 @@ import {
 } from '@coreui/react'
 import axios from 'axios'
 
-function AddBranch() {
-  const [branch, setBranch] = useState('')
+function Add_Category() {
+  const [CategoryName, setCategoryName] = useState('')
 
-  const AddBranch = () => {
+  const Add_Category = () => {
     axios
-      .post(`http://localhost:5000/api/addBranch`, {
-        branch: branch,
+      .post(`http://localhost:5000/api/AddCategory`, {
+        CategoryName: CategoryName,
       })
       .then(() => {
         console.log('Success')
-        alert('Branch added successed!')
+        alert('Vehicle Category added successed!')
         window.location.reload(false)
       })
   }
@@ -35,22 +35,22 @@ function AddBranch() {
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm>
-                  <h3>Add new Branch</h3>
+                  <h3>Add new Category</h3>
                   <br />
 
                   <CInputGroup className="mb-3">
                     <CFormInput
                       onChange={(event) => {
-                        setBranch(event.target.value)
+                        setCategoryName(event.target.value)
                       }}
-                      placeholder="Branch"
-                      autoComplete="Branch"
+                      placeholder="CategoryName "
+                      autoComplete="CategoryName"
                     />
                   </CInputGroup>
 
                   <div className="d-grid">
-                    <CButton onClick={AddBranch} color="success">
-                      Add Branch
+                    <CButton onClick={Add_Category} color="success">
+                      Add Category
                     </CButton>
                   </div>
                 </CForm>
@@ -64,4 +64,4 @@ function AddBranch() {
   )
 }
 
-export default AddBranch
+export default Add_Category

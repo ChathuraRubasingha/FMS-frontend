@@ -26,7 +26,9 @@ import {
 import calender from './../../assets/images/avatars/calender.jpg'
 import { DocsCallout, DocsExample } from 'src/components'
 
-const Repair_form = () => {
+function Repair_form() {
+  const [date, setdate] = useState('')
+
   return (
     <CRow>
       <CCol xs={12}>
@@ -38,13 +40,25 @@ const Repair_form = () => {
             <CInputGroup className="mb-3">
               <CInputGroupText id="basic-addon3">From Date</CInputGroupText>
 
-              <CFormInput id="basic-url" aria-describedby="basic-addon3" />
-              <CInputGroupText>{<CAvatar src={calender} size="md" />}</CInputGroupText>
+              <CFormInput
+                onChange={(event) => {
+                  setdate(event.target.value)
+                }}
+                type="date"
+                placeholder="Request Date (yyyy/mm/dd)"
+                autoComplete="date"
+              />
             </CInputGroup>
             <CInputGroup className="mb-3">
               <CInputGroupText>To Date</CInputGroupText>
-              <CFormInput aria-label="Amount (to the nearest dollar)" />
-              <CInputGroupText> {<CAvatar src={calender} size="md" />}</CInputGroupText>
+              <CFormInput
+                onChange={(event) => {
+                  setdate(event.target.value)
+                }}
+                type="date"
+                placeholder="Request Date (yyyy/mm/dd)"
+                autoComplete="date"
+              />
             </CInputGroup>
           </CCardBody>
           <CButton class="vertical-center">Preview</CButton>
@@ -53,5 +67,4 @@ const Repair_form = () => {
     </CRow>
   )
 }
-
 export default Repair_form

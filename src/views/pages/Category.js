@@ -3,6 +3,8 @@ import CIcon from '@coreui/icons-react'
 import { cilSearch } from '@coreui/icons'
 import ReactPaginate from 'react-paginate'
 import branch from './../../assets/images/avatars/branch.png'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import {
   CAvatar,
   CCol,
@@ -22,6 +24,7 @@ import {
   CButton,
 } from '@coreui/react'
 const Category = () => {
+  const [CategoryList, setCategoryList] = useState([])
   const [items, setItems] = useState([])
 
   const [pageCount, setpageCount] = useState(0)
@@ -32,9 +35,7 @@ const Category = () => {
 
   const getProductData = async () => {
     try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`,
-      )
+      const res = await fetch(`http://localhost:5000/api/getCategory`)
       const data = await res.json()
       console.log(data.data)
       const total = res.headers.get('x-total-count')
@@ -44,6 +45,18 @@ const Category = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const deleteCategory = (id) => {
+    alert('Are you sure to delete this record!')
+    axios.delete(`http://localhost:5000/api/deleteCategory/${id}`).then((response) => {
+      setCategoryList(
+        CategoryList.filter((items) => {
+          return items.Vehicle_Category_ID != id
+        }),
+      )
+    })
+    window.location.reload(false)
   }
   useEffect(() => {
     getProductData()
@@ -86,7 +99,9 @@ const Category = () => {
               </CInputGroup>
             </CCol>
             <CCol xs={2}>
-              <CButton>{<CAvatar src={branch} size="md" />}Add new Category</CButton>
+              <Link to="/Add_Category">
+                <CButton>{<CAvatar src={branch} size="md" />}Add new Category</CButton>
+              </Link>
             </CCol>
           </CRow>
         </CCardBody>
@@ -117,14 +132,24 @@ const Category = () => {
                       .map((item) => {
                         return (
                           <CTableRow key={item.id}>
-                            <CTableDataCell scope="row">{item.id}</CTableDataCell>
+                            <CTableDataCell scope="row">{item.Category_Name}</CTableDataCell>
 
                             <CTableDataCell>
                               <CButton>View</CButton>
-                              <CButton className="m-1" color="success">
-                                Edit
+                              <Link to={`/UpdateCategory?CategoryID=${item.Vehicle_Category_ID}`}>
+                                <CButton className="m-1" color="success">
+                                  Update
+                                </CButton>
+                              </Link>
+                              <CButton
+                                onClick={() => {
+                                  deleteCategory(item.Vehicle_Category_ID)
+                                }}
+                                className="buttons m-1"
+                                color="danger"
+                              >
+                                Delete
                               </CButton>
-                              <CButton color="danger">Delete</CButton>
                             </CTableDataCell>
                           </CTableRow>
                         )
